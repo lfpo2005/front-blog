@@ -1,0 +1,45 @@
+<footer>
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Assine nossa newsletter!</h3>
+      <form [formGroup]="newsletterForm" (ngSubmit)="postNewsletter()">
+        <div class="form-group">
+          <label for="emailTo">E-mail</label>
+          <input type="email" class="form-control" id="emailTo" formControlName="emailTo" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" class="form-control" id="name" formControlName="name" required>
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="activeNewsletter" formControlName="activeNewsletter" required>
+          <label class="form-check-label" for="activeNewsletter">Aceito receber conteúdos e novidades!</label>
+          Ao informar meus dados, eu concordo com a <a routerLink="politica" style="font-size: 10px;">Política de Privacidade</a>
+        </div>
+        <button type="submit" class="btn btn-outline-success float-right">Enviar</button>
+      </form>
+    </div>
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-6">
+      <h1 id="about">Sobre nós</h1>
+      <p>
+        Com vasta experiência em atendimento ao cliente e como desenvolvedor Java, sou graduado em Gestão da Tecnologia da Informação e tenho uma pós-graduação em Engenharia de Software com foco em metodologias ágeis. Além disso, possuo diversos cursos de especialização e busco constantemente aprender mais sobre agilidade para contribuir com soluções inovadoras e eficientes. Minhas principais habilidades incluem facilitação de processos, métricas como CFD e planejamento semanal, além de experiência em desenvolvimento em backend java e microsserviços com Spring. Tenho orgulho em ter contribuído para projetos de sucesso e estou sempre em busca de novos desafios e oportunidades para aplicar minhas habilidades e conhecimentos.
+      </p>
+    </div>
+  </div>
+  <div class="row contact">
+    <div class="col-md-6" id="contact">
+      <h4>Informações de contato</h4>
+      <p>Endereço: São Joaquim da Barra/SP</p>
+      <p>Telefone: (16) 993649158</p>
+      <p>E-mail: contato@metodologia-agil.com.br
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+      <p class="text-center">© 2023 metodologia-agil.com.br Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
