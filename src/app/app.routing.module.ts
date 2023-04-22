@@ -3,10 +3,12 @@ import {RouterModule, Routes} from "@angular/router";
 
 import { HomeComponent } from "./home/home.component";
 import {PoliticaPSComponent} from "./politica-ps/politica-ps.component";
+import {PostDetailsComponent} from "./post-details/post-details.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'politica', component: PoliticaPSComponent}
+  {path: 'politica', component: PoliticaPSComponent},
+  {path: 'postDetails', component: PostDetailsComponent}
 ]
 
 @NgModule({

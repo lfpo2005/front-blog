@@ -13,6 +13,7 @@ import { FooterComponent } from "./footer/footer.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
 import {PoliticaPSComponent} from "./politica-ps/politica-ps.component";
+import {PostDetailsComponent} from "./post-details/post-details.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {PoliticaPSComponent} from "./politica-ps/politica-ps.component";
     HomeComponent,
     NavComponent,
     FooterComponent,
+    PostDetailsComponent,
     PoliticaPSComponent
   ],
   imports: [
