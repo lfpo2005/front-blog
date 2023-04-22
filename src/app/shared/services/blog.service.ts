@@ -9,7 +9,7 @@ import {EmailModel} from "../models/email.model";
 })
 export class BlogService {
 
-  apiUrl = 'http://localhost:8087';
+  apiUrl = 'http://localhost:8080/blog';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -26,9 +26,5 @@ export class BlogService {
   public postNewsletter(emailModel: EmailModel): Observable<EmailModel> {
     return this.httpClient.post<EmailModel>(`${ this.apiUrl }/newsletter`, emailModel, this.httpOptions);
   }
-
-
 }
-/*emailTo: 'email',
-  name: 'nome',
-  activeNewsletter: true*/
+
