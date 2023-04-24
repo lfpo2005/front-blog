@@ -24,9 +24,8 @@ export class BlogService {
   public getAllPosts(): Observable<ResponsePageable> {
     return this.httpClient.get<ResponsePageable>(`${ this.apiUrl }/public/posts`);
   }
-  public getDictionaryById(word: string): Observable<DictionaryModel> {
-    const url = `${this.apiUrl}/dictionaries?word=${word}`;
-    return this.httpClient.get<DictionaryModel>(url);
+  public getDictionaryWord(word: string): Observable<DictionaryModel[]> {
+    return this.httpClient.get<DictionaryModel[]>(`${this.apiUrl}/dictionaries?word=${word}`)
   }
 
   public postNewsletter(emailModel: EmailModel): Observable<EmailModel> {
