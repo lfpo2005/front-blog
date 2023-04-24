@@ -39,7 +39,7 @@ footer {
   z-index: 100;
   padding: 20px 50px 7px 50px;
   color: #f8f9fa;
-  margin-top: 20px;
+  margin-top: 200px;
 }
 
 .contact {
@@ -105,5 +105,8 @@ footer {
 }
 .container-politica {
   margin: 80px 20% 50px 20%;
+}
+.container-dictionary {
+  margin-top: 70px;
 }
 
