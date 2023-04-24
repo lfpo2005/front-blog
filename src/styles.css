@@ -1,14 +1,3 @@
-/*!* You can add global styles to this file, and also import other style files *!*/
-
-/*html, body { height: 100%; }*/
-/*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
-
-/*!*card*!*/
-/*.example-card {*/
-/*  max-width: 400px;*/
-/*  margin-bottom: 8px;*/
-/*}*/
-
 * {
   padding: 0;
   margin: 0;
@@ -26,12 +15,20 @@ body {
 }
 header {
   position: fixed;
+  text-align: center;
   top: 0;
   left: 0;
   width: 100%;
-  height: 50px;
   background-color: #343a40;
   z-index: 100;
+  padding: 70px 0 0 0;
+}
+
+.form-control {
+  font-size: 15px;
+  padding: 3px 10px;
+  width: 450px;
+  /*height: 18px;*/
 }
 footer {
   position: initial;
@@ -42,17 +39,71 @@ footer {
   z-index: 100;
   padding: 20px 50px 7px 50px;
   color: #f8f9fa;
-  margin-top: 500px;
+  margin-top: 20px;
 }
+
 .contact {
   margin-top: 13px;
 }
-.home-card{
-  margin: 10px;
 
-}
-.container-card{
+.container-card {
   display: flex;
   justify-content: center;
-  margin: 1% 5%;
- }
+  margin: 80px 5%;
+
+}
+
+.home-card {
+  width: 255px;
+  height: 460px;
+  margin: 10px;
+}
+
+.home-card img-card {
+  width: 255px;
+  height: 150px;
+  margin: 0 0 10px 0;
+}
+
+.home-card h1 {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  padding-top: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.login .form-control {
+  max-width: 310px;
+  margin-right: 10px;
+}
+
+.login-container {
+  margin: auto;
+}
+
+.login {
+  max-width: 350px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 150px;
+}
+.login button{
+  margin-top: 10px;
+}
+
+.login-signup {
+  text-align: center;
+  max-width: 350px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 150px;
+}
+.container-politica {
+  margin: 80px 20% 50px 20%;
+}
+

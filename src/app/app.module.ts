@@ -10,10 +10,11 @@ import { HomeComponent } from './home/home.component';
 import {NavComponent} from "./nav/nav.component";
 import { AppRoutingModule } from "./app.routing.module";
 import { FooterComponent } from "./footer/footer.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ToastrModule} from "ngx-toastr";
-import {PoliticaPSComponent} from "./politica-ps/politica-ps.component";
-import {PostDetailsComponent} from "./post-details/post-details.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ToastrModule } from "ngx-toastr";
+import { PoliticaPSComponent } from "./politica-ps/politica-ps.component";
+import {PostDetailsComponent } from "./post-details/post-details.component";
+import { LoginComponent } from "./login/login.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {PostDetailsComponent} from "./post-details/post-details.component";
     NavComponent,
     FooterComponent,
     PostDetailsComponent,
-    PoliticaPSComponent
+    PoliticaPSComponent,
+    LoginComponent
   ],
   imports: [
     AppRoutingModule,

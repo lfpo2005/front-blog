@@ -1,8 +1,8 @@
 version: '2.1'
 
 services:
-  curso-angular:
-    image: curso-angular
+  blog-agil-front:
+    image: blog-agil-front
     build: .
     ports:
       - 8081:80
