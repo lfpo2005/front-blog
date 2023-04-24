@@ -21,9 +21,10 @@
     </div>
   </div>
 
-  <div class="card" *ngIf="listResult && listResult.length === 0">
+  <div class="card" *ngIf="isSearched && listResult && listResult.length === 0">
     <div class="card-body">
       <p class="card-text">No results found for '{{ searchWord }}'</p>
     </div>
   </div>
+
 </div>

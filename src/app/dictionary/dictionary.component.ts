@@ -9,6 +9,8 @@ import { BlogService } from '../shared/services/blog.service';
 export class DictionaryComponent implements OnInit {
   searchWord = '';
   listResult?: DictionaryModel[];
+  public isSearched = false;
+
 
   ngOnInit(): void {
     // @ts-ignore
@@ -24,8 +26,10 @@ export class DictionaryComponent implements OnInit {
         this.listResult = data.content;
         this.cd.detectChanges()
         console.log(data);
+        this.isSearched = true;
       },
       error: (e) => alert('Atenção\n' + e.error),
     });
   }
+
 }
