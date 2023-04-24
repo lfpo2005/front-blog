@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { DictionaryModel } from '../shared/models/dictionary.model';
 import { BlogService } from '../shared/services/blog.service';
 
@@ -6,16 +6,22 @@ import { BlogService } from '../shared/services/blog.service';
   selector: 'app-dictionary',
   templateUrl: './dictionary.component.html',
 })
-export class DictionaryComponent {
+export class DictionaryComponent implements OnInit {
   searchWord = '';
-  listResult: DictionaryModel[] | null = null;
+  listResult?: DictionaryModel[];
+
+  ngOnInit(): void {
+    // @ts-ignore
+    this.getDictionaryWord();
+
+  }
 
   constructor(private service: BlogService, private cd: ChangeDetectorRef) {}
 
   getDictionaryWord(word: string): void {
     this.service.getDictionaryWord(word).subscribe({
       next: (data) => {
-        this.listResult = data;
+        this.listResult = data.content;
         this.cd.detectChanges()
         console.log(data);
       },

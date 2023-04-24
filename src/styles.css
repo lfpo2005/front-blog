@@ -106,7 +106,22 @@ footer {
 .container-politica {
   margin: 80px 20% 50px 20%;
 }
+/*.container-dictionary {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  width: 500px;*/
+/*  height: 460px;*/
+/*  margin: 200px auto 0;*/
+/*}*/
 .container-dictionary {
-  margin-top: 70px;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 500px;
+  height: 460px;
 }
+
+
 
