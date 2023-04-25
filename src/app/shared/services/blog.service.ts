@@ -4,14 +4,13 @@ import { Observable } from 'rxjs';
 import { ResponsePageable } from "../models/responsePageable.model";
 import {EmailModel} from "../models/email.model";
 import {UserModel} from "../models/user.model";
-import {DictionaryModel} from "../models/dictionary.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
 
-  apiUrl = 'http://localhost:8087';
+  apiUrl = 'http://localhost:8080';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
