@@ -11,7 +11,11 @@ body {
   min-height: 100vh;
   background-color: #f8f9fa;
   margin: 0;
-  padding: 0;
+  padding:  80px 0 0 0;
+}
+
+.page-wrapper {
+  padding-top: 20px; /* ajuste para a altura do seu header */
 }
 header {
   position: fixed;
@@ -49,10 +53,8 @@ footer {
 .container-card {
   display: flex;
   justify-content: center;
-  margin: 80px 5%;
-
+  margin: 0 5%;
 }
-
 .home-card {
   width: 255px;
   height: 460px;
@@ -106,22 +108,15 @@ footer {
 .container-politica {
   margin: 80px 20% 50px 20%;
 }
-/*.container-dictionary {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*  width: 500px;*/
-/*  height: 460px;*/
-/*  margin: 200px auto 0;*/
-/*}*/
 .container-dictionary {
-  position: absolute;
-  top: 50px;
-  right: 50px;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  align-items: center;
+  justify-content: center;
   width: 500px;
-  height: 460px;
+  margin: 100px auto 20px;
 }
-
-
+. container-dictionary button {
+  margin: 50px;
+}
 
