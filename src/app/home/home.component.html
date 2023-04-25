@@ -1,14 +1,12 @@
-<main class="container-card">
+<main class="container-card page-wrapper">
   <div class="row">
     <div class="col-md-3" *ngFor="let post of listPosts">
       <div class="card home-card">
         <a routerLink="postDetails">
 <!--          <img class="mr-3 img-post" src="'data:image/jpeg;base64,' + ${post.image.imageMin}"-->
 <!--               alt="Imagem de capa do card">-->
-          <img class="card-img-top" src="{{ post.imgUrl }}" alt="Card image cap">
-          <h1 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;">
-            <span text=>{{ post.title }}</span>
-          </h1></a>
+          <div class="img-card"><img class="card-img-top" src="{{ post.imgUrl }}" alt="Card image cap"></div>
+          <h1 class="card-title"> {{ post.title }} </h1></a>
 
         <div class="card-body">
           <p class="card-text">{{ post.description }}</p>
@@ -20,19 +18,3 @@
     </div>
   </div>
 </main>
-<!--
-<main class="container-card">
-  <div class="row">
-    <div class="col-md-3" *ngFor="let post of listPosts">
-      <div class="card home-card">
-        <img class="card-img-top" src="{{ post.imgUrl }}" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <p class="card-text">{{ post.description }}</p>
-&lt;!&ndash;          <p class="card-text">{{ post.tags }}</p>&ndash;&gt;
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
--->

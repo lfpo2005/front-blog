@@ -1,0 +1,31 @@
+<div class="container-dictionary my-5">
+  <form (ngSubmit)="getDictionaryWord(searchWord)" #searchForm="ngForm">
+    <h1>Dicionário da Tecnologia</h1>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        name="searchWord"
+        [(ngModel)]="searchWord"
+        class="form-control"
+        placeholder="Pesquise por palavra"
+        required
+      />
+      <button type="submit" class="btn btn-outline-success">Pesquisar</button>
+    </div>
+  </form>
+
+  <div class="card" *ngIf="listResult && listResult.length > 0">
+    <div class="card-body">
+      <h2 class="card-title">{{ listResult[0].word }}</h2>
+      <p class="card-text">{{ listResult[0].reference }}</p>
+      <p class="card-text">{{ listResult[0].link }}</p>
+    </div>
+  </div>
+
+  <div class="card-body" *ngFor="let result of listResult">
+    <h2 class="card-title">{{ result.word }}</h2>
+    <p class="card-text">{{ result.reference }}</p>
+    <p class="card-text">{{ result.link }}</p>
+  </div>
+
+</div>
