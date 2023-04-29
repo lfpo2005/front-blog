@@ -11,4 +11,5 @@ export class PostModel {
   dateUpdate?: Date;
   imgUrl?: string;
   tags?: string[];
+  tagsString?: string;
 }

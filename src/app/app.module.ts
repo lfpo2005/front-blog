@@ -18,6 +18,8 @@ import { LoginComponent } from "./login/login.component";
 import { DictionaryComponent } from "./dictionary/dictionary.component";
 import { PanelAdminComponent } from "./painel-admin/panel-admin.component";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {PostEditorComponent} from "./post-editor/post-editor.component";
+import {NgxSummernoteModule} from "ngx-summernote";
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import {JwtHelperService} from "@auth0/angular-jwt";
     LoginComponent,
     DictionaryComponent,
     PanelAdminComponent,
+    PostEditorComponent,
+
   ],
   imports: [
     AppRoutingModule,
@@ -42,7 +46,8 @@ import {JwtHelperService} from "@auth0/angular-jwt";
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxSummernoteModule
   ],
   providers: [ JwtHelperService ],
   bootstrap: [ AppComponent ]

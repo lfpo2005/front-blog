@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {PostModel} from "../shared/models/post.model";
 
 @Component({
   selector: 'app-painel-admin',
@@ -14,5 +15,9 @@ export class PanelAdminComponent {
 
   public closeForm() {
     this.formOpen = null;
+  }
+  onPostCreated(newPost: PostModel) {
+    // Implemente a lógica a ser executada após a criação de uma nova postagem
+    console.log(newPost);
   }
 }
