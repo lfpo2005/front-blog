@@ -15,10 +15,4 @@ export class PanelAdminComponent {
   public closeForm() {
     this.formOpen = null;
   }
-
-  public
-
-
-
-
 }

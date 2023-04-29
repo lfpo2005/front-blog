@@ -14,7 +14,7 @@ import {PostModel} from "../models/post.model";
 })
 export class BlogService {
 
-  apiUrl = 'http://localhost:8087';
+  apiUrl = 'http://localhost:8087/blog';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
