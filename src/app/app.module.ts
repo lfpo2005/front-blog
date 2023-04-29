@@ -16,6 +16,8 @@ import { PoliticaPSComponent } from "./politica-ps/politica-ps.component";
 import { PostDetailsComponent } from "./post-details/post-details.component";
 import { LoginComponent } from "./login/login.component";
 import { DictionaryComponent } from "./dictionary/dictionary.component";
+import { PanelAdminComponent } from "./painel-admin/panel-admin.component";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { DictionaryComponent } from "./dictionary/dictionary.component";
     PostDetailsComponent,
     PoliticaPSComponent,
     LoginComponent,
-    DictionaryComponent
+    DictionaryComponent,
+    PanelAdminComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -41,7 +44,7 @@ import { DictionaryComponent } from "./dictionary/dictionary.component";
     FormsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ JwtHelperService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

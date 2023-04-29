@@ -1,0 +1,87 @@
+<div class="d-flex" id="wrapper">
+  <!-- Menu lateral -->
+  <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">Painel de administração</div>
+    <div class="list-group list-group-flush">
+      <button class="list-group-item list-group-item-action" (click)="openForm('post')">Criar postagem</button>
+      <button class="list-group-item list-group-item-action" (click)="openForm('dictionary')">Criar dicionário</button>
+      <button class="list-group-item list-group-item-action" (click)="openForm('quiz')">Criar quiz</button>
+      <button class="list-group-item list-group-item-action" (click)="openForm('dashboard')">Dashboard</button>
+    </div>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <h1>Painel de administração</h1>
+
+      <!-- Formulário para criar postagens -->
+      <div *ngIf="formOpen === 'post'">
+        <h2>Criar postagem</h2>
+        <section>
+          <div class="container-fluid" style="width: 70%;">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
+                <li class="breadcrumb-item" aria-current="page"><a href="/posts">Posts</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Novo Post</li>
+              </ol>
+            </nav>
+            <div>
+              <div>
+                <th:block th:include="msgValidacao"></th:block>
+              </div>
+              <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="title" placeholder="Título *" [(ngModel)]="post.title">
+                </div>
+                <br>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="tags" placeholder="Tags *" [(ngModel)]="post.tags">
+                </div>
+                <div class="form-group">
+                  <textarea type="text" class="form-control" name="description" placeholder="Descrição *" maxlength="250" [(ngModel)]="post.description"></textarea>
+                </div>
+                <br>
+                <div class="form-group"><br>
+                  <label for="imgUrl">Imagem:</label>
+                  <input type="file" id="imgUrl" name="imgUrl" accept="image/*" (change)="onFileSelected($event)">
+                </div>
+                <br>
+
+                <textarea id="summernote" class="form-control" name="post" placeholder="Texto *" [(ngModel)]="post.content"></textarea>
+
+                <small class="form-text text-muted">(*) Campos obrigatórios</small>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar</button>
+                <a href="/posts" class="btn btn-light" role="button" style="margin-top: 10px;">Cancelar</a>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Formulário para criar dicionários -->
+      <div *ngIf="formOpen === 'dictionary'">
+        <h2>Criar dicionário</h2>
+        <form>
+          <!-- Campos do formulário para criar dicionários -->
+        </form>
+      </div>
+
+      <!-- Formulário para criar quizzes -->
+      <div *ngIf="formOpen === 'quiz'">
+        <h2>Criar quiz</h2>
+        <form>
+          <!-- Campos do formulário para criar quizzes -->
+        </form>
+      </div>
+
+      <!-- Dashboard -->
+      <div *ngIf="formOpen === 'dashboard'">
+        <h2>Dashboard</h2>
+        <!-- Conteúdo do dashboard -->
+      </div>
+    </div>
+  </div>
+</div>

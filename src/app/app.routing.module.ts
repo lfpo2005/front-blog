@@ -6,6 +6,7 @@ import {PoliticaPSComponent} from "./politica-ps/politica-ps.component";
 import {PostDetailsComponent} from "./post-details/post-details.component";
 import {LoginComponent} from "./login/login.component";
 import {DictionaryComponent} from "./dictionary/dictionary.component";
+import {PanelAdminComponent} from "./painel-admin/panel-admin.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'postDetails', component: PostDetailsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'dictionary', component: DictionaryComponent},
+  {path: 'admin', component: PanelAdminComponent},
 ]
 
 @NgModule({

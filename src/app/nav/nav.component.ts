@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PostModel} from "../shared/models/post.model";
 import {BlogService} from "../shared/services/blog.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav',
@@ -15,8 +16,12 @@ export class NavComponent implements OnInit {
     this.getAllPosts();
   }
 
-  constructor(private service: BlogService, private modalService: NgbModal) {
-  }
+  constructor(
+    private service: BlogService,
+    private modalService: NgbModal,
+    private router: Router,
+
+  ) {}
 
   public getAllPosts() {
     this.service.getAllPosts().subscribe({
@@ -25,5 +30,18 @@ export class NavComponent implements OnInit {
       },
       error: (e) => console.error(e),
     });
+  }
+
+  public postLogout() {
+    this.service.logout().subscribe(
+      (res) => {
+        console.log('Logout realizado com sucesso!', res);
+        localStorage.removeItem('token');
+        this.router.navigate(['/']);
+      },
+      (err) => {
+        console.error('Erro ao fazer logout', err);
+      }
+    );
   }
 }

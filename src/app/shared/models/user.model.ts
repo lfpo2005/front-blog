@@ -1,4 +1,4 @@
-import {RoleType} from "./enum/roleType.enum";
+import {RoleType} from "../enum/roleType.enum";
 
 export class UserModel {
   userId?: string;
@@ -8,6 +8,5 @@ export class UserModel {
   fullName?: string;
   phoneNumber?: string;
   imageUrl?: string;
-  roles?: RoleType[] = [];
-
+  role?: RoleType;
 }
