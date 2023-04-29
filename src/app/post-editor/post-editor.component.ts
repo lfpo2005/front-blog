@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostModel } from '../shared/models/post.model';
-
+import { BlogService } from '../shared/services/blog.service';
 
 @Component({
   selector: 'app-post-editor',
@@ -22,12 +22,12 @@ export class PostEditorComponent implements OnInit {
       ['insert', ['table', 'picture', 'link', 'video', 'hr']]
     ],
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times']
-  };
+  }
 
   @Output() postCreated = new EventEmitter<PostModel>();
   postForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private blogService: BlogService) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       post: ['', Validators.required],
@@ -51,7 +51,15 @@ export class PostEditorComponent implements OnInit {
         post.tags = [];
       }
 
-      this.postCreated.emit(post);
+      this.blogService.createPosts(post).subscribe(
+        (createdPost: PostModel) => {
+          console.log('Post criado com sucesso', createdPost);
+          this.postCreated.emit(createdPost);
+        },
+        (error) => {
+          console.error('Erro ao criar post', error);
+        }
+      );
     }
   }
 }

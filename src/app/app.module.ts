@@ -4,7 +4,7 @@ import { NgbCarouselModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from './app.component';
 import { CarrosselComponent } from './carrossel/carrossel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { PostModalComponent } from './modalpost/modalpost.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from "./nav/nav.component";
@@ -20,6 +20,7 @@ import { PanelAdminComponent } from "./painel-admin/panel-admin.component";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { PostEditorComponent } from "./post-editor/post-editor.component";
 import { NgxSummernoteModule } from 'ngx-summernote';
+import {AuthInterceptor} from "./shared/services/auth.interceptor";
 
 
 @NgModule({
@@ -51,7 +52,13 @@ import { NgxSummernoteModule } from 'ngx-summernote';
     ReactiveFormsModule,
     NgxSummernoteModule
   ],
-  providers: [ JwtHelperService ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    JwtHelperService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
