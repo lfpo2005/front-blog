@@ -1,0 +1,28 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+<div class="form-group">
+    <label for="title">Título</label>
+    <input type="text" class="form-control" id="title" formControlName="title" placeholder="Digite o título">
+  </div>
+
+  <div class="form-group">
+    <label for="post">Postagem</label>
+    <textarea class="form-control"  [ngxSummernote]="config" id="post" formControlName="post" rows="5" placeholder="Digite o conteúdo da postagem"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Descrição</label>
+    <input type="text" class="form-control" id="description" formControlName="description" placeholder="Digite a descrição">
+  </div>
+
+  <div class="form-group">
+    <label for="imgUrl">URL da imagem</label>
+    <input type="text" class="form-control" id="imgUrl" formControlName="imgUrl" placeholder="Digite a URL da imagem">
+  </div>
+
+  <div class="form-group">
+    <label for="tags">Tags</label>
+    <input type="text" class="form-control" id="tags" formControlName="tags" placeholder="Digite as tags separadas por vírgulas">
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="postForm.invalid">Criar Post</button>
+</form>

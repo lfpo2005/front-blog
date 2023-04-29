@@ -17,9 +17,10 @@ import { PostDetailsComponent } from "./post-details/post-details.component";
 import { LoginComponent } from "./login/login.component";
 import { DictionaryComponent } from "./dictionary/dictionary.component";
 import { PanelAdminComponent } from "./painel-admin/panel-admin.component";
-import {JwtHelperService} from "@auth0/angular-jwt";
-import {PostEditorComponent} from "./post-editor/post-editor.component";
-import {NgxSummernoteModule} from "ngx-summernote";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { PostEditorComponent } from "./post-editor/post-editor.component";
+import { NgxSummernoteModule } from 'ngx-summernote';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {NgxSummernoteModule} from "ngx-summernote";
     ReactiveFormsModule,
     FormsModule,
     ToastrModule.forRoot(),
+    ReactiveFormsModule,
     NgxSummernoteModule
   ],
   providers: [ JwtHelperService ],
