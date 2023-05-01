@@ -26,6 +26,8 @@ export class BlogService {
 
   public getAllPosts(): Observable<ResponsePageable> {
     return this.httpClient.get<ResponsePageable>(`${ this.apiUrl }/public/posts`);
+  }public getByIdPosts(postId: string): Observable<PostModel> {
+    return this.httpClient.get<PostModel>(`${ this.apiUrl }/public/posts/${postId}`);
   }
   public createPosts(postModel: PostModel): Observable<PostModel> {
     return this.httpClient.post<PostModel>(`${ this.apiUrl }/posts`, postModel, this.httpOptions);
@@ -37,9 +39,7 @@ export class BlogService {
   public postNewsletter(emailModel: EmailModel): Observable<EmailModel> {
     return this.httpClient.post<EmailModel>(`${ this.apiUrl }/newsletter`, emailModel, this.httpOptions);
   }
-/*  public login(userModel: UserModel): Observable<UserModel> {
-    return this.httpClient.post<UserModel>(`${ this.apiUrl }/auth/login`, userModel, this.httpOptions);
-  }*/
+
   public login(userModel: UserModel): Observable<LoginResponse> {
     return this.httpClient.post<LoginResponse>(`${this.apiUrl}/auth/login`, userModel, this.httpOptions);
   }

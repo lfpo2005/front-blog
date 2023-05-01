@@ -2,10 +2,15 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostModel } from '../shared/models/post.model';
 import { BlogService } from '../shared/services/blog.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from "@angular/common";
+
 
 @Component({
   selector: 'app-post-editor',
-  templateUrl: './post-editor.component.html'
+  templateUrl: './post-editor.component.html',
+  providers: [DatePipe]
 })
 export class PostEditorComponent implements OnInit {
   config = {
@@ -27,7 +32,11 @@ export class PostEditorComponent implements OnInit {
   @Output() postCreated = new EventEmitter<PostModel>();
   postForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private blogService: BlogService) {
+  constructor(private fb: FormBuilder,
+              private blogService: BlogService,
+              private router: Router,
+              private toastr: ToastrService,
+              ) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       post: ['', Validators.required],
@@ -52,14 +61,17 @@ export class PostEditorComponent implements OnInit {
       }
 
       this.blogService.createPosts(post).subscribe(
-        (createdPost: PostModel) => {
-          console.log('Post criado com sucesso', createdPost);
-          this.postCreated.emit(createdPost);
+        (postCriado) => {
+          this.toastr.success("Post criado com sucesso!");
+          const postId = postCriado.postId;
+          this.router.navigate(['/postDetails', postId]);
         },
-        (error) => {
-          console.error('Erro ao criar post', error);
+        (err) => {
+          this.toastr.error("Erro ao criar post!");
         }
       );
+    } else {
+      this.toastr.error("Erro ao criar post!");
     }
   }
 }

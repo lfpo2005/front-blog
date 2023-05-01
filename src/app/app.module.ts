@@ -20,7 +20,8 @@ import { PanelAdminComponent } from "./painel-admin/panel-admin.component";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { PostEditorComponent } from "./post-editor/post-editor.component";
 import { NgxSummernoteModule } from 'ngx-summernote';
-import {AuthInterceptor} from "./shared/services/auth.interceptor";
+import { AuthInterceptor } from "./shared/services/auth.interceptor";
+import {CommonModule, DatePipe } from "@angular/common";
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {AuthInterceptor} from "./shared/services/auth.interceptor";
     FormsModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
-    NgxSummernoteModule
+    NgxSummernoteModule,
+    CommonModule
   ],
   providers: [
     {
@@ -58,7 +60,9 @@ import {AuthInterceptor} from "./shared/services/auth.interceptor";
       useClass: AuthInterceptor,
       multi: true
     },
-    JwtHelperService ],
+    JwtHelperService,
+    DatePipe
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

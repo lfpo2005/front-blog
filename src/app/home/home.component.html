@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-3" *ngFor="let post of listPosts">
       <div class="card home-card">
-        <a routerLink="postDetails">
+        <a [routerLink]="['/postDetails', post.postId]">
 <!--          <img class="mr-3 img-post" src="'data:image/jpeg;base64,' + ${post.image.imageMin}"-->
 <!--               alt="Imagem de capa do card">-->
           <div class="img-card"><img class="card-img-top" src="{{ post.imgUrl }}" alt="Card image cap"></div>

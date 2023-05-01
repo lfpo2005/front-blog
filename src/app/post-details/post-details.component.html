@@ -1,26 +1,24 @@
-<div class="container page-wrapper">
+<div class="container page-wrapper" *ngIf="post">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item" aria-current="page"><a routerLink="/">Posts</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Post</li>
+      <li class="breadcrumb-item active" aria-current="page">{{ post?.title }}</li>
     </ol>
   </nav>
   <article>
-    <img class="mr-3 img-post" [src]="'data:image/jpeg;base64,' + post?.image?.imageMin"
-         alt="Imagem de capa do card">
-    <h1 class="card-title">
-      <span>{{ post.title }}</span>
+    <h1 class="card-title h1-postDetails">
+      <span>{{ post?.title }}</span>
     </h1>
     <p class="card-subtitle mb-2 text-muted">
-      <i class="material-icons">Autor: </i>
-      <span>{{ post.author }}</span>
+      <i class="">Autor: </i>
+      <span>{{ post?.author }}</span>
       <br>
-      <i class="material-icons">Data de criação: </i>
-      <span>{{ post.creationDate }}</span>
+      <i class="">Data de criação: </i>
+      <span>{{ formatData(post?.creationDate) }}</span>
     </p>
     <section>
       <p class="card-text" style="margin-top: 40px;">
-        <span>{{ post.post }}</span>
+        <span [innerHTML]="post?.post"></span>
       </p>
       <p>
         <strong>Tags:</strong>

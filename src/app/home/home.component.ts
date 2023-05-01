@@ -24,5 +24,4 @@ export class HomeComponent implements OnInit {
       error: (e) => console.error(e),
     });
   }
-
 }

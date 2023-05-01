@@ -10,8 +10,9 @@ import {PanelAdminComponent} from "./painel-admin/panel-admin.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'politica', component: PoliticaPSComponent},
-  {path: 'postDetails', component: PostDetailsComponent},
+  {path: 'postDetails/:postId', component: PostDetailsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'dictionary', component: DictionaryComponent},
   {path: 'admin', component: PanelAdminComponent},
