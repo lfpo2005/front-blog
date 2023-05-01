@@ -15,7 +15,7 @@ import {DictionaryModel} from "../models/dictionary.model";
 })
 export class BlogService {
 
-  apiUrl = 'http://localhost:8087/blog';
+  apiUrl = 'http://localhost:8080/blog';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
