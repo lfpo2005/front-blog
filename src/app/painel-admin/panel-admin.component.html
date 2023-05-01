@@ -19,16 +19,12 @@
       <div *ngIf="formOpen === 'post'">
         <h2>Criar postagem</h2>
         <app-post-editor (postCreated)="onPostCreated($event)"></app-post-editor>
-
-
       </div>
 
       <!-- Formulário para criar dicionários -->
       <div *ngIf="formOpen === 'dictionary'">
         <h2>Criar dicionário</h2>
-        <form>
-          <!-- Campos do formulário para criar dicionários -->
-        </form>
+        <app-dictionary-editor (dictionaryCreated)="onDictionaryCreated($event)"></app-dictionary-editor>
       </div>
 
       <!-- Formulário para criar quizzes -->

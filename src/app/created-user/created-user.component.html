@@ -1,0 +1,76 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" formControlName="username">
+    <div *ngIf="userForm.get('username')?.invalid && (userForm.get('username')?.dirty || userForm.get('username')?.touched)">
+      <div *ngIf="userForm.get('username')?.errors?.['required']">
+        {{ validationMessages['username']['required'] }}
+      </div>
+    </div>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email">
+    <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
+      <div *ngIf="userForm.get('email')?.errors?.['required']">
+        {{ validationMessages['email']['required'] }}
+      </div>
+    </div>
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password">
+    <div *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)">
+      <div *ngIf="userForm.get('password')?.errors?.['required']">
+        {{ validationMessages['password']['required'] }}
+      </div>
+      <div *ngIf="userForm.get('password')?.errors?.['minlength']">
+        {{ validationMessages['password']['minlength'] }}
+      </div>
+    </div>
+  </div>
+  <div>
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" formControlName="confirmPassword">
+    <div *ngIf="userForm.get('confirmPassword')?.invalid && (userForm.get('confirmPassword')?.dirty || userForm.get('confirmPassword')?.touched)">
+      <div *ngIf="userForm.get('confirmPassword')?.errors?.['required']">
+        {{ validationMessages['confirmPassword']['required'] }}
+      </div>
+      <div *ngIf="userForm.get('confirmPassword')?.errors?.['notSame']">
+        {{ validationMessages['confirmPassword']['notSame'] }}
+      </div>
+    </div>
+  </div>
+  <div>
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" formControlName="fullName">
+    <div *ngIf="userForm.get('fullName')?.invalid && (userForm.get('fullName')?.dirty || userForm.get('fullName')?.touched)">
+      <div *ngIf="userForm.get('fullName')?.errors?.['required']">
+        {{ validationMessages['fullName']['required'] }}
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" id="phoneNumber" formControlName="phoneNumber">
+      <div *ngIf="userForm.get('phoneNumber')?.invalid && (userForm.get('phoneNumber')?.dirty || userForm.get('phoneNumber')?.touched)">
+        <div *ngIf="userForm.get('phoneNumber')?.errors?.['required']">
+          {{ validationMessages['phoneNumber']['required'] }}
+        </div>
+      </div>
+    </div>
+    <div *ngIf="error">
+      {{ error }}
+    </div>
+  </div>
+    <button type="submit">Criar Usuário</button>
+</form>
+
+
+
+
+
+
+
+

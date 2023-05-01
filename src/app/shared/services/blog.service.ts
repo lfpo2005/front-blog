@@ -6,6 +6,7 @@ import { EmailModel } from "../models/email.model";
 import { UserModel } from "../models/user.model";
 import { LoginResponse } from "../interfaces/login.response"
 import {PostModel} from "../models/post.model";
+import {DictionaryModel} from "../models/dictionary.model";
 
 
 
@@ -34,6 +35,12 @@ export class BlogService {
   }
   public getDictionaryWord(word: string): Observable<ResponsePageable> {
     return this.httpClient.get<ResponsePageable>(`${this.apiUrl}/dictionaries?word=${word}`)
+  }
+  public createDictionary(dictionaryModel: DictionaryModel): Observable<DictionaryModel> {
+    return this.httpClient.post<DictionaryModel>(`${ this.apiUrl }/dictionaries`, dictionaryModel, this.httpOptions);
+  }
+  public createdUser(userModel: UserModel): Observable<UserModel> {
+    return this.httpClient.post<UserModel>(`${ this.apiUrl }/auth/signup`, userModel, this.httpOptions);
   }
 
   public postNewsletter(emailModel: EmailModel): Observable<EmailModel> {

@@ -11,7 +11,6 @@ import { NavComponent } from "./nav/nav.component";
 import { AppRoutingModule } from "./app.routing.module";
 import { FooterComponent } from "./footer/footer.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ToastrModule } from "ngx-toastr";
 import { PoliticaPSComponent } from "./politica-ps/politica-ps.component";
 import { PostDetailsComponent } from "./post-details/post-details.component";
 import { LoginComponent } from "./login/login.component";
@@ -21,8 +20,9 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { PostEditorComponent } from "./post-editor/post-editor.component";
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { AuthInterceptor } from "./shared/services/auth.interceptor";
-import {CommonModule, DatePipe } from "@angular/common";
-
+import { CommonModule, DatePipe } from "@angular/common";
+import { DictionaryEditorComponent } from "./dictionary-editor/dictionary-editor.component";
+import { CreatedUserComponent } from "./created-user/created-user.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import {CommonModule, DatePipe } from "@angular/common";
     DictionaryComponent,
     PanelAdminComponent,
     PostEditorComponent,
-
+    DictionaryEditorComponent,
+    CreatedUserComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -49,7 +50,6 @@ import {CommonModule, DatePipe } from "@angular/common";
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    ToastrModule.forRoot(),
     ReactiveFormsModule,
     NgxSummernoteModule,
     CommonModule

@@ -1,0 +1,15 @@
+<form [formGroup]="dictionaryForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="word">Palavra:</label>
+    <input type="text" id="word" class="form-control" formControlName="word" required>
+  </div>
+  <div class="form-group">
+    <label for="reference">Referência:</label>
+    <textarea id="reference" class="form-control" formControlName="reference" required></textarea>
+  </div>
+  <div class="form-group">
+    <label for="link">Link:</label>
+    <input type="text" id="link" class="form-control" formControlName="link" required>
+  </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!dictionaryForm.valid">Criar Dictionary</button>
+</form>

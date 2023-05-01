@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostModel } from '../shared/models/post.model';
 import { BlogService } from '../shared/services/blog.service';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from "@angular/common";
 
 
@@ -35,7 +34,6 @@ export class PostEditorComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private blogService: BlogService,
               private router: Router,
-              private toastr: ToastrService,
               ) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
@@ -62,16 +60,17 @@ export class PostEditorComponent implements OnInit {
 
       this.blogService.createPosts(post).subscribe(
         (postCriado) => {
-          this.toastr.success("Post criado com sucesso!");
+          alert("Post criado com sucesso!");
           const postId = postCriado.postId;
+          this.postForm.reset();
           this.router.navigate(['/postDetails', postId]);
         },
         (err) => {
-          this.toastr.error("Erro ao criar post!");
+          alert("Erro ao criar post!");
         }
       );
     } else {
-      this.toastr.error("Erro ao criar post!");
+      alert("Erro ao criar post!");
     }
   }
 }

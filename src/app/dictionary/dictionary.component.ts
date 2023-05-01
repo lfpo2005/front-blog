@@ -17,9 +17,7 @@ export class DictionaryComponent implements OnInit {
     this.getDictionaryWord();
 
   }
-
   constructor(private service: BlogService, private cd: ChangeDetectorRef) {}
-
   getDictionaryWord(word: string): void {
     this.service.getDictionaryWord(word).subscribe({
       next: (data) => {

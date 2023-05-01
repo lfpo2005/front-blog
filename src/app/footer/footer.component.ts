@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import {BlogService} from "../shared/services/blog.service";
 import {FormControl, FormGroup} from "@angular/forms";
 
@@ -8,7 +7,7 @@ import {FormControl, FormGroup} from "@angular/forms";
   templateUrl: './footer.component.html',
 })
 export class FooterComponent {
-  constructor(private service: BlogService, private toastr: ToastrService) {}
+  constructor(private service: BlogService) {}
 
   public newsletterForm: FormGroup = new FormGroup({
     emailTo: new FormControl(''),
@@ -23,12 +22,12 @@ export class FooterComponent {
         // limpar o formulário
         this.newsletterForm.reset();
         // exibir mensagem pop-up de sucesso
-        this.toastr.success('Obrigado por se inscrever em nossa newsletter!');
+        alert('Obrigado por se inscrever em nossa newsletter!');
       },
       (err) => {
         console.error('Erro ao enviar newsletter', err);
         // exibir mensagem pop-up de erro
-        this.toastr.error('Não foi possível se inscrever em nossa newsletter. Tente novamente mais tarde.');
+        alert('Não foi possível se inscrever em nossa newsletter. Tente novamente mais tarde.');
       }
     );
   }

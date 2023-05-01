@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {PostModel} from "../shared/models/post.model";
+import {DictionaryModel} from "../shared/models/dictionary.model";
 
 @Component({
   selector: 'app-painel-admin',
@@ -17,7 +18,9 @@ export class PanelAdminComponent {
     this.formOpen = null;
   }
   onPostCreated(newPost: PostModel) {
-    // Implemente a lógica a ser executada após a criação de uma nova postagem
     console.log(newPost);
+  }
+  onDictionaryCreated(newDictionary: DictionaryModel) {
+    console.log(newDictionary);
   }
 }
