@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { BlogService } from '../shared/services/blog.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { RoleType } from "../shared/enum/roleType.enum";
 import jwt_decode from "jwt-decode"
@@ -14,7 +13,6 @@ import jwt_decode from "jwt-decode"
 export class LoginComponent {
   constructor(
     private service: BlogService,
-    private toastr: ToastrService,
     private router: Router ,
   ) {}
 
@@ -48,7 +46,7 @@ export class LoginComponent {
       },
       (err) => {
         console.error('Erro ao fazer o login', err);
-        this.toastr.error(
+        alert(
           'Não foi possível fazer o login. Por favor, tente novamente mais tarde.'
         );
       }
