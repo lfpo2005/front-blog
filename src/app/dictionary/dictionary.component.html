@@ -13,19 +13,11 @@
       <button type="submit" class="btn btn-outline-success">Pesquisar</button>
     </div>
   </form>
-
-  <div class="card" *ngIf="listResult && listResult.length > 0">
-    <div class="card-body">
-      <h2 class="card-title">{{ listResult[0].word }}</h2>
-      <p class="card-text">{{ listResult[0].reference }}</p>
-      <p class="card-text">{{ listResult[0].link }}</p>
-    </div>
-  </div>
-
   <div class="card-body" *ngFor="let result of listResult">
     <h2 class="card-title">{{ result.word }}</h2>
     <p class="card-text">{{ result.reference }}</p>
-    <p class="card-text">{{ result.link }}</p>
+    <p class="card-text"><a href="{{ result.link }}" target="_blank">{{ result.link }}</a></p>
   </div>
+
 
 </div>

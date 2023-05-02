@@ -40,6 +40,7 @@ import { CreatedUserComponent } from "./created-user/created-user.component";
     PostEditorComponent,
     DictionaryEditorComponent,
     CreatedUserComponent,
+
   ],
   imports: [
     AppRoutingModule,

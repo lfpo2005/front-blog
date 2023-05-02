@@ -10,9 +10,9 @@
 
         <div class="card-body">
           <p class="card-text">{{ post.description }}</p>
-<!--          <p><strong>Tags:</strong>-->
-<!--            <span each="tag : ${post.tags}" >-->
-<!--                                          <a href="@{/search(searchTerm=${tag})}" text="{{ post.tags }}"></a>-->
+          <p><strong>Tags:</strong>
+            <a *ngFor="let tag of post.tags" class="tag-link" (click)="onTagClick(tag)" text="{{ tag }}">{{ tag }}</a>
+          </p>
         </div>
       </div>
     </div>

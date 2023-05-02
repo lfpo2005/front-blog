@@ -1,26 +1,26 @@
-import {Component, OnInit} from '@angular/core';
 import {PostModel} from "../shared/models/post.model";
 import {BlogService} from "../shared/services/blog.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html'
 })
 export class NavComponent implements OnInit {
+  @Output() searchResultsChanged = new EventEmitter<PostModel[]>();
 
+  searchTerm: string = '';
   listPosts?: PostModel[];
 
   ngOnInit(): void {
     this.getAllPosts();
   }
-
   constructor(
     private service: BlogService,
     private modalService: NgbModal,
     private router: Router,
-
   ) {}
 
   public getAllPosts() {
@@ -35,7 +35,7 @@ export class NavComponent implements OnInit {
   public postLogout() {
     this.service.logout().subscribe(
       (res) => {
-        console.log('Logout realizado com sucesso!', res);
+        // console.log('Logout realizado com sucesso!', res);
         localStorage.removeItem('token');
         this.router.navigate(['/']);
       },
@@ -44,4 +44,27 @@ export class NavComponent implements OnInit {
       }
     );
   }
+
+
+  public searchPosts(searchTerm?: string) {
+    if (searchTerm) {
+      this.searchTerm = searchTerm;
+    }
+    this.service.getSearch(this.searchTerm ?? '').subscribe({
+      next: (data) => {
+        console.log(data);
+        this.listPosts = data;
+        this.searchResultsChanged.emit(data);
+      },
+      error: (e) => console.error(e),
+    });
+  }
+
+
+  public clearSearch() {
+    this.searchTerm = '';
+    this.getAllPosts();
+    this.searchResultsChanged.emit(this.listPosts);
+  }
 }
+

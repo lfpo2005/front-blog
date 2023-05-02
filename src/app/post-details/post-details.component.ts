@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {BlogService} from "../shared/services/blog.service";
 import { DatePipe } from '@angular/common';
+import { PostModel } from "../shared/models/post.model";
 
 
 @Component({
@@ -10,6 +11,8 @@ import { DatePipe } from '@angular/common';
 })
 export class PostDetailsComponent implements OnInit {
   post: any;
+  @Input() listPosts?: PostModel[];
+
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +35,6 @@ export class PostDetailsComponent implements OnInit {
     return dataFormat ? dataFormat : '';
   }
 
-
   getPostDetails(postId: string) {
     this.blogService.getByIdPosts(postId).subscribe(
       (post) => {
@@ -42,5 +44,14 @@ export class PostDetailsComponent implements OnInit {
         console.error('Erro ao buscar detalhes do post:', err);
       }
     );
+  }
+
+  onTagClick(tag: string) {
+    this.blogService.searchPostsByTag(tag).subscribe({
+      next: (data) => {
+        this.listPosts = data;
+      },
+      error: (e) => console.error(e),
+    });
   }
 }

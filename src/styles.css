@@ -64,7 +64,6 @@ footer {
   font-weight: bold;
   text-align: center;
 }
-
 .container-card {
   display: flex;
   justify-content: center;
@@ -75,12 +74,17 @@ footer {
   height: 460px;
   margin: 10px;
 }
-
 .home-card img-card {
   width: 255px;
   height: 150px;
   margin: 0 0 10px 0;
 }
+.card-body {
+  border-bottom: 2px solid #ccc;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 
 .home-card h1 {
   font-size: 16px;
@@ -134,4 +138,12 @@ footer {
 . container-dictionary button {
   margin: 50px;
 }
-
+.tag-link {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 0.2em;
+}
+.tag-link:hover {
+  text-decoration: underline;
+}

@@ -13,8 +13,8 @@ import {DictionaryModel} from "../models/dictionary.model";
 })
 export class BlogService {
 
- // apiUrl = 'http://localhost:8087/blog';
-  apiUrl = 'https://metodologia-agil.com.br/blog';
+  apiUrl = 'http://localhost:8087/blog';
+  //apiUrl = 'https://metodologia-agil.com.br/blog';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -52,5 +52,13 @@ export class BlogService {
   public logout(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}/auth/logout`);
   }
+  public getSearch(searchTerm: string): Observable<PostModel[]> {
+    return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${searchTerm}`)
+  }
+  public searchPostsByTag(tag: string): Observable<PostModel[]> {
+    return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${tag}`)
+  }
+
+
 }
 

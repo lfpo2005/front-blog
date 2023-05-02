@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="home" exact>Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" href="#">Simulados</a>
@@ -19,8 +19,8 @@
           <a class="nav-link" href="#">Baixar</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+      <form (ngSubmit)="searchPosts(searchTerm)">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" [(ngModel)]="searchTerm" name="searchTerm" (input)="searchTerm === '' ? clearSearch() : null">
         <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

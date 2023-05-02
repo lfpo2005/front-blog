@@ -22,9 +22,7 @@
       </p>
       <p>
         <strong>Tags:</strong>
-        <span *ngFor="let tag of post?.tags" style="margin-right: 10px;">
-          <a [href]="'/search?searchTerm=' + tag">{{ tag }}</a>
-        </span>
+        <a *ngFor="let tag of post.tags" class="tag-link" (click)="onTagClick(tag)" text="{{ tag }}">{{ tag }}</a>
       </p>
     </section>
   </article>
