@@ -10,6 +10,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class NavComponent implements OnInit {
   @Output() searchResultsChanged = new EventEmitter<PostModel[]>();
+  @Output() searchCleared = new EventEmitter<void>();
 
   searchTerm: string = '';
   listPosts?: PostModel[];
@@ -55,12 +56,16 @@ export class NavComponent implements OnInit {
         console.log(data);
         this.listPosts = data;
         this.searchResultsChanged.emit(data);
+        this.clearInput();
       },
       error: (e) => console.error(e),
     });
   }
 
-
+  public clearInput() {
+    this.searchTerm = '';
+    this.searchCleared.emit();
+  }
   public clearSearch() {
     this.searchTerm = '';
     this.getAllPosts();

@@ -1,5 +1,5 @@
-import {Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {BlogService} from "../shared/services/blog.service";
 import { DatePipe } from '@angular/common';
 import { PostModel } from "../shared/models/post.model";
@@ -12,12 +12,13 @@ import { PostModel } from "../shared/models/post.model";
 export class PostDetailsComponent implements OnInit {
   post: any;
   @Input() listPosts?: PostModel[];
-
+  @Output() tagClicked = new EventEmitter<string>();
 
   constructor(
     private route: ActivatedRoute,
     private blogService: BlogService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -45,13 +46,9 @@ export class PostDetailsComponent implements OnInit {
       }
     );
   }
-
   onTagClick(tag: string) {
-    this.blogService.searchPostsByTag(tag).subscribe({
-      next: (data) => {
-        this.listPosts = data;
-      },
-      error: (e) => console.error(e),
-    });
+    this.router.navigate(['/'], { queryParams: { tag: tag } });
   }
+
+
 }
