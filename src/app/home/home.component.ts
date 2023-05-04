@@ -3,6 +3,7 @@ import { BlogService } from "../shared/services/blog.service";
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { map } from 'rxjs/operators';
+import {ResponsePageable} from "../shared/models/responsePageable.model";
 
 
 @Component({
@@ -38,11 +39,12 @@ export class HomeComponent implements OnInit {
   }
 
   public getAllPosts() {
-    this.service.getAllPosts().subscribe({
-      next: (data) => {
+    this.service.getPosts().subscribe({
+      next: (data: ResponsePageable) => {
+
         this.listPosts = data.content;
       },
-      error: (e) => console.error(e),
+      error: (e: any) => console.error(e),
     });
   }
 }

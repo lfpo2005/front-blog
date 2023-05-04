@@ -3,6 +3,7 @@ import {BlogService} from "../shared/services/blog.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {ResponsePageable} from "../shared/models/responsePageable.model";
 
 @Component({
   selector: 'app-nav',
@@ -12,27 +13,17 @@ export class NavComponent implements OnInit {
   @Output() searchResultsChanged = new EventEmitter<PostModel[]>();
   @Output() searchCleared = new EventEmitter<void>();
 
-  searchTerm: string = '';
+  title: string = '';
   listPosts?: PostModel[];
 
   ngOnInit(): void {
-    this.getAllPosts();
+    this.getPosts();
   }
   constructor(
     private service: BlogService,
     private modalService: NgbModal,
     private router: Router,
   ) {}
-
-  public getAllPosts() {
-    this.service.getAllPosts().subscribe({
-      next: (data) => {
-        this.listPosts = data.content;
-      },
-      error: (e) => console.error(e),
-    });
-  }
-
   public postLogout() {
     this.service.logout().subscribe(
       (res) => {
@@ -45,31 +36,23 @@ export class NavComponent implements OnInit {
       }
     );
   }
-
-
-  public searchPosts(searchTerm?: string) {
-    if (searchTerm) {
-      this.searchTerm = searchTerm;
-    }
-    this.service.getSearch(this.searchTerm ?? '').subscribe({
-      next: (data) => {
-        console.log(data);
-        this.listPosts = data;
-        this.searchResultsChanged.emit(data);
-        this.clearInput();
+  public getPosts(title?: string) {
+    this.service.getPosts(title).subscribe({
+      next: (data: ResponsePageable) => {
+        this.listPosts = data.content;
+        this.searchResultsChanged.emit(this.listPosts);
       },
-      error: (e) => console.error(e),
+      error: (e: any) => console.error(e),
     });
   }
 
-  public clearInput() {
-    this.searchTerm = '';
-    this.searchCleared.emit();
+  public searchPosts(title?: string) {
+    this.getPosts(title);
   }
-  public clearSearch() {
-    this.searchTerm = '';
-    this.getAllPosts();
-    this.searchResultsChanged.emit(this.listPosts);
-  }
-}
 
+  public clearSearch() {
+    this.title = '';
+    this.getPosts();
+  }
+
+}

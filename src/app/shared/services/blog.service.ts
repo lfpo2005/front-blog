@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponsePageable } from "../models/responsePageable.model";
 import { EmailModel } from "../models/email.model";
@@ -25,15 +25,31 @@ export class BlogService {
     private httpClient: HttpClient
   ) {}
 
-  public getAllPosts(): Observable<ResponsePageable> {
-    return this.httpClient.get<ResponsePageable>(`${ this.apiUrl }/public/posts`);
-  }public getByIdPosts(postId: string): Observable<PostModel> {
-    return this.httpClient.get<PostModel>(`${ this.apiUrl }/public/posts/${postId}`);
-  }
-  // public createPosts(postModel: PostModel): Observable<PostModel> {
-  //   return this.httpClient.post<PostModel>(`${ this.apiUrl }/posts`, postModel, this.httpOptions);
+  // public getAllPosts(queryParams: any = {}): Observable<ResponsePageable> {
+  //   let params = new HttpParams();
+  //
+  //   for (const key in queryParams) {
+  //     if (queryParams.hasOwnProperty(key)) {
+  //       params = params.set(key, queryParams[key]);
+  //     }
+  //   }
+  //
+  //   return this.httpClient.get<ResponsePageable>(`${ this.apiUrl }/blog/public/posts`, { params: params });
   // }
 
+
+
+  public getPosts(title?: string): Observable<ResponsePageable> {
+    let url = `${this.apiUrl}/public/posts`;
+    if (title) {
+      url += `?title=${title}`;
+    }
+    return this.httpClient.get<ResponsePageable>(url);
+  }
+
+  public getByIdPosts(postId: string): Observable<PostModel> {
+    return this.httpClient.get<PostModel>(`${ this.apiUrl }/public/posts/${postId}`);
+  }
 
   public createPosts(postData: FormData): Observable<HttpEvent<any>> {
     return this.httpClient.post<any>(`${this.apiUrl}/posts`, postData, {
