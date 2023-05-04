@@ -1,19 +1,19 @@
-<main class="container-card">
-  <div class="row">
-    <div *ngFor="let post of listPosts" class="home-card">
-    <div class="card home-card">
-        <a [routerLink]="['/postDetails', post.postId]">
-            <img class="mr-3 img-card" [src]="'data:image/jpeg;base64,' + post.img"
-               alt="Imagem de capa do card">
-          <h1 class="card-title"> {{ post.title }} </h1></a>
+<!--<main class="container-card">-->
+<!--  <div class="row">-->
+<!--    <div *ngFor="let post of listPosts" class="home-card">-->
+<!--    <div class="card home-card">-->
+<!--        <a [routerLink]="['/postDetails', post.postId]">-->
+<!--            <img class="mr-3 img-card" [src]="'data:image/jpeg;base64,' + post.img"-->
+<!--               alt="Imagem de capa do card">-->
+<!--          <h1 class="card-title"> {{ post.title }} </h1></a>-->
 
-        <div class="card-body">
-          <p class="card-text">{{ post.description }}</p>
-          <p><strong>Tags:</strong>
-            <a *ngFor="let tag of post.tags" class="tag-link" (click)="onTagClick(tag)" text="{{ tag }}">{{ tag }}</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
+<!--        <div class="card-body">-->
+<!--          <p class="card-text">{{ post.description }}</p>-->
+<!--          <p><strong>Tags:</strong>-->
+<!--            <a *ngFor="let tag of post.tags" class="tag-link" (click)="onTagClick(tag)" text="{{ tag }}">{{ tag }}</a>-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</main>-->

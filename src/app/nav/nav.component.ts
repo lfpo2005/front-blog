@@ -54,5 +54,8 @@ export class NavComponent implements OnInit {
     this.title = '';
     this.getPosts();
   }
+  public navigateToSimulated() {
+    this.router.navigate(['/simulado']);
+  }
 
 }
