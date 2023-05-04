@@ -1,9 +1,9 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <div>
+<form class="main-content register-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+<div >
     <label for="username">Username:</label>
-    <input type="text" id="username" formControlName="username">
+  <input type="text" id="username" formControlName="username" autocomplete="off">
     <div *ngIf="userForm.get('username')?.invalid && (userForm.get('username')?.dirty || userForm.get('username')?.touched)">
-      <div *ngIf="userForm.get('username')?.errors?.['required']">
+      <div *ngIf="userForm.get('username')?.errors?.['required']" class="error-message">
         {{ validationMessages['username']['required'] }}
       </div>
     </div>
@@ -12,19 +12,22 @@
     <label for="email">Email:</label>
     <input type="email" id="email" formControlName="email">
     <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
-      <div *ngIf="userForm.get('email')?.errors?.['required']">
+      <div *ngIf="userForm.get('email')?.errors?.['required']" class="error-message">
         {{ validationMessages['email']['required'] }}
       </div>
     </div>
   </div>
   <div>
     <label for="password">Password:</label>
-    <input type="password" id="password" formControlName="password">
+    <div class="password-container">
+      <input [type]="passwordVisible ? 'text' : 'password'" id="password" formControlName="password" autocomplete="off">
+      <i class="fas fa-eye password-toggle-icon" (click)="togglePasswordVisibility()" [ngClass]="{'fa-eye-slash': passwordVisible, 'fa-eye': !passwordVisible}"></i>
+    </div>
     <div *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)">
-      <div *ngIf="userForm.get('password')?.errors?.['required']">
+      <div *ngIf="userForm.get('password')?.errors?.['required']" class="error-message">
         {{ validationMessages['password']['required'] }}
       </div>
-      <div *ngIf="userForm.get('password')?.errors?.['minlength']">
+      <div *ngIf="userForm.get('password')?.errors?.['minlength']" class="error-message">
         {{ validationMessages['password']['minlength'] }}
       </div>
     </div>
@@ -33,10 +36,10 @@
     <label for="confirmPassword">Confirm Password:</label>
     <input type="password" id="confirmPassword" formControlName="confirmPassword">
     <div *ngIf="userForm.get('confirmPassword')?.invalid && (userForm.get('confirmPassword')?.dirty || userForm.get('confirmPassword')?.touched)">
-      <div *ngIf="userForm.get('confirmPassword')?.errors?.['required']">
+      <div *ngIf="userForm.get('confirmPassword')?.errors?.['required']" class="error-message">
         {{ validationMessages['confirmPassword']['required'] }}
       </div>
-      <div *ngIf="userForm.get('confirmPassword')?.errors?.['notSame']">
+      <div *ngIf="userForm.get('confirmPassword')?.errors?.['notSame']" class="error-message">
         {{ validationMessages['confirmPassword']['notSame'] }}
       </div>
     </div>
@@ -45,7 +48,7 @@
     <label for="fullName">Full Name:</label>
     <input type="text" id="fullName" formControlName="fullName">
     <div *ngIf="userForm.get('fullName')?.invalid && (userForm.get('fullName')?.dirty || userForm.get('fullName')?.touched)">
-      <div *ngIf="userForm.get('fullName')?.errors?.['required']">
+      <div *ngIf="userForm.get('fullName')?.errors?.['required']" class="error-message">
         {{ validationMessages['fullName']['required'] }}
       </div>
     </div>
@@ -55,7 +58,7 @@
       <label for="phoneNumber">Phone Number:</label>
       <input type="text" id="phoneNumber" formControlName="phoneNumber">
       <div *ngIf="userForm.get('phoneNumber')?.invalid && (userForm.get('phoneNumber')?.dirty || userForm.get('phoneNumber')?.touched)">
-        <div *ngIf="userForm.get('phoneNumber')?.errors?.['required']">
+        <div *ngIf="userForm.get('phoneNumber')?.errors?.['required']" class="error-message">
           {{ validationMessages['phoneNumber']['required'] }}
         </div>
       </div>
@@ -66,11 +69,3 @@
   </div>
     <button type="submit">Criar Usuário</button>
 </form>
-
-
-
-
-
-
-
-

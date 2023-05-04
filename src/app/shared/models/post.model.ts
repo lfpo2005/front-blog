@@ -1,4 +1,3 @@
-
 export class PostModel {
   postId?: string;
   title?: string;
@@ -9,7 +8,7 @@ export class PostModel {
   description?: string;
   creationDate?: Date;
   dateUpdate?: Date;
-  imgUrl?: string;
+  img?: string;
   tags?: string[];
   tagsString?: string;
 }

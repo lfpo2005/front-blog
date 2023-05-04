@@ -86,4 +86,10 @@ export class CreatedUserComponent implements OnInit {
       alert('Erro ao criar user!');
     }
   }
+  passwordVisible = false;
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
 }

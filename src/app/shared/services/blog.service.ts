@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponsePageable } from "../models/responsePageable.model";
 import { EmailModel } from "../models/email.model";
@@ -12,6 +12,7 @@ import {DictionaryModel} from "../models/dictionary.model";
   providedIn: 'root'
 })
 export class BlogService {
+
 
   apiUrl = 'http://localhost:8087/blog';
   //apiUrl = 'https://metodologia-agil.com.br/blog';
@@ -29,9 +30,18 @@ export class BlogService {
   }public getByIdPosts(postId: string): Observable<PostModel> {
     return this.httpClient.get<PostModel>(`${ this.apiUrl }/public/posts/${postId}`);
   }
-  public createPosts(postModel: PostModel): Observable<PostModel> {
-    return this.httpClient.post<PostModel>(`${ this.apiUrl }/posts`, postModel, this.httpOptions);
+  // public createPosts(postModel: PostModel): Observable<PostModel> {
+  //   return this.httpClient.post<PostModel>(`${ this.apiUrl }/posts`, postModel, this.httpOptions);
+  // }
+
+
+  public createPosts(postData: FormData): Observable<HttpEvent<any>> {
+    return this.httpClient.post<any>(`${this.apiUrl}/posts`, postData, {
+      reportProgress: true,
+      observe: 'events',
+    });
   }
+
   public getDictionaryWord(word: string): Observable<ResponsePageable> {
     return this.httpClient.get<ResponsePageable>(`${this.apiUrl}/dictionaries?word=${word}`)
   }

@@ -11,12 +11,12 @@
 
   <div class="form-group">
     <label for="description">Descrição</label>
-    <input type="text" class="form-control" id="description" formControlName="description" placeholder="Digite a descrição">
+    <input type="text" class="form-control" id="description" formControlName="description" placeholder="Digite a descrição" maxlength="300">
   </div>
 
   <div class="form-group">
-    <label for="imgUrl">URL da imagem</label>
-    <input type="text" class="form-control" id="imgUrl" formControlName="imgUrl" placeholder="Digite a URL da imagem">
+    <label for="img">Imagem</label>
+    <input type="file" class="form-control-file" id="img" (change)="onFileSelected($event)">
   </div>
 
   <div class="form-group">
@@ -24,5 +24,5 @@
     <input type="text" class="form-control" id="tags" formControlName="tags" placeholder="Digite as tags separadas por vírgulas">
   </div>
 
-  <button type="submit" class="btn btn-primary" [disabled]="postForm.invalid">Criar Post</button>
+  <button type="submit" class="btn btn-primary" [disabled]="postForm.invalid || !selectedFile">Criar Post</button>
 </form>

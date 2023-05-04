@@ -1,6 +1,6 @@
-<div class="login login-container container page-wrapper">
+<div class=" main-content login login-container container page-wrapper">
   <h2>Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="postLogin()">
+  <form [formGroup]="loginForm" (ngSubmit)="postLogin()" class="login-form">
     <div class="form-group">
       <label for="username">Username:</label>
       <input formControlName="username" type="text" class="form-control" id="username" required>

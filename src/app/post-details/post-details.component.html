@@ -1,4 +1,4 @@
-<div class="container page-wrapper" *ngIf="post">
+<div class="container" *ngIf="post">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item" aria-current="page"><a routerLink="/">Posts</a></li>
@@ -6,6 +6,8 @@
     </ol>
   </nav>
   <article>
+    <img class="mr-3 img-post" [src]="'data:image/jpeg;base64,' + post.img"
+         alt="Imagem de capa do card">
     <h1 class="card-title h1-postDetails">
       <span>{{ post?.title }}</span>
     </h1>
@@ -17,7 +19,7 @@
       <span>{{ formatData(post?.creationDate) }}</span>
     </p>
     <section>
-      <p class="card-text" style="margin-top: 40px;">
+      <p class="card-post">
         <span [innerHTML]="post?.post"></span>
       </p>
       <p>
