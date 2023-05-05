@@ -18,9 +18,10 @@ export class SimulatedComponent implements OnInit, OnDestroy {
   public showResults = false;
   public incorrectQuestions: QuestionModel[] = [];
   public resultMessage = '';
-
-
-  constructor(private service: BlogService, private authService: AuthService) {
+  skippedQuestions: number[] = [];
+  quizStarted = false;
+  constructor(private service: BlogService,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -64,11 +65,18 @@ export class SimulatedComponent implements OnInit, OnDestroy {
   }
 
   submitQuiz() {
-    const answerSubmissions: AnswerSubmission[] = this.questions.map((question) => ({
-      questionId: question.questionId,
-      answer: question.selectedAnswer,
+    const hasSkippedQuestions = this.questions.some(question => question.skipped);
+    if (hasSkippedQuestions) {
+      alert('Existem perguntas não respondidas. Por favor, responda todas as perguntas antes de enviar o simulado.');
+      return;
+    }
 
-    }));
+    const answerSubmissions: AnswerSubmission[] = this.questions.map((question) => {
+      return {
+        questionId: question.questionId,
+        selectedAnswer: question.selectedAnswer!,
+      };
+    });
 
     this.service.submitQuiz(answerSubmissions).subscribe((incorrectQuestions) => {
       const correctQuestionsCount = this.questions.length - incorrectQuestions.length;
@@ -82,8 +90,6 @@ export class SimulatedComponent implements OnInit, OnDestroy {
     });
   }
 
-  quizStarted = false;
-
   startQuiz(): void {
     this.startTimer();
     this.quizStarted = true;
@@ -94,6 +100,7 @@ export class SimulatedComponent implements OnInit, OnDestroy {
       }
     }, 0);
   }
+
   displayResults(percentage: number, incorrectQuestions: QuestionModel[]): void {
     this.showResults = true;
     this.quizStarted = false;
@@ -108,19 +115,26 @@ export class SimulatedComponent implements OnInit, OnDestroy {
     }
     this.resultMessage += ` Você acertou ${percentage}% das questões.`;
   }
+
   getNewQuestions(incorrectQuestionIds: string[]): void {
     this.service.startQuiz(incorrectQuestionIds).subscribe((questions) => {
       this.questions = questions;
     });
   }
 
-
   restartQuiz(): void {
     this.showResults = false;
     const incorrectQuestionIds = this.incorrectQuestions.map((q) => q.questionId);
     this.getNewQuestions(incorrectQuestionIds.filter((id) => id !== undefined).map((id) => id!));
   }
-
-
+  skipQuestion(index: number) {
+    this.skippedQuestions.push(index);
+    this.questions[index].skipped = true;
+  }
+  goToQuestion(index: number): void {
+    const questionElement = document.getElementById(`question-${index}`);
+    if (questionElement) {
+      questionElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
-

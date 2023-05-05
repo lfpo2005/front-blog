@@ -1,14 +1,15 @@
-export interface QuestionModel {
+export class QuestionModel {
+  questionId!: string;
+  question!: string;
+  optionA!: string;
+  optionB!: string;
+  optionC!: string;
+  optionD!: string;
+  correctAnswer!: string;
+  explanation!: string;
   selectedAnswer?: string;
-  questionId?: string;
-  question?: string;
-  optionA?: string;
-  optionB?: string;
-  optionC?: string;
-  optionD?: string;
-  answer?: string;
-  explanation?: string;
-  [key: string]: any;
   incorrect?: boolean;
+  skipped?: boolean;
+  [key: string]: any;
 
 }
