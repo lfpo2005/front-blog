@@ -9,7 +9,7 @@ import { filter } from 'rxjs/operators';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  listPosts: PostModel[] | null = null;
+  listPosts: PostModel[] | null | undefined = null;
   isHomePage: boolean = true;
 
   constructor(private router: Router) {
@@ -23,8 +23,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onSearchResultsChanged(searchResults: PostModel[]) {
-    this.listPosts = searchResults;
+  onSearch(title: string | undefined) {
+    if (this.isHomePage) {
+      this.router.navigate(['/'], { queryParams: { title: title } });
+    }
   }
 
 

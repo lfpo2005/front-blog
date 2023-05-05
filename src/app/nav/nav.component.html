@@ -20,10 +20,11 @@
           <a class="nav-link" href="#">Baixar</a>
         </li>
       </ul>
-      <form class="d-flex" (ngSubmit)="searchPosts(title)">
+      <form class="d-flex" (ngSubmit)="getPosts(title)">
         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" [(ngModel)]="title" name="searchTerm" (input)="title === '' ? clearSearch() : null" style="width: 300px;">
         <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
+
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" routerLink="login">Entrar</a>

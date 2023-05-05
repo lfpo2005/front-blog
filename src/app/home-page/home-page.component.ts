@@ -3,6 +3,7 @@ import {BlogService} from "../shared/services/blog.service";
 import {ActivatedRoute} from "@angular/router";
 import {ResponsePageable} from "../shared/models/responsePageable.model";
 import { map } from 'rxjs/operators';
+import {PostModel} from "../shared/models/post.model";
 
 
 @Component({
@@ -12,8 +13,6 @@ import { map } from 'rxjs/operators';
 export class HomePageComponent implements OnInit {
   listPosts: any;
   showClock: boolean = true;
-
-
   constructor(
     private service : BlogService,
     private route: ActivatedRoute,
@@ -29,14 +28,26 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams
-      .pipe(map((params: any) => params.tag))
-      .subscribe(tag => {
-        if (tag) {
-          this.onTagClick(tag);
+      .pipe(map((params: any) => params.title))
+      .subscribe(title => {
+        if (title) {
+          this.getPostsByTitle(title);
         } else {
           this.getAllPosts();
         }
       });
+  }
+
+  public onSearchResultsChanged(searchResults: PostModel[]) {
+    this.listPosts = searchResults;
+  }
+  public getPostsByTitle(title: string) {
+    this.service.getPosts(title).subscribe({
+      next: (data: ResponsePageable) => {
+        this.listPosts = data.content;
+      },
+      error: (e: any) => console.error(e),
+    });
   }
 
   public getAllPosts() {
@@ -48,5 +59,4 @@ export class HomePageComponent implements OnInit {
       error: (e: any) => console.error(e),
     });
   }
-
 }

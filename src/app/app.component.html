@@ -7,7 +7,7 @@
 <!--<app-footer></app-footer>-->
 
 
-<app-nav (searchResultsChanged)="onSearchResultsChanged($event)"></app-nav>
+<app-nav (searchResultsChanged)="onSearch($event.title)"></app-nav>
 <router-outlet></router-outlet>
 <app-home></app-home>
 <app-footer></app-footer>

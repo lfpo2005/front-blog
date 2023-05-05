@@ -38,6 +38,9 @@ export class BlogService {
     return this.httpClient.get<ResponsePageable>(url);
   }
 
+  public searchPostsByTag(tag: string): Observable<PostModel[]> {
+    return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${tag}`)
+  }
   public getByIdPosts(postId: string): Observable<PostModel> {
     return this.httpClient.get<PostModel>(`${ this.apiUrl }/public/posts/${postId}`);
   }
@@ -69,18 +72,6 @@ export class BlogService {
   public logout(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}/auth/logout`);
   }
-  public searchPostsByTag(tag: string): Observable<PostModel[]> {
-    return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${tag}`)
-  }
-  // public getSearch(searchTerm: string): Observable<PostModel[]> {
-  //   return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${searchTerm}`)
-  // }
-
-
-  // public startQuiz(): Observable<QuestionModel[]> {
-  //   return this.httpClient.get<QuestionModel[]>(`${this.apiUrl}/quiz/start`);
-  // }
-
   public submitQuiz(answerSubmissions: AnswerSubmission[]): Observable<QuestionModel[]> {
     return this.httpClient.post<QuestionModel[]>(`${this.apiUrl}/quiz/submit`, answerSubmissions);
   }

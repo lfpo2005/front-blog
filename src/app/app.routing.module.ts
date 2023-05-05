@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 
-import { HomeComponent } from "./home/home.component";
 import {PoliticaPSComponent} from "./politica-ps/politica-ps.component";
 import {PostDetailsComponent} from "./post-details/post-details.component";
 import {LoginComponent} from "./login/login.component";
