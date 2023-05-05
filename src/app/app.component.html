@@ -1,9 +1,17 @@
 <!--
 <app-carrossel></app-carrossel>
 -->
-<app-nav (searchResultsChanged)="onSearchResultsChanged($event)"></app-nav>
-<router-outlet *ngIf="!listPosts"></router-outlet>
-<app-home *ngIf="listPosts" [listPosts]="listPosts"></app-home>
+<!--<app-nav (searchResultsChanged)="onSearchResultsChanged($event)"></app-nav>-->
+<!--<router-outlet *ngIf="!listPosts"></router-outlet>-->
+<!--<app-home *ngIf="listPosts" [listPosts]="listPosts"></app-home>-->
+<!--<app-footer></app-footer>-->
+
+
+<app-nav (searchResultsChanged)="onSearch($event.title)"></app-nav>
+<router-outlet></router-outlet>
+<app-home></app-home>
 <app-footer></app-footer>
+
+
 
 

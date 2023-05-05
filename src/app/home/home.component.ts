@@ -11,40 +11,45 @@ import {ResponsePageable} from "../shared/models/responsePageable.model";
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
-  @Input() listPosts?: PostModel[];
-
-  constructor(
-    private service : BlogService,
-    private route: ActivatedRoute,
-  ) { }
-  onTagClick(tag: string) {
-    this.service.searchPostsByTag(tag).subscribe({
-      next: (data) => {
-        this.listPosts = data;
-      },
-      error: (e) => console.error(e),
-    });
-  }
+ listPosts?: PostModel[];
 
   ngOnInit(): void {
-    this.route.queryParams
-      .pipe(map((params: any) => params.tag))
-      .subscribe(tag => {
-        if (tag) {
-          this.onTagClick(tag);
-        } else {
-          this.getAllPosts();
-        }
-      });
   }
 
-  public getAllPosts() {
-    this.service.getPosts().subscribe({
-      next: (data: ResponsePageable) => {
+  // constructor(
+  //   private service : BlogService,
+  //   private route: ActivatedRoute,
+  // ) { }
+  // onTagClick(tag: string) {
+  //   this.service.searchPostsByTag(tag).subscribe({
+  //     next: (data) => {
+  //       this.listPosts = data;
+  //     },
+  //     error: (e) => console.error(e),
+  //   });
+  // }
+  //
+  // // ngOnInit(): void {
+  // //   this.route.queryParams
+  // //     .pipe(map((params: any) => params.tag))
+  // //     .subscribe(tag => {
+  // //       if (tag) {
+  // //         this.onTagClick(tag);
+  // //       } else {
+  // //         this.getAllPosts();
+  // //       }
+  // //     });
+  // // }
+  //
+  // public getAllPosts() {
+  //   this.service.getPosts().subscribe({
+  //     next: (data: ResponsePageable) => {
+  //
+  //       this.listPosts = data.content;
+  //     },
+  //     error: (e: any) => console.error(e),
+  //   });
+  // }
 
-        this.listPosts = data.content;
-      },
-      error: (e: any) => console.error(e),
-    });
-  }
+
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BlogService } from '../shared/services/blog.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { RoleType } from "../shared/enum/roleType.enum";
 import jwt_decode from "jwt-decode"
 
@@ -13,8 +13,8 @@ import jwt_decode from "jwt-decode"
 export class LoginComponent {
   constructor(
     private service: BlogService,
-    private router: Router ,
-  ) {}
+    private route: ActivatedRoute,
+    private router: Router  ) {}
 
   public loginForm: FormGroup = new FormGroup({
     username: new FormControl(''),
@@ -51,5 +51,9 @@ export class LoginComponent {
         );
       }
     );
+  }
+  login() {
+        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.router.navigate([returnUrl]);
   }
 }

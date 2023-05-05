@@ -23,13 +23,16 @@ import { AuthInterceptor } from "./shared/services/auth.interceptor";
 import { CommonModule, DatePipe } from "@angular/common";
 import { DictionaryEditorComponent } from "./dictionary-editor/dictionary-editor.component";
 import { CreatedUserComponent } from "./created-user/created-user.component";
+import { SimulatedComponent } from "./simulated/simulated.component";
+import { AuthGuard } from './shared/guards/auth.guard';
+import { HomePageComponent } from "./home-page/home-page.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     CarrosselComponent,
     PostModalComponent,
-    HomeComponent,
+    HomePageComponent,
     NavComponent,
     FooterComponent,
     PostDetailsComponent,
@@ -40,7 +43,8 @@ import { CreatedUserComponent } from "./created-user/created-user.component";
     PostEditorComponent,
     DictionaryEditorComponent,
     CreatedUserComponent,
-
+    SimulatedComponent,
+    HomeComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -53,7 +57,7 @@ import { CreatedUserComponent } from "./created-user/created-user.component";
     FormsModule,
     ReactiveFormsModule,
     NgxSummernoteModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [
     {
@@ -62,7 +66,8 @@ import { CreatedUserComponent } from "./created-user/created-user.component";
       multi: true
     },
     JwtHelperService,
-    DatePipe
+    DatePipe,
+    AuthGuard
   ],
   bootstrap: [ AppComponent ]
 })

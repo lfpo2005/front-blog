@@ -7,12 +7,17 @@ import { UserModel } from "../models/user.model";
 import { LoginResponse } from "../interfaces/login.response"
 import {PostModel} from "../models/post.model";
 import {DictionaryModel} from "../models/dictionary.model";
+import {QuestionModel} from "../models/question.model";
+import {AnswerSubmission} from "../models/answerSubmission.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
 
+  isAuthenticated() {
+
+  }
 
   apiUrl = 'http://localhost:8087/blog';
   //apiUrl = 'https://metodologia-agil.com.br/blog';
@@ -25,20 +30,6 @@ export class BlogService {
     private httpClient: HttpClient
   ) {}
 
-  // public getAllPosts(queryParams: any = {}): Observable<ResponsePageable> {
-  //   let params = new HttpParams();
-  //
-  //   for (const key in queryParams) {
-  //     if (queryParams.hasOwnProperty(key)) {
-  //       params = params.set(key, queryParams[key]);
-  //     }
-  //   }
-  //
-  //   return this.httpClient.get<ResponsePageable>(`${ this.apiUrl }/blog/public/posts`, { params: params });
-  // }
-
-
-
   public getPosts(title?: string): Observable<ResponsePageable> {
     let url = `${this.apiUrl}/public/posts`;
     if (title) {
@@ -46,7 +37,21 @@ export class BlogService {
     }
     return this.httpClient.get<ResponsePageable>(url);
   }
+  public getAllPosts(): Observable<ResponsePageable> {
+    const url = `${this.apiUrl}/public/posts/all`;
+    return this.httpClient.get<ResponsePageable>(url);
+  }
 
+
+
+
+
+
+
+
+  public searchPostsByTag(tag: string): Observable<PostModel[]> {
+    return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${tag}`)
+  }
   public getByIdPosts(postId: string): Observable<PostModel> {
     return this.httpClient.get<PostModel>(`${ this.apiUrl }/public/posts/${postId}`);
   }
@@ -78,13 +83,15 @@ export class BlogService {
   public logout(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}/auth/logout`);
   }
-  public getSearch(searchTerm: string): Observable<PostModel[]> {
-    return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${searchTerm}`)
+  public submitQuiz(answerSubmissions: AnswerSubmission[]): Observable<QuestionModel[]> {
+    return this.httpClient.post<QuestionModel[]>(`${this.apiUrl}/quiz/submit`, answerSubmissions);
   }
-  public searchPostsByTag(tag: string): Observable<PostModel[]> {
-    return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${tag}`)
+  public startQuiz(incorrectQuestionIds?: string[]): Observable<QuestionModel[]> {
+    let params = new HttpParams();
+    if (incorrectQuestionIds) {
+      params = params.set('incorrectQuestionIds', incorrectQuestionIds.join(','));
+    }
+    return this.httpClient.get<QuestionModel[]>(`${this.apiUrl}/quiz/start`, { params });
   }
-
-
 }
 

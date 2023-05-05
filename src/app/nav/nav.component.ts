@@ -10,7 +10,7 @@ import {ResponsePageable} from "../shared/models/responsePageable.model";
   templateUrl: './nav.component.html'
 })
 export class NavComponent implements OnInit {
-  @Output() searchResultsChanged = new EventEmitter<PostModel[]>();
+  @Output() searchResultsChanged = new EventEmitter<{ title: string | undefined; results: PostModel[] | undefined }>();
   @Output() searchCleared = new EventEmitter<void>();
 
   title: string = '';
@@ -40,19 +40,18 @@ export class NavComponent implements OnInit {
     this.service.getPosts(title).subscribe({
       next: (data: ResponsePageable) => {
         this.listPosts = data.content;
-        this.searchResultsChanged.emit(this.listPosts);
+        this.searchResultsChanged.emit({ title: title, results: this.listPosts });
       },
       error: (e: any) => console.error(e),
     });
   }
 
-  public searchPosts(title?: string) {
-    this.getPosts(title);
-  }
-
   public clearSearch() {
     this.title = '';
     this.getPosts();
+  }
+  public navigateToSimulated() {
+    this.router.navigate(['/simulado']);
   }
 
 }
