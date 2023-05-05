@@ -1,0 +1,56 @@
+<div class="container container-quiz">
+  <div class="quiz-btn-container centered" *ngIf="showClock && secondsRemaining > 0">
+    <p class="countdown-text hidden">Tempo restante: {{ countdown }}</p>
+    <button class="btn btn-primary ml-3" (click)="startQuiz()">Iniciar quiz</button>
+  </div>
+
+  <div [ngClass]="{'hidden': !quizStarted}" class="questions-container">
+  <h1>Simulado</h1>
+  <form (ngSubmit)="submitQuiz()">
+    <div *ngFor="let question of questions; index as i">
+      <h4>{{ i + 1 }}. {{ question.question }}</h4>
+      <div class="form-check" *ngFor="let option of ['A', 'B', 'C', 'D']">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="{{ question.questionId }}"
+          id="{{ question.questionId }}{{ option }}"
+          value="{{ option }}"
+          [(ngModel)]="question.selectedAnswer"
+          required
+        />
+        <label class="form-check-label" for="{{ question.questionId }}{{ option }}">
+          {{ option }}) {{ question['option' + option.toUpperCase()] }}
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+    <div *ngFor="let question of questions; index as i" [ngClass]="{'hidden': !showResults}">
+      <h4 *ngIf="question.incorrect" class="text-danger">{{ i + 1 }}. {{ question.question }}</h4>
+      <p *ngIf="question.incorrect" class="explanation">{{ question.explanation }}</p>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" [ngClass]="{'show': showResults, 'd-block': showResults, 'd-none': !showResults}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Resultado do Simulado</h5>
+        <button type="button" class="close" (click)="showResults = false;">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{ resultMessage }}</p>
+        <div *ngFor="let question of incorrectQuestions; index as i">
+          <h4 class="text-danger">{{ i + 1 }}. {{ question.question }}</h4>
+          <p class="explanation">{{ question.explanation }}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="showResults = false;">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -75,12 +75,21 @@ export class BlogService {
   // public getSearch(searchTerm: string): Observable<PostModel[]> {
   //   return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${searchTerm}`)
   // }
-  public startQuiz(): Observable<QuestionModel[]> {
-    return this.httpClient.get<QuestionModel[]>(`${this.apiUrl}/quiz/start`);
-  }
+
+
+  // public startQuiz(): Observable<QuestionModel[]> {
+  //   return this.httpClient.get<QuestionModel[]>(`${this.apiUrl}/quiz/start`);
+  // }
+
   public submitQuiz(answerSubmissions: AnswerSubmission[]): Observable<QuestionModel[]> {
     return this.httpClient.post<QuestionModel[]>(`${this.apiUrl}/quiz/submit`, answerSubmissions);
   }
-
+  public startQuiz(incorrectQuestionIds?: string[]): Observable<QuestionModel[]> {
+    let params = new HttpParams();
+    if (incorrectQuestionIds) {
+      params = params.set('incorrectQuestionIds', incorrectQuestionIds.join(','));
+    }
+    return this.httpClient.get<QuestionModel[]>(`${this.apiUrl}/quiz/start`, { params });
+  }
 }
 

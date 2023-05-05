@@ -9,4 +9,6 @@ export interface QuestionModel {
   answer?: string;
   explanation?: string;
   [key: string]: any;
+  incorrect?: boolean;
+
 }
