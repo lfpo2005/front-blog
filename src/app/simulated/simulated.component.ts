@@ -65,18 +65,24 @@ export class SimulatedComponent implements OnInit, OnDestroy {
   }
 
   submitQuiz() {
-    const hasSkippedQuestions = this.questions.some(question => question.skipped);
-    if (hasSkippedQuestions) {
-      alert('Existem perguntas não respondidas. Por favor, responda todas as perguntas antes de enviar o simulado.');
-      return;
+    const unanswered = this.unansweredQuestions();
+    if (unanswered.length > 0) {
+      const shouldContinue = confirm(
+        `Existem perguntas não respondidas: ${unanswered.join(
+          ", "
+        )}. Deseja finalizar o simulado mesmo assim?`
+      );
+      if (!shouldContinue) {
+        return;
+      }
     }
-
     const answerSubmissions: AnswerSubmission[] = this.questions.map((question) => {
       return {
         questionId: question.questionId,
         selectedAnswer: question.selectedAnswer!,
       };
     });
+
 
     this.service.submitQuiz(answerSubmissions).subscribe((incorrectQuestions) => {
       const correctQuestionsCount = this.questions.length - incorrectQuestions.length;
@@ -89,6 +95,34 @@ export class SimulatedComponent implements OnInit, OnDestroy {
       this.displayResults(percentage, incorrectQuestions);
     });
   }
+  answerQuestion(index: number) {
+    const skippedIndex = this.skippedQuestions.indexOf(index);
+    if (skippedIndex > -1) {
+      this.skippedQuestions.splice(skippedIndex, 1);
+      this.questions[index].skipped = false;
+    }
+  }
+
+  unansweredQuestions(): number[] {
+    return this.questions
+      .map((question, index) =>
+        question.selectedAnswer === undefined || question.skipped ? index + 1 : -1
+      )
+      .filter(index => index !== -1);
+  }
+  hasUnansweredQuestions(): boolean {
+    const unanswered = this.unansweredQuestions();
+    if (unanswered.length > 0) {
+      alert(
+        `Existem perguntas não respondidas: ${unanswered.join(
+          ", "
+        )}. Por favor, responda todas as perguntas antes de enviar o simulado.`
+      );
+      return true;
+    }
+    return false;
+  }
+
 
   startQuiz(): void {
     this.startTimer();
@@ -137,4 +171,6 @@ export class SimulatedComponent implements OnInit, OnDestroy {
       questionElement.scrollIntoView({ behavior: 'smooth' });
     }
   }
+
+  protected readonly alert = alert;
 }
