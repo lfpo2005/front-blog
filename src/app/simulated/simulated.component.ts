@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { QuestionModel } from '../shared/models/question.model';
 import { BlogService } from '../shared/services/blog.service';
 import { AnswerSubmission } from '../shared/models/answerSubmission.model';
 import { AuthService } from '../shared/services/auth.service';
 import { interval, Subscription } from 'rxjs';
+import {QuestionModel} from "../shared/models/question.model";
 
 @Component({
   selector: 'app-simulated',
