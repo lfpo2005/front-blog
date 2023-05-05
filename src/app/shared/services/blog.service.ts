@@ -37,6 +37,17 @@ export class BlogService {
     }
     return this.httpClient.get<ResponsePageable>(url);
   }
+  public getAllPosts(): Observable<ResponsePageable> {
+    const url = `${this.apiUrl}/public/posts/all`;
+    return this.httpClient.get<ResponsePageable>(url);
+  }
+
+
+
+
+
+
+
 
   public searchPostsByTag(tag: string): Observable<PostModel[]> {
     return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${tag}`)
