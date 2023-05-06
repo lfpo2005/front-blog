@@ -8,13 +8,12 @@
 
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
-             script-src 'self' ajax.googleapis.com cdn.jsdelivr.net pagead2.googlesyndication.com 'unsafe-inline';
-             img-src 'self' data:;
-             style-src 'self' 'unsafe-inline' fonts.googleapis.com cdn.jsdelivr.net cdnjs.cloudflare.com;
-             font-src 'self' fonts.gstatic.com data: https:;
-             connect-src 'self' http://localhost:8087 https://metodologia-agil.com.br;
-             frame-src https://googleads.g.doubleclick.net;">
-
+           script-src 'self' 'unsafe-inline' 'unsafe-eval' ajax.googleapis.com cdn.jsdelivr.net pagead2.googlesyndication.com www.googletagmanager.com *;
+           img-src 'self' data: *;
+           style-src 'self' 'unsafe-inline' fonts.googleapis.com cdn.jsdelivr.net cdnjs.cloudflare.com getbootstrap.com *;
+           font-src 'self' fonts.gstatic.com data: *;
+           connect-src 'self' *;
+           frame-src *;">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7TWKKGCN2P"></script>
