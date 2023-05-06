@@ -25,6 +25,9 @@ import { CreatedUserComponent } from "./created-user/created-user.component";
 import { SimulatedComponent } from "./simulated/simulated.component";
 import { AuthGuard } from './shared/guards/auth.guard';
 import { HomePageComponent } from "./home-page/home-page.component";
+import { Error404Component } from "./error404/error404.component";
+import { Error500Component } from "./error500/error500.component";
+import {ErrorInterceptor} from "./shared/services/erro.inteceptor";
 
 
 @NgModule({
@@ -44,6 +47,8 @@ import { HomePageComponent } from "./home-page/home-page.component";
     CreatedUserComponent,
     SimulatedComponent,
     HomeComponent,
+    Error404Component,
+    Error500Component,
   ],
   imports: [
     AppRoutingModule,
@@ -59,11 +64,8 @@ import { HomePageComponent } from "./home-page/home-page.component";
     BrowserAnimationsModule,
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     JwtHelperService,
     DatePipe,
     AuthGuard

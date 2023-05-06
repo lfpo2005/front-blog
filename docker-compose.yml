@@ -5,7 +5,7 @@ services:
     image: blog-agil-front
     build: .
     ports:
-      - 4200:80
+      - 8081:80
     networks:
       - lfpo-network
 

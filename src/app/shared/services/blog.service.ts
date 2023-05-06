@@ -19,8 +19,8 @@ export class BlogService {
 
   }
 
-//  apiUrl = 'http://localhost:8087/blog';
-  apiUrl = 'https://metodologia-agil.com.br/blog';
+  apiUrl = 'http://localhost:8087/blog';
+//  apiUrl = 'https://metodologia-agil.com.br/blog';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -41,14 +41,6 @@ export class BlogService {
     const url = `${this.apiUrl}/public/posts/all`;
     return this.httpClient.get<ResponsePageable>(url);
   }
-
-
-
-
-
-
-
-
   public searchPostsByTag(tag: string): Observable<PostModel[]> {
     return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${tag}`)
   }

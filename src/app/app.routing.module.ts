@@ -10,6 +10,8 @@ import {CreatedUserComponent} from "./created-user/created-user.component";
 import {SimulatedComponent} from "./simulated/simulated.component";
 import { AuthGuard } from './shared/guards/auth.guard';
 import {HomePageComponent} from "./home-page/home-page.component";
+import {Error500Component} from "./error500/error500.component";
+import {Error404Component} from "./error404/error404.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -20,7 +22,10 @@ const routes: Routes = [
   { path: 'createdUser', component: CreatedUserComponent },
   { path: 'dictionary', component: DictionaryComponent },
   { path: 'admin', component: PanelAdminComponent },
-  { path: 'simulado', component: SimulatedComponent, canActivate: [AuthGuard] }
+  { path: 'simulado', component: SimulatedComponent, canActivate: [AuthGuard] },
+  { path: '404', component: Error404Component },
+  { path: '500', component: Error500Component },
+  { path: '**', redirectTo: '404' },
 ]
 
 @NgModule({
