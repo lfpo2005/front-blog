@@ -27,7 +27,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { HomePageComponent } from "./home-page/home-page.component";
 import { Error404Component } from "./error404/error404.component";
 import { Error500Component } from "./error500/error500.component";
-import {ErrorInterceptor} from "./shared/services/erro.inteceptor";
+import { ErrorInterceptor } from "./shared/services/erro.inteceptor";
 
 
 @NgModule({

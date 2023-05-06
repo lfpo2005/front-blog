@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   public postLogin() {
     this.service.login(this.loginForm?.value).subscribe(
       (res) => {
-        console.log('Login realizado com sucesso!', res);
+        //console.log('Login realizado com sucesso!', res);
 
         // Armazenar o token no local storage
         localStorage.setItem('token', res.token);

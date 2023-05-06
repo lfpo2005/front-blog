@@ -39,7 +39,7 @@ export class CreatedUserComponent implements OnInit {
       phoneNumber: ['', Validators.required],
     }, {validator: this.checkPasswords});
 
-    console.log(this.userForm.controls);
+    //console.log(this.userForm.controls);
   }
 
   validationMessages = {

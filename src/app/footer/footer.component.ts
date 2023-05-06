@@ -18,14 +18,14 @@ export class FooterComponent {
   public postNewsletter() {
     this.service.postNewsletter(this.newsletterForm?.value).subscribe(
       (res) => {
-        console.log('Newsletter enviada com sucesso!', res);
+        //console.log('Newsletter enviada com sucesso!', res);
         // limpar o formulário
         this.newsletterForm.reset();
         // exibir mensagem pop-up de sucesso
         alert('Obrigado por se inscrever em nossa newsletter!');
       },
       (err) => {
-        console.error('Erro ao enviar newsletter', err);
+       // console.error('Erro ao enviar newsletter', err);
         // exibir mensagem pop-up de erro
         alert('Não foi possível se inscrever em nossa newsletter. Tente novamente mais tarde.');
       }
