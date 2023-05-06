@@ -22,3 +22,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          push: true
+          tags: |
+            lfpo2005/agile-blog-front:v1
+            lfpo2005/agile-blog-front:latest
+
