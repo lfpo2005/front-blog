@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from "@angular/forms";
 import { BlogService } from "../shared/services/blog.service";
 import { UserModel } from "../shared/models/user.model";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-created-user',
@@ -14,6 +15,7 @@ export class CreatedUserComponent implements OnInit {
   alertMessage: string | null = null;
 
   ngOnInit(): void {
+    this.titleService.setTitle('Blog Agil - Cadastro de usuário');
   }
 
   showAlert(message: string) {
@@ -25,6 +27,7 @@ export class CreatedUserComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private titleService: Title,
     private blogService: BlogService,
   ) {
     this.userForm = this.fb.group({

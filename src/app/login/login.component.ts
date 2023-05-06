@@ -1,20 +1,27 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { BlogService } from '../shared/services/blog.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import { RoleType } from "../shared/enum/roleType.enum";
 import jwt_decode from "jwt-decode"
+import {Title} from "@angular/platform-browser";
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   constructor(
     private service: BlogService,
     private route: ActivatedRoute,
-    private router: Router  ) {}
+    private router: Router,
+    private titleService: Title,
+  ) {}
+
+  ngOnInit(): void {
+    this.titleService.setTitle('Blog Agil - Cadastro de usuário');
+  }
 
   public loginForm: FormGroup = new FormGroup({
     username: new FormControl(''),

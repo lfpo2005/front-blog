@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ResponsePageable} from "../shared/models/responsePageable.model";
 import { map } from 'rxjs/operators';
 import {PostModel} from "../shared/models/post.model";
+import {Title} from "@angular/platform-browser";
 
 
 @Component({
@@ -16,6 +17,7 @@ export class HomePageComponent implements OnInit {
   constructor(
     private service : BlogService,
     private route: ActivatedRoute,
+    private titleService: Title,
   ) { }
   onTagClick(tag: string) {
     this.service.searchPostsByTag(tag).subscribe({
@@ -27,6 +29,7 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Blog Agil - Home');
     this.route.queryParams
       .pipe(map((params: any) => params.title))
       .subscribe(title => {

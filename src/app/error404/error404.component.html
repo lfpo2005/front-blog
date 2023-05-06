@@ -1,5 +1,9 @@
-<div class="container">
-  <h1>Erro 404</h1>
-  <p>A página que você está procurando não foi encontrada.</p>
-  <a routerLink="/">Voltar para a página inicial</a>
+<div class="container mt-5">
+  <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Erro 404 - Requisição Inválida</h4>
+    <p>A página que você está tentando acessar não pode ser exibida porque a solicitação enviada pelo seu navegador é inválida.</p>
+    <hr>
+    <p class="mb-0">Por favor, verifique a URL e tente novamente.</p>
+  </div>
+  <a href="/" class="btn btn-primary" onclick="history.back()">Voltar</a>
 </div>
