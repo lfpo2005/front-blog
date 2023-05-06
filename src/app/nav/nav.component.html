@@ -12,7 +12,6 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="simulado">Simulados</a>
         </li>
-
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="dictionary">Dicionário</a>
         </li>
@@ -24,7 +23,6 @@
         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" [(ngModel)]="title" name="searchTerm" (input)="title === '' ? clearSearch() : null" style="width: 300px;">
         <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
-
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" routerLink="login">Entrar</a>

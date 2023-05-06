@@ -12,7 +12,7 @@ import {ResponsePageable} from "../shared/models/responsePageable.model";
 export class NavComponent implements OnInit {
   @Output() searchResultsChanged = new EventEmitter<{ title: string | undefined; results: PostModel[] | undefined }>();
   @Output() searchCleared = new EventEmitter<void>();
-
+  isCollapsed = true;
   title: string = '';
   listPosts?: PostModel[];
 

@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgbCarouselModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from './app.component';
-import { CarrosselComponent } from './carrossel/carrossel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { PostModalComponent } from './modalpost/modalpost.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from "./nav/nav.component";
@@ -27,10 +26,10 @@ import { SimulatedComponent } from "./simulated/simulated.component";
 import { AuthGuard } from './shared/guards/auth.guard';
 import { HomePageComponent } from "./home-page/home-page.component";
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    CarrosselComponent,
     PostModalComponent,
     HomePageComponent,
     NavComponent,
@@ -49,7 +48,6 @@ import { HomePageComponent } from "./home-page/home-page.component";
   imports: [
     AppRoutingModule,
     BrowserModule,
-    NgbCarouselModule,
     NgbModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -58,6 +56,7 @@ import { HomePageComponent } from "./home-page/home-page.component";
     ReactiveFormsModule,
     NgxSummernoteModule,
     CommonModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {

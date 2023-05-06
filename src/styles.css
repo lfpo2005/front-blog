@@ -304,4 +304,47 @@ input[type="text"].password-field {
   margin-top: 50px;
   width: 185px;
 }
+@media (max-width: 1200px) {
+  .form-control {
+    width: 100%;
+    max-width: 100%;
+  }
+  .container-card {
+    margin: 0 2%;
+  }
+}
+
+@media (max-width: 992px) {
+  .container-dictionary {
+    width: 100%;
+  }
+  .login .form-control {
+    max-width: 100%;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+  .img-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-container {
+    margin: 1rem 0;
+  }
+  .login {
+    margin-top: 2rem;
+  }
+  .register-form {
+    padding: 1rem;
+  }
+}
 
