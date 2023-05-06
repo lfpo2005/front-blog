@@ -3,34 +3,22 @@ name: CI
 on:
   push:
     branches: [main]
-    
+
 jobs:
   CI:
     runs-on: ubuntu-latest
-    
+
     steps:
-    
-    - uses: actions/checkout@v3.5.2
-    
-    - name: Docker Login
-      uses: docker/login-action@v2.1.0
-      with:
-        Username: ${{ secrets.USER_DOCKER }}
-        Password: ${{ secrets.PASSWORD_DOCKER }}
-        
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v4.0.0
-      with:
-        context: .
-        push: true
-        tags: |
-          lfpo2005/agile-blog-front:v1
-          lfpo2005/agile-blog-front:latest
-          
+      - name: Checkout code
+        uses: actions/checkout@v2
 
+      - name: Docker Login
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.USER_DOCKER }}
+          password: ${{ secrets.PASSWORD_DOCKER }}
 
-
-    
-
-    
-    
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2
+        with:
+          context: .
