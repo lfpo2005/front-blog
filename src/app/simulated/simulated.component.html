@@ -11,18 +11,17 @@
       </button>
     </div>
   </div>
-
   <div class="questions-container">
     <ng-container *ngIf="quizStarted">
       <h1>Simulado</h1>
       <form>
         <div *ngFor="let question of questions; index as i" [attr.id]="'question-' + i">
-          <h4>{{ i + 1 }}. {{ question.question }}</h4>
-          <button (click)="skipQuestion(i)" class="btn btn-info btn-sm">Pular</button>
+          <h4 class="title-simulator">{{ i + 1 }}. {{ question.question }}</h4>
+          <button *ngIf="!questions[i].skipped" (click)="skipQuestion(i)" class="btn btn-info btn-skip">Pular</button>
           <div *ngFor="let option of ['A', 'B', 'C', 'D']">
             <ng-container *ngIf="question['option' + option.toUpperCase()] !== null">
               <input
-                class="form-check-input"
+                class="form-check-input input-quiz"
                 type="radio"
                 name="{{ question.questionId }}"
                 id="{{ question.questionId }}{{ option }}"
@@ -40,7 +39,7 @@
       </form>
       <button
         type="button"
-        class="btn quiz-btn"
+        class="btn btn btn-default"
         (click)="submitQuiz()">Enviar</button>
     </ng-container>
     <div *ngFor="let question of questions; index as i" [ngClass]="{'hidden': !showResults}">
@@ -61,11 +60,8 @@
       </div>
       <div class="modal-body">
         <p>{{ resultMessage }}</p>
-        <div *ngFor="let question of questions; index as i" [attr.id]="'question-' + i">
-          <div class="d-flex align-items-center mb-2">
-            <button (click)="skipQuestion(i)" class="btn btn-info btn-sm mr-2">Pular</button>
-            <h4 class="mb-0">{{ i + 1 }}. {{ question.question }}</h4>
-          </div>
+        <div *ngFor="let question of incorrectQuestions; index as i" [attr.id]="'incorrect-question-' + i">
+          <h4>{{ i + 1 }}. {{ question.question }}</h4>
           <p class="explanation">{{ question.explanation }}</p>
         </div>
       </div>

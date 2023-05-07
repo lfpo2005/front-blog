@@ -3,8 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: sans-serif;
-}
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
 body {
   width: 100%;
   min-height: 100vh;
@@ -12,14 +11,26 @@ body {
   margin: 0;
   padding:  80px 0 0 0;
 }
-.quiz-btn {
+
+.btn-default-light {
+  background-color: #f8f9fa;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #011a1e;
+  transition: background-color 0.3s;
+}
+.btn-default-light:hover {
+  background-color: #5c9ab6;
+}
+
+.btn-default {
   background-color: #163945;
   padding: 10px;
   border-radius: 5px;
   color: #f8f9fa;
   transition: background-color 0.3s;
 }
-.quiz-btn:hover {
+.btn-default:hover {
   background-color: #1a4a5f;
 }
 .main-content {
@@ -29,11 +40,21 @@ body {
   padding-top: 20px;
 }
 .nav-personalized {
-  background-color: #163945 !important;
+  padding: 10px 10px ;
+  background-image: linear-gradient(to bottom, #163945, #336699);
+  /*background-color: #163945 !important;*/
 }
 .navbar-nav .nav-item.active > a {
-  color: white !important;
+  color: cornsilk !important;
   border-bottom: 0.01em solid white;
+  font-weight: bolder;
+}
+.navbar-nav .nav-item > a {
+  color: white !important;
+}
+.logo {
+  text-transform: uppercase;
+  font-weight: bold;
 }
 .form-control {
   font-size: 15px;
@@ -46,12 +67,26 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #163945;
+  background-image: linear-gradient(to bottom, #163945, #336699);
   z-index: 100;
-  padding: 20px 50px 7px 50px;
+  padding: 2rem 50px 7px 50px;
   color: #f8f9fa;
   margin-top: 60px;
 }
+
+/* ############ newsletter ############ */
+.newsletter .form-group {
+  margin: 1rem;
+}
+.newsletter button {
+  float: right;
+}
+.newsletter {
+  margin-bottom: 2rem;
+}
+.newsletter .input-w {
+  width: 100%;}
+
 .contact {
   margin-top: 13px;
 }
@@ -67,16 +102,69 @@ footer {
 .container-politica {
   margin: 50px 20%;
 }
+/* ############ Dictionary ############ */
+
 .container-dictionary {
   align-items: center;
   justify-content: center;
   width: 500px;
-  margin: 100px auto 20px;
+  margin: 100px auto 100px;
 }
-.container-dictionary button {
-  margin: 50px;
+.result-dictionary {
+  margin: 20px;
 }
-/* ############ postDeteils ############ */
+/* ############ Simulator ############ */
+
+.title-simulator {
+  margin-top: 1rem;
+}
+.hidden {
+  display: none;
+}
+.quiz-btn-container {
+  position: fixed;
+  top: 80px;
+  right: 50px;
+  /*z-index: 9999;*/
+  background-color: #163945;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #f8f9fa;
+}
+.container-quiz {
+  margin-bottom: 600px;
+}
+.fixed-countdown {
+  /*position: fixed;*/
+  top: 80px;
+  right: 50px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.questions-container {
+  width: 85%;
+  margin-left: 20px;
+}
+.skipped-questions-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-top: 50px;
+  width: 185px;
+}
+.input-quiz {
+  margin: 0 0.5em;
+}
+.btn-skip {
+  margin: 0.5em;
+}
+/* ############ postDetails ############ */
 
 .tag-link {
   color: #007bff;
@@ -244,52 +332,8 @@ input[type="password"],
 input[type="text"].password-field {
   width: 100%;
 }
-/* ############ Simulado ############ */
-.hidden {
-  display: none;
-}
+/* ############ mobile ############ */
 
-.quiz-btn-container {
-  position: fixed;
-  top: 80px;
-  right: 50px;
-  /*z-index: 9999;*/
-  background-color: #163945;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.container-quiz {
-  margin-bottom: 600px;
-}
-
-.fixed-countdown {
-  /*position: fixed;*/
-  top: 80px;
-  right: 50px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.quiz-btn-container {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  color: #f8f9fa;
-}
-.questions-container {
-  width: 80%;
-  margin-left: 20px;
-}
-.skipped-questions-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  margin-top: 50px;
-  width: 185px;
-}
 @media (max-width: 1200px) {
   .form-control {
     width: 100%;
@@ -332,4 +376,3 @@ input[type="text"].password-field {
     padding: 1rem;
   }
 }
-

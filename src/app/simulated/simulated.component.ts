@@ -5,6 +5,8 @@ import { AuthService } from '../shared/services/auth.service';
 import { interval, Subscription } from 'rxjs';
 import {QuestionModel} from "../shared/models/question.model";
 import {Meta, Title} from "@angular/platform-browser";
+import { ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-simulated',
@@ -24,18 +26,19 @@ export class SimulatedComponent implements OnInit, OnDestroy {
   constructor(private service: BlogService,
               private authService: AuthService,
               private titleService: Title,
-              private metaService: Meta
+              private metaService: Meta,
+              private cdr: ChangeDetectorRef
   ) {this.metaService.addTag({
     name: 'description',
     content: 'Pratique suas habilidades para a prova PSM com nosso simulado online. O simulado inclui questões cuidadosamente elaboradas para avaliar sua compreensão das práticas e princípios do Scrum. Teste-se agora e esteja preparado para o exame oficial do PSM!'
   }); }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Blog Agil - Simulado Scrum');
     this.getNewQuestions([]);
     this.service.startQuiz().subscribe((questions) => {
       this.questions = questions;
     });
+    this.titleService.setTitle('Blog Agil - Simulado Scrum');
   }
 
   ngOnDestroy(): void {
@@ -169,8 +172,11 @@ export class SimulatedComponent implements OnInit, OnDestroy {
     this.getNewQuestions(incorrectQuestionIds.filter((id) => id !== undefined).map((id) => id!));
   }
   skipQuestion(index: number) {
-    this.skippedQuestions.push(index);
-    this.questions[index].skipped = true;
+    if (!this.skippedQuestions.includes(index)) {
+      this.skippedQuestions.push(index);
+      this.questions[index].skipped = true;
+      this.cdr.detectChanges();
+    }
   }
   goToQuestion(index: number): void {
     const questionElement = document.getElementById(`question-${index}`);
