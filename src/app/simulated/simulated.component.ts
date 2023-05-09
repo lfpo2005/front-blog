@@ -7,7 +7,6 @@ import {QuestionModel} from "../shared/models/question.model";
 import {Meta, Title} from "@angular/platform-browser";
 import { ChangeDetectorRef } from '@angular/core';
 
-
 @Component({
   selector: 'app-simulated',
   templateUrl: './simulated.component.html',
@@ -89,11 +88,9 @@ export class SimulatedComponent implements OnInit, OnDestroy {
     const answerSubmissions: AnswerSubmission[] = this.questions.map((question) => {
       return {
         questionId: question.questionId,
-        selectedAnswer: question.selectedAnswer!,
+        answer: question.selectedAnswer!,
       };
     });
-
-
     this.service.submitQuiz(answerSubmissions).subscribe((incorrectQuestions) => {
       const correctQuestionsCount = this.questions.length - incorrectQuestions.length;
       const percentage = (correctQuestionsCount / this.questions.length) * 100;
@@ -120,20 +117,6 @@ export class SimulatedComponent implements OnInit, OnDestroy {
       )
       .filter(index => index !== -1);
   }
-  hasUnansweredQuestions(): boolean {
-    const unanswered = this.unansweredQuestions();
-    if (unanswered.length > 0) {
-      alert(
-        `Existem perguntas não respondidas: ${unanswered.join(
-          ", "
-        )}. Por favor, responda todas as perguntas antes de enviar o simulado.`
-      );
-      return true;
-    }
-    return false;
-  }
-
-
   startQuiz(): void {
     this.startTimer();
     this.quizStarted = true;
@@ -166,11 +149,6 @@ export class SimulatedComponent implements OnInit, OnDestroy {
     });
   }
 
-  restartQuiz(): void {
-    this.showResults = false;
-    const incorrectQuestionIds = this.incorrectQuestions.map((q) => q.questionId);
-    this.getNewQuestions(incorrectQuestionIds.filter((id) => id !== undefined).map((id) => id!));
-  }
   skipQuestion(index: number) {
     if (!this.skippedQuestions.includes(index)) {
       this.skippedQuestions.push(index);
@@ -183,6 +161,9 @@ export class SimulatedComponent implements OnInit, OnDestroy {
     if (questionElement) {
       questionElement.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+  onSubmitClick(): void {
+    this.submitQuiz();
   }
 
   protected readonly alert = alert;

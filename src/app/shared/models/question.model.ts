@@ -10,6 +10,7 @@ export class QuestionModel {
   selectedAnswer?: string;
   incorrect?: boolean;
   skipped?: boolean;
-  [key: string]: any;
+  bookmarked?: boolean;
 
+  [key: string]: any;
 }

@@ -37,10 +37,7 @@
           </div>
         </div>
       </form>
-      <button
-        type="button"
-        class="btn btn btn-default"
-        (click)="submitQuiz()">Enviar</button>
+      <button type="button" class="btn btn btn-default" (click)="onSubmitClick()">Enviar</button>
     </ng-container>
     <div *ngFor="let question of questions; index as i" [ngClass]="{'hidden': !showResults}">
       <h4 *ngIf="question.incorrect" class="text-danger">{{ i + 1 }}. {{ question.question }}</h4>

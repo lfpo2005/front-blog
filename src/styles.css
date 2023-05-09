@@ -1,3 +1,5 @@
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
 * {
   padding: 0;
   margin: 0;
@@ -164,6 +166,7 @@ footer {
 .btn-skip {
   margin: 0.5em;
 }
+
 /* ############ postDetails ############ */
 
 .tag-link {
