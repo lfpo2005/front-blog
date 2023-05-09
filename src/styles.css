@@ -169,21 +169,31 @@ footer {
 .bookmark-unfilled {
   color: #ccc;
   cursor: pointer;
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .bookmark-filled {
-  color: #007bff;
+  color: #ffae00;
   cursor: pointer;
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
 }
 .title-container {
   display: flex;
   align-items: center;
 }
+.time-left-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
 
+.bi-clock {
+  width: 1em;
+  height: 1em;
+}
 
 /* ############ postDetails ############ */
 
