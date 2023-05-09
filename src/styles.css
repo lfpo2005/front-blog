@@ -166,6 +166,24 @@ footer {
 .btn-skip {
   margin: 0.5em;
 }
+.bookmark-unfilled {
+  color: #ccc;
+  cursor: pointer;
+  width: 1em;
+  height: 1em;
+}
+
+.bookmark-filled {
+  color: #007bff;
+  cursor: pointer;
+  width: 1em;
+  height: 1em;
+}
+.title-container {
+  display: flex;
+  align-items: center;
+}
+
 
 /* ############ postDetails ############ */
 

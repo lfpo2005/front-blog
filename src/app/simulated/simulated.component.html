@@ -16,8 +16,26 @@
       <h1>Simulado</h1>
       <form>
         <div *ngFor="let question of questions; index as i" [attr.id]="'question-' + i">
-          <h4 class="title-simulator">{{ i + 1 }}. {{ question.question }}</h4>
-          <button *ngIf="!questions[i].skipped" (click)="skipQuestion(i)" class="btn btn-info btn-skip">Pular</button>
+          <div class="title-container">
+            <h4 class="title-simulator">{{ i + 1 }}. {{ question.question }}</h4>
+            <svg *ngIf="!questions[i].skipped"
+                 class="bi bi-bookmark bookmark-unfilled"
+                 (click)="skipQuestion(i)"
+                 title="Pular"
+                 viewBox="0 0 16 16"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12l-5-3-5 3V3z"/>
+            </svg>
+            <svg *ngIf="questions[i].skipped"
+                 class="bi bi-bookmark bookmark-filled"
+                 (click)="skipQuestion(i)"
+                 title="Pular"
+                 viewBox="0 0 16 16"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12l-5-3-5 3V3z" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
           <div *ngFor="let option of ['A', 'B', 'C', 'D']">
             <ng-container *ngIf="question['option' + option.toUpperCase()] !== null">
               <input
