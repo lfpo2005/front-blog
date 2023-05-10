@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { BlogService } from '../shared/services/blog.service';
 import { AnswerSubmission } from '../shared/models/answerSubmission.model';
 import { AuthService } from '../shared/services/auth.service';
@@ -6,12 +6,14 @@ import { interval, Subscription } from 'rxjs';
 import {QuestionModel} from "../shared/models/question.model";
 import {Meta, Title} from "@angular/platform-browser";
 import { ChangeDetectorRef } from '@angular/core';
+import { Renderer2, ElementRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-simulated',
   templateUrl: './simulated.component.html',
 })
-export class SimulatedComponent implements OnInit, OnDestroy {
+export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
   questions: QuestionModel[] = [];
   countdown: string = '01:00:00';
   private timerSubscription!: Subscription;
@@ -22,11 +24,15 @@ export class SimulatedComponent implements OnInit, OnDestroy {
   public resultMessage = '';
   skippedQuestions: number[] = [];
   quizStarted = false;
+  public showAllQuestionsModal = false;
+
   constructor(private service: BlogService,
               private authService: AuthService,
               private titleService: Title,
               private metaService: Meta,
-              private cdr: ChangeDetectorRef
+              private cdr: ChangeDetectorRef,
+              private renderer: Renderer2,
+              private el: ElementRef
   ) {this.metaService.addTag({
     name: 'description',
     content: 'Pratique suas habilidades para a prova PSM com nosso simulado online. O simulado inclui questões cuidadosamente elaboradas para avaliar sua compreensão das práticas e princípios do Scrum. Teste-se agora e esteja preparado para o exame oficial do PSM!'
@@ -43,6 +49,18 @@ export class SimulatedComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.stopTimer();
   }
+  openAllQuestionsModal(event: MouseEvent) {
+    event.stopPropagation();
+    this.showAllQuestionsModal = true;
+  }
+  ngAfterViewInit() {
+    const allQuestionsLink = this.el.nativeElement.querySelector('#allQuestionsLink');
+    this.renderer.listen(allQuestionsLink, 'click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      this.openAllQuestionsModal(event); // Adicione o argumento event
+    });
+  }
 
   startTimer(): void {
     this.stopTimer();
@@ -54,7 +72,9 @@ export class SimulatedComponent implements OnInit, OnDestroy {
       }
     });
   }
-
+  calculateProgress(): number {
+    return (this.secondsRemaining / 3600) * 100;
+  }
   private stopTimer(): void {
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();

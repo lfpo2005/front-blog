@@ -194,6 +194,20 @@ footer {
   width: 1em;
   height: 1em;
 }
+.time-left-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.time-left-container svg {
+  margin-right: 0.5rem;
+}
+
+.time-left-container .time-left {
+  font-weight: bold;
+}
 
 /* ############ postDetails ############ */
 

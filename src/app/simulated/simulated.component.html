@@ -1,35 +1,27 @@
-<div class="questions-container">
-  <div class="time-left-container">
-    <svg class="bi bi-clock" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-      <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
-    </svg>
-    <span>Time left:</span>
-    <span class="time-left">{{ timeLeft }}</span>
-  </div>
+<div class="all-questions-container">
+  <svg class="bi bi-list" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M2 11.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5z"/>
+  </svg>
+  <a href="#" id="allQuestionsLink">See all questions</a>
+</div>
 
-<div class="container container-quiz">
-  <div class="quiz-btn-container centered" *ngIf="showClock && secondsRemaining > 0">
-    <button class="quiz-btn-container" (click)="startQuiz()">
-      {{ !quizStarted ? 'Iniciar Simulado' : 'Tempo restante: ' + countdown }}
-    </button>
-    <div *ngIf="quizStarted" class="skipped-questions-container">
-      <p>Questões puladas:</p>
-      <button *ngFor="let skippedIndex of skippedQuestions" (click)="goToQuestion(skippedIndex)"
-              class="btn btn-secondary btn-sm">
-        {{ skippedIndex + 1 }}
-      </button>
-    </div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" [style.width]="calculateProgress() + '%'" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
+<div class="time-left-container">
+  <svg class="bi bi-clock" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+  </svg>
+  <span>Time left:</span>
+  <span class="time-left">{{ countdown }}</span>
+</div>
+
+<div class="progress">
+  <div class="progress-bar" role="progressbar" [style.width]="calculateProgress() + '%'" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
   <ng-container>
       <form>
         <div *ngFor="let question of questions; index as i" [attr.id]="'question-' + i">
           <div class="title-container">
             <h4 class="title-simulator">{{ i + 1 }}. {{ question.question }}</h4>
-            <!-- Substitua o botão 'Pular' pelo ícone de bookmark (favorito) -->
             <svg *ngIf="!questions[i].skipped"
                  class="bi bi-bookmark bookmark-unfilled"
                  (click)="skipQuestion(i)"
@@ -72,8 +64,6 @@
       <h4 *ngIf="question.incorrect" class="text-danger">{{ i + 1 }}. {{ question.question }}</h4>
       <p *ngIf="question.incorrect" class="explanation">{{ question.explanation }}</p>
     </div>
-  </div>
-</div>
 <!-- ############### Modal ################-->
 <div class="modal" tabindex="-1" [ngClass]="{'show': showResults, 'd-block': showResults, 'd-none': !showResults}">
   <div class="modal-dialog">
@@ -93,6 +83,35 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="quiz-btn-container" (click)="showResults = false;">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- All Questions Modal -->
+<div class="modal" tabindex="-1" [ngClass]="{'show': showAllQuestionsModal, 'd-block': showAllQuestionsModal, 'd-none': !showAllQuestionsModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">All Questions</h5>
+        <button type="button" class="close" (click)="showAllQuestionsModal = false;">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li *ngFor="let question of questions; index as i">
+            <div class="d-flex align-items-center">
+              <h3 class="mb-0">Question Nº {{ i + 1 }}</h3>
+              <span class="ml-2">{{ question.selectedAnswer ? 'Answered' : 'Unanswered' }}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="showAllQuestionsModal = false;">Close</button>
       </div>
     </div>
   </div>
