@@ -19,7 +19,7 @@
 </div>
   <ng-container>
       <form>
-        <div *ngFor="let question of questions; index as i" [attr.id]="'question-' + i">
+        <div *ngFor="let question of questions; index as i" class="card my-3" [ngClass]="{'border-danger': question.incorrect, 'border-success': question.selectedAnswer && !question.incorrect}" id="question-{{i}}">
           <div class="title-container">
             <h4 class="title-simulator">{{ i + 1 }}. {{ question.question }}</h4>
             <svg *ngIf="!questions[i].skipped"
@@ -102,7 +102,7 @@
       </div>
       <div class="modal-body">
         <ul>
-          <li *ngFor="let question of questions; index as i">
+          <li *ngFor="let question of questions; index as i" (click)="goToQuestion(i); showAllQuestionsModal = false;">
             <div class="d-flex align-items-center">
               <h3 class="mb-0">Question Nº {{ i + 1 }}</h3>
               <span class="ml-2">{{ question.selectedAnswer ? 'Answered' : 'Unanswered' }}</span>
@@ -116,3 +116,4 @@
     </div>
   </div>
 </div>
+

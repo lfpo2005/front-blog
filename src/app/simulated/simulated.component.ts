@@ -179,7 +179,7 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
   goToQuestion(index: number): void {
     const questionElement = document.getElementById(`question-${index}`);
     if (questionElement) {
-      questionElement.scrollIntoView({ behavior: 'smooth' });
+      questionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
   onSubmitClick(): void {
