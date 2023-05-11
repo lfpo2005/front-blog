@@ -7,7 +7,7 @@ import {QuestionModel} from "../shared/models/question.model";
 import {Meta, Title} from "@angular/platform-browser";
 import { ChangeDetectorRef } from '@angular/core';
 import { Renderer2, ElementRef } from '@angular/core';
-
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-simulated',
@@ -25,6 +25,7 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
   skippedQuestions: number[] = [];
   quizStarted = false;
   public showAllQuestionsModal = false;
+  currentQuestionIndex = 0;
 
   constructor(private service: BlogService,
               private authService: AuthService,
@@ -45,6 +46,27 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.titleService.setTitle('Blog Agil - Simulado Scrum');
   }
+  nextQuestion() {
+    if (this.currentQuestionIndex < this.questions.length - 1) {
+      this.currentQuestionIndex++;
+    }
+  }
+  startSimulado(): void {
+    this.startTimer();
+    this.quizStarted = true;
+    setTimeout(() => {
+      const countdownText = document.querySelector('.countdown-text');
+      if (countdownText) {
+        countdownText.classList.add('fixed-countdown');
+      }
+    }, 0);
+  }
+
+  previousQuestion() {
+    if (this.currentQuestionIndex > 0) {
+      this.currentQuestionIndex--;
+    }
+  }
 
   ngOnDestroy(): void {
     this.stopTimer();
@@ -58,7 +80,26 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
     this.renderer.listen(allQuestionsLink, 'click', (event) => {
       event.preventDefault();
       event.stopPropagation();
-      this.openAllQuestionsModal(event); // Adicione o argumento event
+      this.openAllQuestionsModal(event);
+    });
+
+    // Exibir o modal das regras ao carregar a página
+    const rulesModalElement = document.getElementById('rulesModal');
+    let rulesModal: bootstrap.Modal | null = null;
+
+    if (rulesModalElement) {
+      rulesModal = new bootstrap.Modal(rulesModalElement, {});
+      rulesModal.show();
+    } else {
+      console.error('Elemento rulesModal não encontrado');
+    }
+    // Chame a função startSimulado() quando o botão "Start" for clicado
+    const startButton = this.el.nativeElement.querySelector('#startButton');
+    this.renderer.listen(startButton, 'click', () => {
+      if (rulesModal) {
+        rulesModal.hide();
+      }
+      this.startSimulado();
     });
   }
 
@@ -169,13 +210,10 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  skipQuestion(index: number) {
-    if (!this.skippedQuestions.includes(index)) {
-      this.skippedQuestions.push(index);
-      this.questions[index].skipped = true;
-      this.cdr.detectChanges();
-    }
+  skipQuestion(index: number): void {
+    this.questions[index].skipped = !this.questions[index].skipped;
   }
+
   goToQuestion(index: number): void {
     const questionElement = document.getElementById(`question-${index}`);
     if (questionElement) {

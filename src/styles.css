@@ -208,6 +208,11 @@ footer {
 .time-left-container .time-left {
   font-weight: bold;
 }
+.bookmark-skipped {
+  color: #ffae00;
+  width: 1.5em;
+  height: 1.5em;
+}
 
 /* ############ postDetails ############ */
 
