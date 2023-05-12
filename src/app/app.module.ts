@@ -28,7 +28,35 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { Error404Component } from "./error404/error404.component";
 import { Error500Component } from "./error500/error500.component";
 import { ErrorInterceptor } from "./shared/services/erro.inteceptor";
+import {CookieHandlerComponent} from "./cookie-handler/cookie-handler.component";
+import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 
+
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: 'https://metodologia-agil.com.br/'
+  },
+  position: 'bottom',
+  theme: 'classic',
+  palette: {
+    popup: {
+      background: '#000000',
+      text: '#ffffff',
+    },
+    button: {
+      background: '#f1d600',
+    },
+  },
+  type: 'info',
+  content: {
+    message: 'Este site usa cookies para garantir que você obtenha a melhor experiência em nosso site.',
+    dismiss: 'Entendi',
+    deny: 'Recusar',
+    link: 'Saiba mais',
+    href: 'url-para-sua-politica-de-cookies', // substitua pela URL da sua política de cookies
+    policy: 'Cookie Policy'
+  }
+};
 
 @NgModule({
   declarations: [
@@ -49,6 +77,7 @@ import { ErrorInterceptor } from "./shared/services/erro.inteceptor";
     HomeComponent,
     Error404Component,
     Error500Component,
+    CookieHandlerComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -62,6 +91,7 @@ import { ErrorInterceptor } from "./shared/services/erro.inteceptor";
     NgxSummernoteModule,
     CommonModule,
     BrowserAnimationsModule,
+    NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

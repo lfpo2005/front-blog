@@ -62,7 +62,7 @@
       </div>
     </div>
   </form>
-  <button type="button" class="btn btn btn-default" (click)="onSubmitClick()">Enviar</button>
+  <button id="submitQuizButton" (click)="submitQuiz()" *ngIf="unansweredQuestions().length === 0">Enviar</button>
 </ng-container>
 <button type="button" class="btn btn-primary" (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">Anterior</button>
 <button type="button" class="btn btn-primary" (click)="nextQuestion()" [disabled]="currentQuestionIndex === questions.length - 1">Próxima</button>
@@ -107,9 +107,6 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Resultado do Simulado</h5>
-        <button type="button" class="close" (click)="showResults = false;">
-          <span>&times;</span>
-        </button>
       </div>
       <div class="modal-body">
         <p>{{ resultMessage }}</p>
@@ -119,12 +116,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="quiz-btn-container" (click)="showResults = false;">Fechar</button>
+        <button type="button" class="btn btn-primary" (click)="showResults = false;">Fechar</button>
       </div>
     </div>
   </div>
 </div>
-
 
 <!-- All Questions Modal -->
 <div class="modal" tabindex="-1" [ngClass]="{'show': showAllQuestionsModal, 'd-block': showAllQuestionsModal, 'd-none': !showAllQuestionsModal}">

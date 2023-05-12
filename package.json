@@ -28,6 +28,8 @@
     "jquery": "^3.6.4",
     "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
+    "ngx-cookie-service": "^15.0.0-rc.3",
+    "ngx-cookieconsent": "^4.0.2",
     "ngx-summernote": "^0.9.0",
     "rxjs": "~7.5.0",
     "summernote": "^0.8.20",

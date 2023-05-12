@@ -223,6 +223,5 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
   onSubmitClick(): void {
     this.submitQuiz();
   }
-
   protected readonly alert = alert;
 }
