@@ -137,8 +137,13 @@ footer {
   color: #f8f9fa;
 }
 .container-quiz {
-  margin-bottom: 600px;
+  width: 75%;
+  margin: 2em;
 }
+.form-quiz {
+  padding: 0.3em;
+}
+
 .fixed-countdown {
   /*position: fixed;*/
   top: 80px;
@@ -171,14 +176,26 @@ footer {
   cursor: pointer;
   width: 1.5em;
   height: 1.5em;
+  min-width: 1.5em;
+  min-height: 1.5em;
 }
-
 .bookmark-filled {
   color: #ffae00;
   cursor: pointer;
   width: 1.5em;
   height: 1.5em;
+  min-width: 1.5em;
+  min-height: 1.5em;
 }
+.bookmark-skipped {
+  color: #ffae00;
+  width: 1.5em;
+  height: 1.5em;
+  min-width: 1.5em;
+  min-height: 1.5em;
+}
+
+
 .title-container {
   display: flex;
   align-items: center;
@@ -208,13 +225,13 @@ footer {
 .time-left-container .time-left {
   font-weight: bold;
 }
-.bookmark-skipped {
-  color: #ffae00;
-  width: 1.5em;
-  height: 1.5em;
-}
+
 .modal-footer {
   justify-content: flex-end;
+}
+.btn-end {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* ############ postDetails ############ */
