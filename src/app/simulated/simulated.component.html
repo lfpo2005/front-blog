@@ -69,7 +69,7 @@
         </div>
       </div>
     </form>
-    <button id="submitQuizButton" (click)="submitQuiz()" *ngIf="unansweredQuestions().length === 0">Enviar</button>
+    <button id="submitQuizButton" class="btn submitQuizButton btn-end" (click)="submitQuiz()" *ngIf="unansweredQuestions().length === 0">Enviar</button>
   </ng-container>
   <div class="btn-end">
     <button type="button" class="btn btn-primary" (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">Anterior</button>
@@ -109,7 +109,7 @@
   </div>
 
 
-  <!-- ############### Modal ################-->
+  <!-- ############### Modal Resultado do Simulado ################-->
   <div class="modal" tabindex="-1" [ngClass]="{'show': showResults, 'd-block': showResults, 'd-none': !showResults}">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -120,7 +120,7 @@
           <p>{{ resultMessage }}</p>
           <div *ngFor="let question of incorrectQuestions; index as i" [attr.id]="'incorrect-question-' + i">
             <h4>{{ i + 1 }}. {{ question.question }}</h4>
-            <p class="explanation">{{ question.explanation }}</p>
+            <p class="explanation explanation-red">{{ question.explanation }}</p>
           </div>
         </div>
         <div class="modal-footer">

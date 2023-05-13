@@ -248,7 +248,25 @@ footer {
 .unanswered {
   color: lightcoral;
 }
+.modal-body {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.submitQuizButton {
+  background-color: #0b5ed8;
+  padding: 7px 15px;
+  border-radius: 5px;
+  color: #f8f9fa;
+  transition: background-color 0.3s;
+  margin: 0 auto;
+}
+.submitQuizButton:hover {
+  background-color: #092879;
 
+}
+.explanation-red {
+  color: red;
+}
 /* ############ postDetails ############ */
 
 .tag-link {

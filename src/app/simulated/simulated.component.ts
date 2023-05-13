@@ -27,7 +27,6 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
   quizStarted = false;
   public showAllQuestionsModal = false;
   currentQuestionIndex = 0;
-  marked?: boolean;
   skipped?: boolean;
 
   constructor(private service: BlogService,
