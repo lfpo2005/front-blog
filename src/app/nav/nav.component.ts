@@ -36,7 +36,7 @@ export class NavComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.getPosts();
+    this.getPostsByTitleNav();
   }
   constructor(
     private service: BlogService,
@@ -48,7 +48,6 @@ export class NavComponent implements OnInit {
   public postLogout() {
     this.service.logout().subscribe(
       (res) => {
-        // console.log('Logout realizado com sucesso!', res);
         localStorage.removeItem('token');
         this.router.navigate(['/']);
       },
@@ -58,14 +57,11 @@ export class NavComponent implements OnInit {
     );
   }
 
-  public getPosts(title?: string, clearTitle: boolean = false) {
-    console.log('getPosts function called with title:', title);
-
-    this.service.getPosts(title).subscribe({
+  public getPostsByTitleNav(title?: string, clearTitle: boolean = false) {
+    this.service.getPostsByTitle(title).subscribe({
       next: (data: ResponsePageable) => {
         this.listPosts = data.content;
         this.searchResultsChanged.emit({ title: title, results: this.listPosts });
-        console.log('Value of this.title:', this.title);
         if (clearTitle) {
           this.title = '';
         }
@@ -76,7 +72,7 @@ export class NavComponent implements OnInit {
   }
 
   public onFormSubmit() {
-    this.getPosts(this.title);
+    this.getPostsByTitleNav(this.title);
     this.title = '';
   }
 }

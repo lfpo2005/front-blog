@@ -40,17 +40,26 @@ export class BlogService {
     }
     return this.httpClient.get<QuestionModel[]>(`${this.apiUrl}/quiz/start`, { params });
   }
-  public getPosts(title?: string): Observable<ResponsePageable> {
+  // public getPosts(title?: string): Observable<ResponsePageable> {
+  //   let url = `${this.apiUrl}/public/posts`;
+  //   if (title) {
+  //     url += `?title=${title}`;
+  //   }
+  //   return this.httpClient.get<ResponsePageable>(url);
+  // }
+  public getAllPosts(): Observable<ResponsePageable> {
+    const url = `${this.apiUrl}/public/posts/all`;
+    return this.httpClient.get<ResponsePageable>(url);
+  }
+
+  public getPostsByTitle(title?: string): Observable<ResponsePageable> {
     let url = `${this.apiUrl}/public/posts`;
     if (title) {
       url += `?title=${title}`;
     }
     return this.httpClient.get<ResponsePageable>(url);
   }
-  public getAllPosts(): Observable<ResponsePageable> {
-    const url = `${this.apiUrl}/public/posts/all`;
-    return this.httpClient.get<ResponsePageable>(url);
-  }
+
   public searchPostsByTag(tag: string): Observable<PostModel[]> {
     return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${tag}`)
   }

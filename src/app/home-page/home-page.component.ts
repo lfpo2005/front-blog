@@ -3,7 +3,6 @@ import {BlogService} from "../shared/services/blog.service";
 import {ActivatedRoute} from "@angular/router";
 import {ResponsePageable} from "../shared/models/responsePageable.model";
 import { map } from 'rxjs/operators';
-import {PostModel} from "../shared/models/post.model";
 import {Title} from "@angular/platform-browser";
 
 
@@ -40,23 +39,17 @@ export class HomePageComponent implements OnInit {
         }
       });
   }
-
-  public onSearchResultsChanged(searchResults: PostModel[]) {
-    this.listPosts = searchResults;
-  }
   public getPostsByTitle(title: string) {
-    this.service.getPosts(title).subscribe({
+    this.service.getPostsByTitle(title).subscribe({
       next: (data: ResponsePageable) => {
         this.listPosts = data.content;
       },
       error: (e: any) => console.error(e),
     });
   }
-
   public getAllPosts() {
-    this.service.getPosts().subscribe({
+    this.service.getAllPosts().subscribe({
       next: (data: ResponsePageable) => {
-
         this.listPosts = data.content;
       },
       error: (e: any) => console.error(e),

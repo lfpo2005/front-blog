@@ -1,6 +1,7 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark nav-personalized">
   <div class="container-fluid">
-    <a class="navbar-brand logo" href="/">AGIL</a>
+    <a class="navbar-brand logo" routerLink="home">
+      <img src="assets/img/logo.svg" style="height: 35px; margin: 0; padding: 0"></a>
     <button (click)="toggleNavbar()" class="navbar-toggler" type="button" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,9 +15,6 @@
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="dictionary" (click)="toggleNavbar()">Dicionário</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" href="#" (click)="toggleNavbar()">Baixar</a>
         </li>
       </ul>
       <form class="d-flex" (ngSubmit)="onFormSubmit()">
