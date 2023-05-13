@@ -325,14 +325,12 @@ Copy code
 .login-form .form-group {
   margin-bottom: 1rem;
 }
-
 .login-form label {
   display: block;
   font-size: 0.9rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
-
 .login-form input {
   width: 100%;
   padding: 0.5rem;
