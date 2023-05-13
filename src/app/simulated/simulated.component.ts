@@ -141,9 +141,7 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
     const unanswered = this.unansweredQuestions();
     if (unanswered.length > 0) {
       const shouldContinue = confirm(
-        `Existem perguntas não respondidas: ${unanswered.join(
-          ", "
-        )}. Deseja finalizar o simulado mesmo assim?`
+        `Existem perguntas não respondidas: ${unanswered.join(", ")}. Deseja finalizar o simulado mesmo assim?`
       );
       if (!shouldContinue) {
         return;
@@ -166,18 +164,13 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
       this.displayResults(percentage, incorrectQuestions);
     });
   }
-  answerQuestion(index: number) {
-    if (this.questions[index]['marked']) {
-      this.questions[index]['marked'] = false;
-    }
-
+  answerQuestion(index: number): void {
+    this.questions[index].skipped = false;
     const skippedIndex = this.skippedQuestions.indexOf(index);
     if (skippedIndex > -1) {
       this.skippedQuestions.splice(skippedIndex, 1);
-      this.questions[index]['skipped'] = false;
     }
   }
-
 
   unansweredQuestions(): number[] {
     return this.questions
@@ -217,9 +210,9 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
       this.questions = questions;
     });
   }
-
   skipQuestion(index: number): void {
-    this.questions[index].skipped = !this.questions[index].skipped;
+    this.questions[index].skipped = true;
+    this.skippedQuestions.push(index);
   }
 
   goToQuestion(index: number): void {
