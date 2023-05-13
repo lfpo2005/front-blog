@@ -5,7 +5,7 @@
       <path fill-rule="evenodd"
             d="M2 11.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5z"/>
     </svg>
-    <a href="#" id="allQuestionsLink">See all questions</a>
+    <a href="#" id="allQuestionsLink" (click)="showAllQuestionsModal = true">See all questions</a>
   </div>
 
   <div class="time-left-container">
@@ -146,8 +146,12 @@
             <li *ngFor="let question of questions; index as i"
                 (click)="goToQuestion(i); showAllQuestionsModal = false;">
               <div class="d-flex align-items-center">
-                <h3 class="mb-0">Question Nº {{ i + 1 }}</h3>
-                <span class="ml-2">{{ question.selectedAnswer ? 'Answered' : 'Unanswered' }}</span>
+                <h3 class="mb-0 question-link">Question Nº {{ i + 1 }}</h3>
+                <span class="ml-2"
+                      [class.answered]="question.selectedAnswer"
+                      [class.unanswered]="!question.selectedAnswer">
+                  {{ question.selectedAnswer ? 'Answered' : 'Unanswered' }}
+                </span>
                 <svg *ngIf="question.skipped" class="bi bi-bookmark ml-2 bookmark-skipped" viewBox="0 0 16 16"
                      xmlns="http://www.w3.org/2000/svg">
                   <path d="M3 3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12l-5-3-5 3V3z" fill="currentColor"/>
@@ -162,6 +166,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 

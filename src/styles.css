@@ -234,6 +234,21 @@ footer {
   justify-content: space-between;
 }
 
+.question-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1em;
+  margin-right: 5px;
+}
+.answered {
+  color: green;
+}
+
+.unanswered {
+  color: lightcoral;
+}
+
 /* ############ postDetails ############ */
 
 .tag-link {

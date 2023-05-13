@@ -215,13 +215,10 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
     this.skippedQuestions.push(index);
   }
 
-  goToQuestion(index: number): void {
-    const questionElement = document.getElementById(`question-${index}`);
-    if (questionElement) {
-      questionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  goToQuestion(index: number) {
+    this.currentQuestionIndex = index;
+    this.showAllQuestionsModal = false;
   }
-
   onSubmitClick(): void {
     this.submitQuiz();
   }
