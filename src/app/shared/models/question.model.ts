@@ -11,6 +11,6 @@ export class QuestionModel {
   incorrect?: boolean;
   skipped?: boolean;
   bookmarked?: boolean;
-
+  marked?: boolean;
   [key: string]: any;
 }

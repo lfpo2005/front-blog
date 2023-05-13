@@ -8,6 +8,7 @@ import {Meta, Title} from "@angular/platform-browser";
 import { ChangeDetectorRef } from '@angular/core';
 import { Renderer2, ElementRef } from '@angular/core';
 import * as bootstrap from 'bootstrap';
+import {PostModel} from "../shared/models/post.model";
 
 @Component({
   selector: 'app-simulated',
@@ -26,6 +27,8 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
   quizStarted = false;
   public showAllQuestionsModal = false;
   currentQuestionIndex = 0;
+  marked?: boolean;
+  skipped?: boolean;
 
   constructor(private service: BlogService,
               private authService: AuthService,
@@ -164,12 +167,17 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
   answerQuestion(index: number) {
+    if (this.questions[index]['marked']) {
+      this.questions[index]['marked'] = false;
+    }
+
     const skippedIndex = this.skippedQuestions.indexOf(index);
     if (skippedIndex > -1) {
       this.skippedQuestions.splice(skippedIndex, 1);
-      this.questions[index].skipped = false;
+      this.questions[index]['skipped'] = false;
     }
   }
+
 
   unansweredQuestions(): number[] {
     return this.questions
@@ -220,6 +228,7 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
       questionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
+
   onSubmitClick(): void {
     this.submitQuiz();
   }
