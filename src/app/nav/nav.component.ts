@@ -2,7 +2,16 @@ import {PostModel} from "../shared/models/post.model";
 import {BlogService} from "../shared/services/blog.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
-import {ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {ResponsePageable} from "../shared/models/responsePageable.model";
 
 @Component({
@@ -48,6 +57,7 @@ export class NavComponent implements OnInit {
       }
     );
   }
+
   public getPosts(title?: string, clearTitle: boolean = false) {
     console.log('getPosts function called with title:', title);
 
@@ -59,9 +69,14 @@ export class NavComponent implements OnInit {
         if (clearTitle) {
           this.title = '';
         }
+        this.cdr.detectChanges();
       },
       error: (e: any) => console.error(e),
     });
   }
 
+  public onFormSubmit() {
+    this.getPosts(this.title);
+    this.title = '';
+  }
 }

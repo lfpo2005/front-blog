@@ -30,10 +30,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
   onSearch(title: string | undefined) {
-    if (this.isHomePage) {
-      this.router.navigate(['/'], { queryParams: { title: title } });
-    }
+    this.router.navigate(['/'], { queryParams: { title: title } });
   }
-
 
 }
