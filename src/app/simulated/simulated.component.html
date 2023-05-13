@@ -27,12 +27,13 @@
   <ng-container>
     <form >
       <div class="card my-3 form-quiz"
-           [ngClass]="{'border-danger': questions[currentQuestionIndex].incorrect, 'border-success': questions[currentQuestionIndex].selectedAnswer && !questions[currentQuestionIndex].incorrect}"
+           [ngClass]="{'border-danger': questions[currentQuestionIndex]?.incorrect, 'border-success': questions[currentQuestionIndex]?.selectedAnswer && !questions[currentQuestionIndex]?.incorrect}"
            [hidden]="!questions || questions.length === 0">
         <div class="title-container form-quiz">
           <h4 class="title-simulator">{{ currentQuestionIndex + 1 }}
-            . {{ questions[currentQuestionIndex].question }}</h4>
-          <svg *ngIf="!questions[currentQuestionIndex].skipped"
+            . {{ questions[currentQuestionIndex]?.question }}</h4>
+
+          <svg *ngIf="!questions[currentQuestionIndex]?.skipped"
                class="bi bi-bookmark bookmark-unfilled"
                (click)="skipQuestion(currentQuestionIndex)"
                title="Pular"
@@ -40,7 +41,7 @@
                xmlns="http://www.w3.org/2000/svg">
             <path d="M3 3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12l-5-3-5 3V3z"/>
           </svg>
-          <svg *ngIf="questions[currentQuestionIndex].skipped"
+          <svg *ngIf="questions[currentQuestionIndex]?.skipped"
                class="bi bi-bookmark bookmark-filled"
                (click)="skipQuestion(currentQuestionIndex)"
                title="Pular"
@@ -50,7 +51,7 @@
           </svg>
         </div>
         <div *ngFor="let option of ['A', 'B', 'C', 'D']">
-          <ng-container *ngIf="questions[currentQuestionIndex]['option' + option.toUpperCase()] !== null">
+          <ng-container *ngIf="questions[currentQuestionIndex]?.['option' + option.toUpperCase()] !== null">
             <input
               class="form-check-input input-quiz"
               type="radio"
