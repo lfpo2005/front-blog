@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { DatePipe } from "@angular/common";
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
+declare var tinymce: any;
+
 @Component({
   selector: 'app-post-editor',
   templateUrl: './post-editor.component.html',
@@ -13,32 +15,16 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 })
 export class PostEditorComponent implements OnInit {
   selectedFile: File | null = null;
-
-  config = {
-    placeholder: '',
-    tabsize: 2,
-    height: 200,
-    uploadImagePath: '/api/upload',
-    toolbar: [
-      ['misc', ['codeview', 'undo', 'redo']],
-      ['style', ['bold', 'italic', 'underline', 'clear']],
-      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-      ['fontsize', ['fontname', 'fontsize', 'color']],
-      ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
-      ['insert', ['table', 'picture', 'link', 'video', 'hr']]
-    ],
-    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times']
-  }
+  editorConfig: any; // Configurações do TinyMCE
 
   @Output() postCreated = new EventEmitter<PostModel>();
   postForm: FormGroup;
 
-
-
-  constructor(private fb: FormBuilder,
-              private blogService: BlogService,
-              private router: Router,
-              ) {
+  constructor(
+    private fb: FormBuilder,
+    private blogService: BlogService,
+    private router: Router,
+  ) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       post: ['', Validators.required],
@@ -46,13 +32,35 @@ export class PostEditorComponent implements OnInit {
       imgUrl: [''],
       tags: [''],
     });
-  }
 
+    this.editorConfig = {
+      height: 200,
+      placeholder: 'Digite o conteúdo da postagem',
+      plugins: 'lists link code fullscreen template wordcount emoticons charmap autoresize',
+      toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen | template | wordcount | emoticons | charmap',
+      file_picker_callback: (cb: any, value: any, meta: any) => {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+        input.onchange = () => {
+          const file = input.files && input.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+              const base64 = reader.result?.toString();
+              cb(base64, { title: file.name });
+            };
+            reader.readAsDataURL(file);
+          }
+        };
+        input.click();
+      }
+    };
+  }
   ngOnInit(): void {
     this.postForm.valueChanges.subscribe(value => {
       //console.log('Mudança no valor do formulário:', value, 'Validade:', this.postForm.valid);
     });
-
   }
 
   onSubmit() {
@@ -102,6 +110,13 @@ export class PostEditorComponent implements OnInit {
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     //console.log('Arquivo selecionado:', this.selectedFile);
+  }
+  ngAfterViewInit(): void {
+    tinymce.init(this.editorConfig);
+  }
+
+  ngOnDestroy(): void {
+    tinymce.remove();
   }
 
 }

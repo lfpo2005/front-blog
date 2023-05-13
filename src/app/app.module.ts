@@ -17,7 +17,6 @@ import { DictionaryComponent } from "./dictionary/dictionary.component";
 import { PanelAdminComponent } from "./painel-admin/panel-admin.component";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { PostEditorComponent } from "./post-editor/post-editor.component";
-import { NgxSummernoteModule } from 'ngx-summernote';
 import { AuthInterceptor } from "./shared/services/auth.interceptor";
 import { CommonModule, DatePipe } from "@angular/common";
 import { DictionaryEditorComponent } from "./dictionary-editor/dictionary-editor.component";
@@ -31,6 +30,7 @@ import { ErrorInterceptor } from "./shared/services/erro.inteceptor";
 import {CookieHandlerComponent} from "./cookie-handler/cookie-handler.component";
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import {PolicyCookiesComponent} from "./policy-cookies/policy-cookies.component";
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -90,8 +90,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     ReactiveFormsModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxSummernoteModule,
     CommonModule,
+    EditorModule,
     NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [
