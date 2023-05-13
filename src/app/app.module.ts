@@ -10,7 +10,7 @@ import { NavComponent } from "./nav/nav.component";
 import { AppRoutingModule } from "./app.routing.module";
 import { FooterComponent } from "./footer/footer.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { PoliticaPSComponent } from "./politica-ps/politica-ps.component";
+import { PolicyPSComponent } from "./policy-privacy-security/policy-p-s.component";
 import { PostDetailsComponent } from "./post-details/post-details.component";
 import { LoginComponent } from "./login/login.component";
 import { DictionaryComponent } from "./dictionary/dictionary.component";
@@ -30,6 +30,7 @@ import { Error500Component } from "./error500/error500.component";
 import { ErrorInterceptor } from "./shared/services/erro.inteceptor";
 import {CookieHandlerComponent} from "./cookie-handler/cookie-handler.component";
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
+import {PolicyCookiesComponent} from "./policy-cookies/policy-cookies.component";
 
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -53,7 +54,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     dismiss: 'Entendi',
     deny: 'Recusar',
     link: 'Saiba mais',
-    href: 'url-para-sua-politica-de-cookies', // substitua pela URL da sua política de cookies
+    href: 'cookies',
     policy: 'Cookie Policy'
   }
 };
@@ -66,7 +67,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     NavComponent,
     FooterComponent,
     PostDetailsComponent,
-    PoliticaPSComponent,
+    PolicyPSComponent,
     LoginComponent,
     DictionaryComponent,
     PanelAdminComponent,
@@ -78,6 +79,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     Error404Component,
     Error500Component,
     CookieHandlerComponent,
+    PolicyCookiesComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -90,7 +92,6 @@ const cookieConfig: NgcCookieConsentConfig = {
     ReactiveFormsModule,
     NgxSummernoteModule,
     CommonModule,
-    BrowserAnimationsModule,
     NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [

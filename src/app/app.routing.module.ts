@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { PoliticaPSComponent } from "./politica-ps/politica-ps.component";
+import { PolicyPSComponent } from "./policy-privacy-security/policy-p-s.component";
 import { PostDetailsComponent } from "./post-details/post-details.component";
 import { LoginComponent } from "./login/login.component";
 import { DictionaryComponent } from "./dictionary/dictionary.component";
@@ -12,11 +12,13 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { HomePageComponent } from "./home-page/home-page.component";
 import { Error500Component } from "./error500/error500.component";
 import { Error404Component } from "./error404/error404.component";
+import {PolicyCookiesComponent} from "./policy-cookies/policy-cookies.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'home', component: HomePageComponent },
-  { path: 'politica', component: PoliticaPSComponent },
+  { path: 'policy', component: PolicyPSComponent },
+  { path: 'cookies', component: PolicyCookiesComponent },
   { path: 'postDetails/:postId', component: PostDetailsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'createdUser', component: CreatedUserComponent },

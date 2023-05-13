@@ -6,7 +6,7 @@ declare let gtag: Function;
 
 @Component({
   selector: 'app-cookie-handler',
-  template: '<div></div>' // Este componente não precisa de um template visual
+  template: '<div></div>'
 })
 export class CookieHandlerComponent implements OnInit {
 
@@ -20,7 +20,7 @@ export class CookieHandlerComponent implements OnInit {
           this.cookieService.deleteAll();
         } else if (event.status === this.ccService.getStatus().allow) {
           gtag('js', new Date());
-          gtag('config', 'YOUR_TRACKING_ID');
+          gtag('config', 'G-7TWKKGCN2P');
         }
       });
   }
