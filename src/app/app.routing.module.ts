@@ -27,8 +27,9 @@ const routes: Routes = [
   { path: 'simulado', component: SimulatedComponent, canActivate: [AuthGuard] },
   { path: '404', component: Error404Component },
   { path: '500', component: Error500Component },
-  { path: '**', redirectTo: '404' },
   { path: 'heavy', loadChildren: () => import('./heavy/heavy.module').then(m => m.HeavyModule) },
+  { path: 'lazy', loadChildren: () => import('./heavy/lazy.module').then(m => m.LazyModule) },
+  { path: '**', redirectTo: '404' }
 ];
 
 @NgModule({
