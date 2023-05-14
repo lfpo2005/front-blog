@@ -51,7 +51,7 @@
           </svg>
         </div>
         <div *ngFor="let option of ['A', 'B', 'C', 'D']">
-          <ng-container *ngIf="questions[currentQuestionIndex]?.['option' + option.toUpperCase()] !== null">
+          <ng-container *ngIf="questions[currentQuestionIndex]?.['option' + option.toUpperCase()]">
             <input
               class="form-check-input input-quiz"
               type="radio"

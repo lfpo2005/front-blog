@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { RoleType } from "../shared/enum/roleType.enum";
 import jwt_decode from "jwt-decode"
 import {Title} from "@angular/platform-browser";
+import {AuthService} from "../shared/services/auth.service";
 
 
 @Component({
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private titleService: Title,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -31,8 +33,6 @@ export class LoginComponent implements OnInit {
   public postLogin() {
     this.service.login(this.loginForm?.value).subscribe(
       (res) => {
-        //console.log('Login realizado com sucesso!', res);
-
         // Armazenar o token no local storage
         localStorage.setItem('token', res.token);
 
@@ -48,9 +48,13 @@ export class LoginComponent implements OnInit {
           // Verificar o tipo de usuário e redirecioná-lo
           if (roles.includes(RoleType.ROLE_ADMIN)) {
             this.router.navigate(['/admin']);
+          } else if (roles.includes(RoleType.ROLE_USER)) {
+            const returnUrl = this.authService.getReturnUrl() || '/';
+            this.router.navigate([returnUrl]);
+            this.authService.setReturnUrl(this.route.snapshot.queryParams['returnUrl']);
           }
         }
-      },
+        },
       (err) => {
         console.error('Erro ao fazer o login', err);
         alert(
@@ -59,8 +63,9 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
   login() {
-        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    const returnUrl = this.authService.getReturnUrl() || '/';
     this.router.navigate([returnUrl]);
   }
 }

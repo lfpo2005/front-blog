@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,11 +7,16 @@ import {BehaviorSubject} from "rxjs";
 export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+
+  // Add this line
+  private returnUrl = new BehaviorSubject<string | null>(null);
+
   constructor() { }
 
   public getToken(): string | null {
     return localStorage.getItem('token');
   }
+
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
@@ -24,5 +29,13 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this.isAuthenticatedSubject.next(false);
+  }
+
+  setReturnUrl(url: string | null) {
+    this.returnUrl.next(url);
+  }
+
+  getReturnUrl(): string | null {
+    return this.returnUrl.getValue();
   }
 }
