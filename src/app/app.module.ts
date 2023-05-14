@@ -31,7 +31,6 @@ import {CookieHandlerComponent} from "./cookie-handler/cookie-handler.component"
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import {PolicyCookiesComponent} from "./policy-cookies/policy-cookies.component";
 import { EditorModule } from '@tinymce/tinymce-angular';
-import {LazyComponent} from "./heavy/lazy.component";
 
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -81,7 +80,6 @@ const cookieConfig: NgcCookieConsentConfig = {
     Error500Component,
     CookieHandlerComponent,
     PolicyCookiesComponent,
-    LazyComponent,
   ],
   imports: [
     AppRoutingModule,
