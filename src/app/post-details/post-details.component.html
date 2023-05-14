@@ -5,19 +5,29 @@
       <li class="breadcrumb-item active" aria-current="page">{{ post?.title }}</li>
     </ol>
   </nav>
+
   <article>
     <img class="mr-3 img-post" [src]="'data:image/jpeg;base64,' + post.img"
          alt="Imagem de capa do card">
     <h1 class="card-title h1-postDetails">
       <span>{{ post?.title }}</span>
     </h1>
-    <p class="card-subtitle mb-2 text-muted">
-      <i class="">Autor: </i>
-      <span>{{ post?.author }}</span>
-      <br>
-      <i class="">Data de criação: </i>
-      <span>{{ formatData(post?.creationDate) }}</span>
-    </p>
+    <div class="d-flex justify-content-between align-items-start">
+      <div>
+        <p class="card-subtitle mb-2 text-muted">
+          <i class="">Autor: </i>
+          <span>{{ post?.author }}</span>
+          <br>
+          <i class="">Data de criação: </i>
+          <span>{{ formatData(post?.creationDate) }}</span>
+        </p>
+      </div>
+      <div>
+        <h5>Compartilhe:</h5>
+        <app-share-buttons [title]="post?.title" [url]="currentUrl"></app-share-buttons>
+      </div>
+    </div>
+
     <section>
       <p class="card-post">
         <span [innerHTML]="post?.post"></span>

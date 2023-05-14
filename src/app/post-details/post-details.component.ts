@@ -1,19 +1,20 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {BlogService} from "../shared/services/blog.service";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BlogService } from '../shared/services/blog.service';
 import { DatePipe } from '@angular/common';
-import { PostModel } from "../shared/models/post.model";
-import {Meta, Title} from "@angular/platform-browser";
+import { PostModel } from '../shared/models/post.model';
+import { Meta, Title } from '@angular/platform-browser';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-post-details',
   templateUrl: './post-details.component.html'
 })
 export class PostDetailsComponent implements OnInit {
-  // post: any;
   @Input() listPosts?: PostModel[];
   @Output() tagClicked = new EventEmitter<string>();
   private _post: any;
+  currentUrl!: string; // Adicionado o ponto de exclamação aqui
 
   constructor(
     private route: ActivatedRoute,
@@ -21,11 +22,13 @@ export class PostDetailsComponent implements OnInit {
     private datePipe: DatePipe,
     private titleService: Title,
     private router: Router,
-    private metaService: Meta
+    private metaService: Meta,
+    private location: Location
   ) {
     this.metaService.addTag({
       name: 'description',
-      content: 'Descubra as melhores práticas de integração contínua para melhorar a qualidade do seu software. A integração contínua é uma técnica de desenvolvimento ágil que permite integrar e testar automaticamente as alterações de código de várias equipes em um único repositório. Neste artigo, você aprenderá como implementar a integração contínua em seu projeto de software, os benefícios dessa abordagem e as ferramentas mais populares para ajudá-lo a automatizar o processo de integração e teste.'
+      content:
+        'Descubra as melhores práticas de integração contínua para melhorar a qualidade do seu software. A integração contínua é uma técnica de desenvolvimento ágil que permite integrar e testar automaticamente as alterações de código de várias equipes em um único repositório. Neste artigo, você aprenderá como implementar a integração contínua em seu projeto de software, os benefícios dessa abordagem e as ferramentas mais populares para ajudá-lo a automatizar o processo de integração e teste.'
     });
   }
 
@@ -45,16 +48,19 @@ export class PostDetailsComponent implements OnInit {
       this.titleService.setTitle('Título padrão');
     }
   }
+
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const postId = params.get('postId');
       if (postId !== null) {
         this.getPostDetails(postId);
+        this.currentUrl = `https://metodologia-agil.com.br/postDetails/${postId}`;
       } else {
         console.error('postId is null');
       }
     });
   }
+
   formatData(data: string | null): string {
     const dataFormat = this.datePipe.transform(data, 'dd/MM/yyyy');
     return dataFormat ? dataFormat : '';
@@ -62,17 +68,16 @@ export class PostDetailsComponent implements OnInit {
 
   getPostDetails(postId: string) {
     this.blogService.getByIdPosts(postId).subscribe(
-      (post) => {
+      post => {
         this.post = post;
       },
-      (err) => {
+      err => {
         console.error('Erro ao buscar detalhes do post:', err);
       }
     );
   }
+
   onTagClick(tag: string) {
     this.router.navigate(['/'], { queryParams: { tag: tag } });
   }
-
-
 }

@@ -22,7 +22,10 @@ body {
 .no-underline {
    text-decoration: none;
 }
-
+.share-icons {
+  margin: 5px;
+  font-size: 2.5em;
+}
 .btn-default-light {
   background-color: #f8f9fa;
   padding: 5px 10px;
