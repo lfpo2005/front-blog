@@ -19,6 +19,9 @@ body {
   margin: 0 30px 0 10px;
   padding: 0;
 }
+.no-underline {
+   text-decoration: none;
+}
 
 .btn-default-light {
   background-color: #f8f9fa;
