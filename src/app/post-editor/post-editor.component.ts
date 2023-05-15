@@ -36,8 +36,8 @@ export class PostEditorComponent implements OnInit {
     this.editorConfig = {
       height: 200,
       placeholder: 'Digite o conteúdo da postagem',
-      plugins: 'lists link code fullscreen template wordcount emoticons charmap autoresize',
-      toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen | template | wordcount | emoticons | charmap',
+      plugins: 'lists link code fullscreen preview autosave image imagetools emoticons autoresize',
+      toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen | preview | autosave | emoticons | table',
       file_picker_callback: (cb: any, value: any, meta: any) => {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
@@ -56,6 +56,7 @@ export class PostEditorComponent implements OnInit {
         input.click();
       }
     };
+
   }
   ngOnInit(): void {
     this.postForm.valueChanges.subscribe(value => {

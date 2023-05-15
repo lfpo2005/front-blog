@@ -22,10 +22,7 @@ body {
 .no-underline {
    text-decoration: none;
 }
-.share-icons {
-  margin: 5px;
-  font-size: 2.5em;
-}
+
 .btn-default-light {
   background-color: #f8f9fa;
   padding: 5px 10px;
@@ -280,7 +277,10 @@ footer {
   color: red;
 }
 /* ############ postDetails ############ */
-
+.container-postDetails {
+  width: 90%;
+  margin: 0 auto;
+}
 .tag-link {
   color: #007bff;
   cursor: pointer;
@@ -296,6 +296,10 @@ footer {
   object-fit: cover;
   max-width: 1200px;
   max-height: 200px;
+}
+.share-icons {
+  margin: 5px;
+  font-size: 2.5em;
 }
 /* ############ Cards ############ */
 .card-post{
