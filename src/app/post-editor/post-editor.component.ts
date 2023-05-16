@@ -33,7 +33,7 @@ export class PostEditorComponent implements OnInit {
     });
 
     this.editorConfig = {
-      width: 900,
+      width: 1000,
       height: 500,
       powerpaste_allow_local_images: true,
       placeholder: 'Digite o conteúdo da postagem',
@@ -42,7 +42,7 @@ export class PostEditorComponent implements OnInit {
         'image', 'editimage', 'tinydrive', 'lists', 'link', 'media', 'powerpaste', 'preview',
         'searchreplace', 'table', 'template', 'tinymcespellchecker', 'visualblocks', 'wordcount'
       ],
-      toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | preview link image code fullscreen emoticons',
+      toolbar: ' bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | preview link image code fullscreen emoticons',
       file_picker_callback: (cb: any, value: any, meta: any) => {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
@@ -73,6 +73,8 @@ export class PostEditorComponent implements OnInit {
   }
 
   onSubmit() {
+    const editorContent = this.editor.getContent();
+    this.postForm.patchValue({post: editorContent});
     this.editor.save();
     if (this.postForm.valid) {
       const post: PostModel = this.postForm.value;
@@ -112,6 +114,7 @@ export class PostEditorComponent implements OnInit {
       alert("Erro ao criar post!");
     }
   }
+
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
