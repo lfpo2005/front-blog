@@ -5,6 +5,7 @@ import { BlogService } from '../shared/services/blog.service';
 import { Router } from '@angular/router';
 import { DatePipe } from "@angular/common";
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import {Editor} from "tinymce";
 @Component({
   selector: 'app-post-editor',
   templateUrl: './post-editor.component.html',
@@ -13,6 +14,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 export class PostEditorComponent implements OnInit {
   selectedFile: File | null = null;
   editorConfig: any; // Configurações do TinyMCE
+  editor: any;
 
   @Output() postCreated = new EventEmitter<PostModel>();
   postForm: FormGroup;
@@ -31,14 +33,21 @@ export class PostEditorComponent implements OnInit {
     });
 
     this.editorConfig = {
-      height: 200,
+      width: 900,
+      height: 500,
+      powerpaste_allow_local_images: true,
       placeholder: 'Digite o conteúdo da postagem',
-      plugins: 'lists link code image fullscreen emoticons preview',
+      plugins: [
+        'a11ychecker', 'advcode', 'advlist', 'anchor', 'autolink', 'codesample', 'fullscreen', 'help',
+        'image', 'editimage', 'tinydrive', 'lists', 'link', 'media', 'powerpaste', 'preview',
+        'searchreplace', 'table', 'template', 'tinymcespellchecker', 'visualblocks', 'wordcount'
+      ],
       toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | preview link image code fullscreen emoticons',
       file_picker_callback: (cb: any, value: any, meta: any) => {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
         input.setAttribute('accept', 'image/*');
+
         input.onchange = () => {
           const file = input.files && input.files[0];
           if (file) {
@@ -51,8 +60,12 @@ export class PostEditorComponent implements OnInit {
           }
         };
         input.click();
+      },
+      setup: (editor: Editor) => {
+        this.editor = editor;
       }
     };
+
   }
   ngOnInit(): void {
     this.postForm.valueChanges.subscribe(value => {
@@ -60,6 +73,7 @@ export class PostEditorComponent implements OnInit {
   }
 
   onSubmit() {
+    this.editor.save();
     if (this.postForm.valid) {
       const post: PostModel = this.postForm.value;
       const tagsInput = this.postForm.get('tags')?.value;
