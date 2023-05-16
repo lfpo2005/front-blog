@@ -38,9 +38,11 @@ export class PostEditorComponent implements OnInit {
       height: 200,
       // base_url: '/tinymce',
       suffix: '.min',
-      placeholder: 'Digite o conteúdo da postagem',
-      plugins: 'lists link code fullscreen preview image emoticons autoresize table',
-      toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen | preview | autosave | emoticons',
+       placeholder: 'Digite o conteúdo da postagem',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+      // plugins: 'lists link code fullscreen preview image emoticons autoresize table',
+      // toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen | preview | autosave | emoticons',
       file_picker_callback: (cb: any, value: any, meta: any) => {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
