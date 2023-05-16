@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { DatePipe } from "@angular/common";
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
+
 declare var tinymce: any;
 
 @Component({
