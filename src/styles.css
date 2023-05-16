@@ -207,7 +207,6 @@ footer {
   min-height: 1.5em;
 }
 
-
 .title-container {
   display: flex;
   align-items: center;
@@ -320,7 +319,14 @@ footer {
   margin: 0 5%;
   flex-wrap: wrap;
 }
-
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 80%;
+}
 .home-card {
   width: 255px;
   height: 460px;
