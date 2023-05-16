@@ -33,7 +33,7 @@ export class DictionaryComponent implements OnInit {
       next: (data) => {
         this.listResult = data.content;
         this.cd.detectChanges()
-        //console.log(data);
+        console.log(data);
         this.isSearched = true;
       },
       error: (e) => alert('Atenção\n' + e.error),

@@ -118,11 +118,14 @@ footer {
 .container-dictionary {
   align-items: center;
   justify-content: center;
-  width: 500px;
+  width: 800px;
   margin: 100px auto 100px;
 }
 .result-dictionary {
   margin: 20px;
+}
+.card-text-dictionary {
+  height: 80%;
 }
 /* ############ Simulator ############ */
 
@@ -317,14 +320,7 @@ footer {
   margin: 0 5%;
   flex-wrap: wrap;
 }
-.card-text {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  height: 80%;
-}
+
 .home-card {
   width: 255px;
   height: 460px;
