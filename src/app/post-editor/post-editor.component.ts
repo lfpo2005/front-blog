@@ -55,8 +55,7 @@ export class PostEditorComponent implements OnInit {
         };
         input.click();
       }
-    };
-
+    }
   }
   ngOnInit(): void {
     this.postForm.valueChanges.subscribe(value => {
