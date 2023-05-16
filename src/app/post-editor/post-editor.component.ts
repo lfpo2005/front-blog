@@ -36,6 +36,8 @@ export class PostEditorComponent implements OnInit {
 
     this.editorConfig = {
       height: 200,
+      // base_url: '/tinymce',
+      suffix: '.min',
       placeholder: 'Digite o conteúdo da postagem',
       plugins: 'lists link code fullscreen preview image emoticons autoresize table',
       toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen | preview | autosave | emoticons',
@@ -60,7 +62,6 @@ export class PostEditorComponent implements OnInit {
   }
   ngOnInit(): void {
     this.postForm.valueChanges.subscribe(value => {
-      //console.log('Mudança no valor do formulário:', value, 'Validade:', this.postForm.valid);
     });
   }
 
@@ -68,9 +69,6 @@ export class PostEditorComponent implements OnInit {
     if (this.postForm.valid) {
       const post: PostModel = this.postForm.value;
       const tagsInput = this.postForm.get('tags')?.value;
-      //console.log('Estado do formulário:', this.postForm, 'Validade:', this.postForm.valid);
-
-
       if (typeof tagsInput === 'string') {
         post.tags = tagsInput.split(',').map((tag: string) => tag.trim());
       } else {
@@ -88,7 +86,6 @@ export class PostEditorComponent implements OnInit {
       if (this.selectedFile) {
         formData.append('img', this.selectedFile, this.selectedFile.name);
       }
-      //console.log(formData);
       this.blogService.createPosts(formData).subscribe(
         event => {
           if (event.type === HttpEventType.UploadProgress) {
