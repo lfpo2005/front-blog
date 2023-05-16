@@ -37,7 +37,7 @@ export class PostEditorComponent implements OnInit {
     this.editorConfig = {
       height: 200,
       placeholder: 'Digite o conteúdo da postagem',
-      plugins: 'lists link code fullscreen preview image emoticons autoresize',
+      plugins: 'lists link code fullscreen preview image emoticons autoresize table',
       toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen | preview | autosave | emoticons',
       file_picker_callback: (cb: any, value: any, meta: any) => {
         const input = document.createElement('input');
