@@ -35,12 +35,11 @@ export class PostEditorComponent implements OnInit {
     });
 
     this.editorConfig = {
-      height: 400,
-      selector: 'textarea',
+      height: 200,
       placeholder: 'Digite o conteúdo da postagem',
-      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-      toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen | preview | autosave | emoticons',
-       file_picker_callback: (cb: any, value: any, meta: any) => {
+      plugins: 'lists link code fullscreen template image emoticons ',
+      toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen | emoticons | image',
+      file_picker_callback: (cb: any, value: any, meta: any) => {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
         input.setAttribute('accept', 'image/*');
@@ -57,7 +56,7 @@ export class PostEditorComponent implements OnInit {
         };
         input.click();
       }
-    }
+    };
   }
   ngOnInit(): void {
     this.postForm.valueChanges.subscribe(value => {
