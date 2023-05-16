@@ -5,10 +5,6 @@ import { BlogService } from '../shared/services/blog.service';
 import { Router } from '@angular/router';
 import { DatePipe } from "@angular/common";
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-
-
-declare var tinymce: any;
-
 @Component({
   selector: 'app-post-editor',
   templateUrl: './post-editor.component.html',
@@ -37,8 +33,8 @@ export class PostEditorComponent implements OnInit {
     this.editorConfig = {
       height: 200,
       placeholder: 'Digite o conteúdo da postagem',
-      plugins: 'lists link code image fullscreen emoticons',
-      toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code fullscreen emoticons',
+      plugins: 'lists link code image fullscreen emoticons preview',
+      toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | preview link image code fullscreen emoticons',
       file_picker_callback: (cb: any, value: any, meta: any) => {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
@@ -106,13 +102,6 @@ export class PostEditorComponent implements OnInit {
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     //console.log('Arquivo selecionado:', this.selectedFile);
-  }
-  ngAfterViewInit(): void {
-    tinymce.init(this.editorConfig);
-  }
-
-  ngOnDestroy(): void {
-    tinymce.remove();
   }
 
 }
