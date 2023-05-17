@@ -14,6 +14,7 @@ import {Editor} from "tinymce";
 export class PostEditorComponent implements OnInit {
   selectedFile: File | null = null;
   editorConfig: any; // Configurações do TinyMCE
+  editor: any;
 
   @Output() postCreated = new EventEmitter<PostModel>();
   postForm: FormGroup;
@@ -60,6 +61,9 @@ export class PostEditorComponent implements OnInit {
         };
         input.click();
       },
+      setup: (editor: Editor) => {
+        this.editor = editor;
+      }
     };
   }
   ngOnInit(): void {
@@ -67,6 +71,9 @@ export class PostEditorComponent implements OnInit {
     });
   }
   onSubmit() {
+    const editorContent = this.editor.getContent();
+    this.postForm.patchValue({post: editorContent});
+    this.editor.save();
     if (this.postForm.valid) {
       const post: PostModel = this.postForm.value;
       const tagsInput = this.postForm.get('tags')?.value;

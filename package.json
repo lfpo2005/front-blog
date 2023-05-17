@@ -23,6 +23,7 @@
     "@auth0/angular-jwt": "^5.1.2",
     "@ng-bootstrap/ng-bootstrap": "^14.1.0",
     "@popperjs/core": "^2.11.6",
+    "@tinymce/tinymce-angular": "^7.0.0",
     "angular2-uuid": "^1.1.1",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",
@@ -33,6 +34,7 @@
     "ngx-cookieconsent": "^4.0.2",
     "ngx-editor": "^15.3.0",
     "rxjs": "~7.5.0",
+    "tinymce": "^6.4.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

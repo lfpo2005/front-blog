@@ -30,8 +30,8 @@ import { ErrorInterceptor } from "./shared/services/erro.inteceptor";
 import {CookieHandlerComponent} from "./cookie-handler/cookie-handler.component";
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import {PolicyCookiesComponent} from "./policy-cookies/policy-cookies.component";
+import {EditorModule, TINYMCE_SCRIPT_SRC} from '@tinymce/tinymce-angular';
 import {ShareButtonsComponent} from "./share-buttons/share-buttons.component";
-import {NgxEditorModule} from "ngx-editor";
 
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -93,7 +93,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    NgxEditorModule,
+    EditorModule,
     NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [
