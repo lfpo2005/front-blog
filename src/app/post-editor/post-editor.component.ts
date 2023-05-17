@@ -71,9 +71,6 @@ export class PostEditorComponent implements OnInit {
     });
   }
   onSubmit() {
-    const editorContent = this.editor.getContent();
-    this.postForm.patchValue({post: editorContent});
-    this.editor.save();
     if (this.postForm.valid) {
       const post: PostModel = this.postForm.value;
       const tagsInput = this.postForm.get('tags')?.value;
