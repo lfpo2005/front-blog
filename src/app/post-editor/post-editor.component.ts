@@ -39,7 +39,7 @@ export class PostEditorComponent implements OnInit {
       placeholder: 'Digite o conteúdo da postagem',
       plugins: [
         'a11ychecker', 'advcode', 'advlist', 'anchor', 'autolink', 'codesample', 'fullscreen', 'help',
-        'image', 'editimage', 'tinydrive', 'lists', 'link', 'media', 'powerpaste', 'preview',
+        'image', 'tinydrive', 'lists', 'link', 'media', 'powerpaste', 'preview',
         'searchreplace', 'table', 'template', 'tinymcespellchecker', 'visualblocks', 'wordcount'
       ],
       toolbar: ' bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | preview link image code fullscreen emoticons',
