@@ -55,8 +55,12 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     this.editor = new Editor();
   }
   onSubmit() {
-    console.log(this.postForm.get('editor')?.value);
-    console.log(this.postForm.get('editor')?.valid);
+    console.log('title:', this.postForm.get('title')?.value, this.postForm.get('title')?.valid);
+    console.log('post:', this.postForm.get('post')?.value, this.postForm.get('post')?.valid);
+    console.log('editor:', this.postForm.get('editor')?.value, this.postForm.get('editor')?.valid);
+    console.log('description:', this.postForm.get('description')?.value, this.postForm.get('description')?.valid);
+    console.log('imgUrl:', this.postForm.get('imgUrl')?.value, this.postForm.get('imgUrl')?.valid);
+    console.log('tags:', this.postForm.get('tags')?.value, this.postForm.get('tags')?.valid);
     const editorContent = this.postForm.get('editor')?.value;
     if (this.postForm.valid) {
       const post: PostModel = this.postForm.value;
