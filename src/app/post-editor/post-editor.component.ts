@@ -1,20 +1,20 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, OnDestroy} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostModel } from '../shared/models/post.model';
 import { BlogService } from '../shared/services/blog.service';
 import { Router } from '@angular/router';
 import { DatePipe } from "@angular/common";
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import {Editor} from "tinymce";
+import {Editor, schema, Toolbar} from 'ngx-editor';
+
 @Component({
   selector: 'app-post-editor',
   templateUrl: './post-editor.component.html',
   providers: [DatePipe]
 })
-export class PostEditorComponent implements OnInit {
+export class PostEditorComponent implements OnInit, OnDestroy {
   selectedFile: File | null = null;
-  editorConfig: any; // Configurações do TinyMCE
-  editor: any;
+  // editor!: Editor;
 
   @Output() postCreated = new EventEmitter<PostModel>();
   postForm: FormGroup;
@@ -28,56 +28,39 @@ export class PostEditorComponent implements OnInit {
       title: ['', Validators.required],
       post: ['', Validators.required],
       description: ['', Validators.required],
-      imgUrl: [''],
-      tags: [''],
+      imgUrl: ['', Validators.required],
+      tags: ['', Validators.required],
+      editor: ['', Validators.required]
     });
-
-    this.editorConfig = {
-      width: 1000,
-      height: 500,
-      powerpaste_allow_local_images: true,
-      placeholder: 'Digite o conteúdo da postagem',
-      plugins: [
-        'a11ychecker', 'advcode', 'advlist', 'anchor', 'autolink', 'codesample', 'fullscreen', 'help',
-        'image', 'editimage', 'tinydrive', 'lists', 'link', 'media', 'powerpaste', 'preview',
-        'searchreplace', 'table', 'template', 'tinymcespellchecker', 'visualblocks', 'wordcount'
-      ],
-      toolbar: ' bold italic underline | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | preview link image code fullscreen emoticons',
-      file_picker_callback: (cb: any, value: any, meta: any) => {
-        const input = document.createElement('input');
-        input.setAttribute('type', 'file');
-        input.setAttribute('accept', 'image/*');
-
-        input.onchange = () => {
-          const file = input.files && input.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
-              const base64 = reader.result?.toString();
-              cb(base64, { title: file.name });
-            };
-            reader.readAsDataURL(file);
-          }
-        };
-        input.click();
-      },
-      setup: (editor: Editor) => {
-        this.editor = editor;
-      }
-    };
-
   }
+  editor!: Editor;
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+    ['horizontal_rule', 'format_clear'],
+  ];
+  onEditorChange(content: any) {
+    this.postForm.get('editor')?.setValue(content, { emitEvent: false });
+  }
+
   ngOnInit(): void {
     this.postForm.valueChanges.subscribe(value => {
     });
+    this.editor = new Editor();
   }
-
   onSubmit() {
-    const editorContent = this.editor.getContent();
-    this.postForm.patchValue({post: editorContent});
-    this.editor.save();
+    console.log(this.postForm.get('editor')?.value);
+    console.log(this.postForm.get('editor')?.valid);
+    const editorContent = this.postForm.get('editor')?.value;
     if (this.postForm.valid) {
       const post: PostModel = this.postForm.value;
+      post.post = editorContent;
       const tagsInput = this.postForm.get('tags')?.value;
       if (typeof tagsInput === 'string') {
         post.tags = tagsInput.split(',').map((tag: string) => tag.trim());
@@ -114,11 +97,12 @@ export class PostEditorComponent implements OnInit {
       alert("Erro ao criar post!");
     }
   }
-
-
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     //console.log('Arquivo selecionado:', this.selectedFile);
+  }
+  ngOnDestroy(): void {
+    this.editor.destroy();
   }
 
 }
