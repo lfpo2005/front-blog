@@ -79,16 +79,15 @@ export class PostEditorComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
   ngAfterViewInit() {
-    $(document).ready(function() {
-      $('.summernote').summernote();
-      const noteBar = $('.note-toolbar');
-      noteBar.find('[data-toggle]').each(function(this: any) {
-        $(this).attr('data-bs-toggle', $(this).attr('data-toggle')).removeAttr('data-toggle');
+    $(document).ready(() => {
+      $('#summernote').summernote({
+        callbacks: {
+          onChange: (contents: string, $editable: any) => {
+            this.postForm.controls['post'].setValue(contents);
+          }
+        }
       });
     });
-
-    setTimeout(() => {
-      $('#summernote').summernote();
-    }, 0);
   }
+
 }
