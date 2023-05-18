@@ -62,7 +62,9 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
         countdownText.classList.add('fixed-countdown');
       }
     }, 0);
+    this.cdr.detectChanges();
   }
+
 
   previousQuestion() {
     if (this.currentQuestionIndex > 0) {
