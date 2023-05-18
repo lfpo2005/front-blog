@@ -4,8 +4,9 @@
     <input type="text" class="form-control" id="title" formControlName="title" placeholder="Digite o título">
   </div>
 
-  <textarea id="summernote" type="text" class="form-control" formControlName="post"
-            placeholder="Texto *" summernote></textarea>
+  <div>
+    <ngx-summernote formControlName="post" [(ngModel)]="content" [ngxSummernote]="summernoteOptions"></ngx-summernote>
+  </div>
 
   <div class="form-group">
     <label for="description">Descrição</label>

@@ -4,8 +4,9 @@ import { PostModel } from '../shared/models/post.model';
 import { BlogService } from '../shared/services/blog.service';
 import { Router } from '@angular/router';
 import { DatePipe } from "@angular/common";
-import 'summernote/dist/summernote-bs5.js';
 import { HttpEventType, HttpResponse } from "@angular/common/http";
+import {SummernoteOptions} from "ngx-summernote/lib/summernote-options";
+
 
 declare let $: any;
 declare let document: any;
@@ -17,7 +18,7 @@ declare let document: any;
 })
 export class PostEditorComponent implements OnInit {
   selectedFile: File | null = null;
-
+  content: string = '';
 
   @Output() postCreated = new EventEmitter<PostModel>();
   postForm: FormGroup;
@@ -89,4 +90,11 @@ export class PostEditorComponent implements OnInit {
       });
     });
   }
+  summernoteOptions: SummernoteOptions = {
+    callbacks: {
+      onChange: (contents: string) => {
+        this.content = contents;
+      }
+    }
+  };
 }

@@ -31,6 +31,8 @@ import {CookieHandlerComponent} from "./cookie-handler/cookie-handler.component"
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { PolicyCookiesComponent } from "./policy-cookies/policy-cookies.component";
 import { ShareButtonsComponent } from "./share-buttons/share-buttons.component";
+import { NgxSummernoteModule } from 'ngx-summernote';
+
 
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -92,6 +94,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    NgxSummernoteModule,
     NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [
