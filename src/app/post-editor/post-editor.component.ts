@@ -79,15 +79,14 @@ export class PostEditorComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
   ngAfterViewInit() {
-    $(document).ready(() => {
-      $('#summernote').summernote({
+    (<any>window).jQuery(document).ready(() => {
+      (<any>window).jQuery('#summernote').summernote({
         callbacks: {
           onChange: (contents: string, $editable: any) => {
-            this.postForm.controls['post'].setValue(contents);
+            (<any>this).postForm.controls['post'].setValue(contents);
           }
         }
       });
     });
   }
-
 }
