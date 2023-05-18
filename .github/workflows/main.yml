@@ -9,17 +9,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+
+      - uses: actions/checkout@v3.5.2
 
       - name: Docker Login
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2.1.0
         with:
-          username: ${{ secrets.USER_DOCKER }}
-          password: ${{ secrets.PASSWORD_DOCKER }}
+          Username: ${{ secrets.USER_DOCKER }}
+          Password: ${{ secrets.PASSWORD_DOCKER }}
 
       - name: Build and push Docker images
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4.0.0
         with:
           context: .
           push: true
