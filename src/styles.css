@@ -494,6 +494,23 @@ input[type="text"].password-field {
     margin: 0 auto;
   }
 }
+@media (max-width: 768px) {
+  .home-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+
+  .img-card, .img-post {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .container-postDetails {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
 @media (max-width: 576px) {
   .login-container {
     margin: 1rem 0;
@@ -504,8 +521,9 @@ input[type="text"].password-field {
   .register-form {
     padding: 1rem;
   }
-  .container-postDetails {
+  .container-postDetails, .img-post {
     width: 90%;
     margin: 0 auto;
   }
 }
+
