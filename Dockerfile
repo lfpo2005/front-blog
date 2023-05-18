@@ -18,5 +18,3 @@ COPY ./config/robots.txt /usr/share/nginx/html/robots.txt
 COPY ./config/ads.txt /usr/share/nginx/html/ads.txt
 COPY ./config/manifest.json /usr/share/nginx/html/manifest.json
 COPY ./config/service-worker.js /usr/share/nginx/html/service-worker.js
-
-RUN apk update && apk add --no-cache jquery
