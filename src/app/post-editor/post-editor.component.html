@@ -1,25 +1,31 @@
 <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
-<div class="form-group">
-    <label for="title">Título</label>
+  <div class="form-group">
+    <label for="title">Título:</label>
     <input type="text" class="form-control" id="title" formControlName="title" placeholder="Digite o título">
   </div>
 
-  <div>
-    <ngx-summernote formControlName="post" [(ngModel)]="content" [ngxSummernote]="summernoteOptions"></ngx-summernote>
+  <div class="form-group">
+    <label for="post">Postagem:</label>
+    <textarea class="form-control"  [ngxSummernote]="config" id="post" formControlName="post" rows="5" placeholder="Digite o conteúdo da postagem"></textarea>
   </div>
 
   <div class="form-group">
-    <label for="description">Descrição</label>
+    <label for="description">Descrição:</label>
     <input type="text" class="form-control" id="description" formControlName="description" placeholder="Digite a descrição" maxlength="300">
   </div>
 
   <div class="form-group">
-    <label for="img">Imagem</label>
-    <input type="file" class="form-control-file" id="img" (change)="onFileSelected($event)">
+    <label for="imgCover">Imagem:</label>
+    <input type="file" class="form-control-file" id="imgCover" (change)="onFileSelected($event)">
   </div>
 
   <div class="form-group">
-    <label for="tags">Tags</label>
+    <label for="alt">Alt:</label>
+    <input type="text" class="form-control" id="alt" formControlName="alt" placeholder="Digite o alt" maxlength="50">
+  </div>
+
+  <div class="form-group">
+    <label for="tags">Tags:</label>
     <input type="text" class="form-control" id="tags" formControlName="tags" placeholder="Digite as tags separadas por vírgulas">
   </div>
 

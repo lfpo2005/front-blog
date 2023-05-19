@@ -5,7 +5,7 @@ import { BlogService } from '../shared/services/blog.service';
 import { Router } from '@angular/router';
 import { DatePipe } from "@angular/common";
 import { HttpEventType, HttpResponse } from "@angular/common/http";
-import {SummernoteOptions} from "ngx-summernote/lib/summernote-options";
+import { SummernoteOptions } from "ngx-summernote/lib/summernote-options";
 
 
 declare let $: any;
@@ -19,6 +19,37 @@ declare let document: any;
 export class PostEditorComponent implements OnInit {
   selectedFile: File | null = null;
   content: string = '';
+  config = {
+    placeholder: '',
+    tabsize: 2,
+    height: 200,
+    // uploadImagePath: '/upload-body-img',
+   /* toolbar: [
+      ['misc', ['codeview', 'undo', 'redo']],
+      ['style', ['bold', 'italic', 'underline', 'clear']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+      ['fontsize', ['fontname', 'fontsize', 'color']],
+      ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
+      ['insert', ['table', 'picture', 'link', 'video', 'hr']]
+    ],
+    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],*/
+    popover: {
+      toolbar: [
+        ['misc', ['codeview', 'undo', 'redo']],
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+        ['fontsize', ['fontname', 'fontsize', 'color']],
+        ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
+        ['insert', ['table', 'picture', 'link', 'video', 'hr']]
+      ],
+      image: [
+        ['custom', ['examplePlugin']],
+        ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
+        ['float', ['floatLeft', 'floatRight', 'floatNone']],
+        ['remove', ['removeMedia']]
+      ]
+    }
+  }
 
   @Output() postCreated = new EventEmitter<PostModel>();
   postForm: FormGroup;
@@ -32,14 +63,17 @@ export class PostEditorComponent implements OnInit {
       title: ['', Validators.required],
       post: ['', Validators.required],
       description: ['', Validators.required],
-      imgUrl: [''],
+      imgCover: [null],
+      alt: [''],
       tags: [''],
     });
   }
+
   ngOnInit(): void {
     this.postForm.valueChanges.subscribe(value => {
     });
   }
+
   onSubmit() {
     if (this.postForm.valid) {
       const post: PostModel = this.postForm.value;
@@ -53,13 +87,31 @@ export class PostEditorComponent implements OnInit {
       formData.append('title', post.title ?? '');
       formData.append('post', post.post ?? '');
       formData.append('description', post.description ?? '');
+      formData.append('alt', post.alt ?? '');
       formData.append('tags', post.tags.join(','));
 
       if (this.selectedFile) {
-        formData.append('img', this.selectedFile, this.selectedFile.name);
+        formData.append('imgCover', this.selectedFile, this.selectedFile.name);
       }
+
+      const postImages = $(document).find('#summernote').summernote('core.getImages');
+      if (postImages && postImages.length > 0) {
+        const postImagesFormData = new FormData();
+        for (let i = 0; i < postImages.length; i++) {
+          postImagesFormData.append('postImages', postImages[i].file);
+        }
+
+        this.blogService.uploadPostImages(postImagesFormData).subscribe(
+          (event: any) => {
+          },
+          (err: any) => {
+            alert("Erro ao enviar as imagens do corpo do post!");
+          }
+        );
+      }
+
       this.blogService.createPosts(formData).subscribe(
-        event => {
+        (event: any) => {
           if (event.type === HttpEventType.UploadProgress) {
           } else if (event instanceof HttpResponse) {
             alert("Post criado com sucesso!");
@@ -68,7 +120,7 @@ export class PostEditorComponent implements OnInit {
             this.router.navigate(['/postDetails', postId]);
           }
         },
-        (err) => {
+        (err: any) => {
           alert("Erro ao criar post!");
         }
       );
@@ -76,20 +128,23 @@ export class PostEditorComponent implements OnInit {
       alert("Erro ao criar post!");
     }
   }
+
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
+
   ngAfterViewInit() {
-    (<any>window).jQuery(document).ready(() => {
-      (<any>window).jQuery('#summernote').summernote({
+    $(document).ready(() => {
+      $('#summernote').summernote({
         callbacks: {
           onChange: (contents: string, $editable: any) => {
-            (<any>this).postForm.controls['post'].setValue(contents);
+            this.postForm.controls['post'].setValue(contents);
           }
         }
       });
     });
   }
+
   summernoteOptions: SummernoteOptions = {
     callbacks: {
       onChange: (contents: string) => {

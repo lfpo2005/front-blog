@@ -3,7 +3,7 @@
     <div *ngFor="let post of listPosts" class="home-card">
       <div class="card home-card">
         <a [routerLink]="['/postDetails', post.postId]" class="no-underline">
-          <img class="mr-3 img-card" [src]="'data:image/jpeg;base64,' + post.img" alt="Imagem de capa do card">
+          <img class="mr-3 img-post" [src]="post.imgCover" [alt]="post.alt || 'Imagem do post'">
           <h1 class="card-title">{{ post.title }}</h1>
         </a>
 

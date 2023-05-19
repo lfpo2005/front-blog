@@ -8,7 +8,9 @@ export class PostModel {
   description?: string;
   creationDate?: Date;
   dateUpdate?: Date;
-  img?: string;
+  imgCover?: string;
   tags?: string[];
   tagsString?: string;
+  alt?: string;
+
 }

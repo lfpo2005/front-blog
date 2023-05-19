@@ -66,6 +66,27 @@ export class PostDetailsComponent implements OnInit {
     return dataFormat ? dataFormat : '';
   }
 
+  // getPostDetails(postId: string) {
+  //   this.blogService.getByIdPosts(postId).subscribe(
+  //     post => {
+  //       // // Substitui barras invertidas por barras
+  //       // let imgPath = post.imgCover?.replace(/\\/g, '/');
+  //       //
+  //       // // Determina a URL base com base na localização da janela
+  //       // let baseUrl = window.location.origin + '/blog';
+  //       //
+  //       // // Constrói a URL completa para a imagem
+  //       // post.imgCover = `${baseUrl}/${imgPath}`;
+  //
+  //       this.post = post;
+  //
+  //     },
+  //     err => {
+  //       console.error('Erro ao buscar detalhes do post:', err);
+  //     }
+  //   );
+  // }
+
   getPostDetails(postId: string) {
     this.blogService.getByIdPosts(postId).subscribe(
       post => {
