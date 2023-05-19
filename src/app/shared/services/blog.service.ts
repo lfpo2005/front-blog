@@ -19,8 +19,8 @@ export class BlogService {
 
   }
 
-//  apiUrl = 'http://localhost:8087/blog';
-  apiUrl = 'https://metodologia-agil.com.br/blog';
+  apiUrl = 'http://localhost:8087/blog';
+//  apiUrl = 'https://metodologia-agil.com.br/blog';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -40,13 +40,7 @@ export class BlogService {
     }
     return this.httpClient.get<QuestionModel[]>(`${this.apiUrl}/quiz/start`, { params });
   }
-  // public getPosts(title?: string): Observable<ResponsePageable> {
-  //   let url = `${this.apiUrl}/public/posts`;
-  //   if (title) {
-  //     url += `?title=${title}`;
-  //   }
-  //   return this.httpClient.get<ResponsePageable>(url);
-  // }
+
   public getAllPosts(): Observable<ResponsePageable> {
     const url = `${this.apiUrl}/public/posts/all`;
     return this.httpClient.get<ResponsePageable>(url);
@@ -63,6 +57,9 @@ export class BlogService {
   public searchPostsByTag(tag: string): Observable<PostModel[]> {
     return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${tag}`)
   }
+  public getDictionaryWord(word: string): Observable<ResponsePageable> {
+    return this.httpClient.get<ResponsePageable>(`${this.apiUrl}/dictionaries?word=${word}`)
+  }
   public getByIdPosts(postId: string): Observable<PostModel> {
     return this.httpClient.get<PostModel>(`${ this.apiUrl }/public/posts/${postId}`);
   }
@@ -73,10 +70,10 @@ export class BlogService {
       observe: 'events',
     });
   }
-
-  public getDictionaryWord(word: string): Observable<ResponsePageable> {
-    return this.httpClient.get<ResponsePageable>(`${this.apiUrl}/dictionaries?word=${word}`)
+  public uploadPostImages(formData: FormData): Observable<HttpEvent<any>> {
+    return this.httpClient.post<any>(`${ this.apiUrl }/upload-body-img`, formData, this.httpOptions);
   }
+
   public createDictionary(dictionaryModel: DictionaryModel): Observable<DictionaryModel> {
     return this.httpClient.post<DictionaryModel>(`${ this.apiUrl }/dictionaries`, dictionaryModel, this.httpOptions);
   }
