@@ -106,6 +106,10 @@ footer {
   justify-content: center;
   margin: 0 5%;
 }
+.card-body {
+  overflow: hidden;
+
+}
 .login .form-control {
   max-width: 310px;
   margin-right: 10px;
@@ -287,7 +291,9 @@ footer {
   color: #007bff;
   cursor: pointer;
   text-decoration: none;
-  margin: 0.2em;
+  margin: 0.5em ;
+  overflow: auto;
+
 }
 .tag-link:hover {
   text-decoration: underline;
@@ -340,9 +346,14 @@ footer {
   text-align: center;
   padding: 0 1rem;
 }
+.img-card-Post {
+  width: 100%;
+  max-height: 30%;
+  margin-bottom: 1rem;
+}
 .img-card {
-  width: 255px;
-  height: 120px;
+  width: 252px;
+  height: 150px;
   object-fit: cover;
   margin-bottom: 1rem;
 }

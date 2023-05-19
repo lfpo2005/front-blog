@@ -12,5 +12,4 @@ export class PostModel {
   tags?: string[];
   tagsString?: string;
   alt?: string;
-
 }

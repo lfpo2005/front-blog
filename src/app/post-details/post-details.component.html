@@ -7,7 +7,7 @@
   </nav>
 
   <article>
-    <img class="mr-3 img-post" [src]="post.imgCover" [alt]="post.alt || 'Imagem do post'">
+    <img class="mr-3 img-card-Post" [src]="'data:image/jpeg;base64,' + post.imgCover" [alt]="post.alt || 'Imagem do post'">
 
     <h1 class="card-title h1-postDetails">
       <span>{{ post?.title }}</span>

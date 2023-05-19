@@ -42,6 +42,7 @@ export class HomePageComponent implements OnInit {
   public getPostsByTitle(title: string) {
     this.service.getPostsByTitle(title).subscribe({
       next: (data: ResponsePageable) => {
+        console.log(data.content)
         this.listPosts = data.content;
       },
       error: (e: any) => console.error(e),
@@ -51,8 +52,12 @@ export class HomePageComponent implements OnInit {
     this.service.getAllPosts().subscribe({
       next: (data: ResponsePageable) => {
         this.listPosts = data.content;
+        console.log(data.content)
+
       },
       error: (e: any) => console.error(e),
     });
   }
+
+
 }
