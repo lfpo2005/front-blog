@@ -66,6 +66,25 @@ export class PostEditorComponent implements OnInit {
 
   onSubmit() {
     if (this.postForm.valid) {
+      // Verifique o tamanho das imagens aqui antes de salvar o post
+      const content = this.postForm.get('post')?.value;
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(content, 'text/html');
+      const images = doc.querySelectorAll('img');
+      for (let i = 0; i < images.length; i++) {
+        const image = images[i];
+        if (image.src.startsWith('data:image/')) {
+          // A imagem é uma Data URL, precisa verificar o tamanho
+          const base64Data = image.src.split(',')[1];
+          const size = base64Data.length * 0.75; // O tamanho aproximado em bytes
+          if (size > 307200) {
+            alert('Uma das imagens é muito grande. Por favor, remova ou reduza o tamanho da imagem.');
+            return;
+          }
+        }
+      }
+
+      // Continue com o restante do código para salvar o post
       const post: PostModel = this.postForm.value;
       const tagsInput = this.postForm.get('tags')?.value;
       if (typeof tagsInput === 'string') {
