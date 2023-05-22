@@ -4,6 +4,7 @@ import {NavigationEnd, Router} from "@angular/router";
 import { filter } from 'rxjs/operators';
 import {Meta} from "@angular/platform-browser";
 import {Angulartics2GoogleTagManager} from "angulartics2";
+import {NgcCookieConsentService, NgcStatusChangeEvent} from "ngx-cookieconsent";
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router,
               private metaService: Meta,
-              private angulartics2GoogleTagManager: Angulartics2GoogleTagManager
+              private angulartics2GoogleTagManager: Angulartics2GoogleTagManager,
+              private ccService: NgcCookieConsentService
   ) {
     angulartics2GoogleTagManager.startTracking();
     this.router.events
@@ -47,6 +49,12 @@ export class AppComponent implements OnInit {
           + this.formatDate(this.MAINTENANCE_END_DATE) + ', das 06:00 às 08:00. O sistema pode sofrer instabilidades no período.'
       });
     }
+    this.ccService.statusChange$.subscribe(
+      (event: NgcStatusChangeEvent) => {
+        if (event.status === this.ccService.getStatus().deny) {
+        } else if (event.status === this.ccService.getStatus().allow) {
+        }
+      });
   }
 
 

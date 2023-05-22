@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {BlogService} from "../shared/services/blog.service";
-import {ActivatedRoute} from "@angular/router";
-import {ResponsePageable} from "../shared/models/responsePageable.model";
+import { Component, OnInit } from '@angular/core';
+import { BlogService } from "../shared/services/blog.service";
+import { ActivatedRoute } from "@angular/router";
+import { ResponsePageable } from "../shared/models/responsePageable.model";
 import { map } from 'rxjs/operators';
-import {Title} from "@angular/platform-browser";
+import { Title } from "@angular/platform-browser";
+import { CookieService } from "ngx-cookie-service";
 
 
 @Component({
@@ -17,6 +18,7 @@ export class HomePageComponent implements OnInit {
     private service : BlogService,
     private route: ActivatedRoute,
     private titleService: Title,
+    private cookieService: CookieService
   ) { }
   onTagClick(tag: string) {
     this.service.searchPostsByTag(tag).subscribe({

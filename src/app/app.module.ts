@@ -32,7 +32,9 @@ import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsen
 import { PolicyCookiesComponent } from "./policy-cookies/policy-cookies.component";
 import { ShareButtonsComponent } from "./share-buttons/share-buttons.component";
 import { NgxSummernoteModule } from 'ngx-summernote';
-import {Angulartics2Module} from "angulartics2";
+import { Angulartics2Module } from "angulartics2";
+import { CookieService} from 'ngx-cookie-service';
+
 
 
 
@@ -97,14 +99,15 @@ const cookieConfig: NgcCookieConsentConfig = {
     CommonModule,
     NgxSummernoteModule,
     Angulartics2Module.forRoot(),
-    NgcCookieConsentModule.forRoot(cookieConfig)
+    NgcCookieConsentModule.forRoot(cookieConfig),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     JwtHelperService,
     DatePipe,
-    AuthGuard
+    AuthGuard,
+    CookieService
   ],
   bootstrap: [ AppComponent ]
 })

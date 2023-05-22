@@ -1,10 +1,11 @@
 <app-nav (searchResultsChanged)="onSearch($event.title)"></app-nav>
-<p *ngFor="let alert of alerts" style="width: 80%; margin: 0 auto">
+<p *ngFor="let alert of alerts" style="width: 90%; margin: 0 auto">
   <ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
 </p>
 <router-outlet></router-outlet>
 <app-home></app-home>
 <app-cookie-handler></app-cookie-handler>
+<a routerLink="/cookies">Política de Cookies</a>
 <app-footer></app-footer>
 
 
