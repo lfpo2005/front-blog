@@ -331,11 +331,11 @@ footer {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 80%;
+  height: 75%;
 }
 .home-card {
-  width: 255px;
-  height: 460px;
+  width: 254px;
+  height: 470px;
   margin: 10px;
 }
 .home-card h1 {

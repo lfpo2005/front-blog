@@ -3,6 +3,7 @@ import {PostModel} from "./shared/models/post.model";
 import {NavigationEnd, Router} from "@angular/router";
 import { filter } from 'rxjs/operators';
 import {Meta} from "@angular/platform-browser";
+import {Angulartics2GoogleTagManager} from "angulartics2";
 
 
 @Component({
@@ -14,7 +15,10 @@ export class AppComponent implements OnInit {
   isHomePage: boolean = true;
 
   constructor(private router: Router,
-              private metaService: Meta) {
+              private metaService: Meta,
+              private angulartics2GoogleTagManager: Angulartics2GoogleTagManager
+              ) {
+    angulartics2GoogleTagManager.startTracking();
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
@@ -31,6 +35,31 @@ export class AppComponent implements OnInit {
   }
   onSearch(title: string | undefined) {
     this.router.navigate(['/'], { queryParams: { title: title } });
+  }
+  getNextSaturdayDate() {
+    const today = new Date();
+    const lastSaturday = this.getLastSaturday({date: today});
+    const nextSaturday = new Date(lastSaturday.setDate(lastSaturday.getDate() + 7)); // Add 7 days to get next Saturday
+    return nextSaturday;
+  }
+
+  isMaintenanceDay() {
+    const today = new Date();
+    const lastSaturday = this.getLastSaturday({date: today});
+    const previousMonday = new Date(lastSaturday.setDate(lastSaturday.getDate() - 5)); // Subtract 5 days from Saturday to get Monday
+    return today.getFullYear() === previousMonday.getFullYear() &&
+      today.getMonth() === previousMonday.getMonth() &&
+      today.getDate() === previousMonday.getDate();
+  }
+
+  getLastSaturday({date}: { date: any }) {
+    const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0); // Last day of current month
+    let day = lastDayOfMonth.getDay();
+    while (day !== 6) { // Loop backwards until we find a Saturday
+      lastDayOfMonth.setDate(lastDayOfMonth.getDate() - 1);
+      day = lastDayOfMonth.getDay();
+    }
+    return lastDayOfMonth;
   }
 
 }
