@@ -42,7 +42,7 @@ export class DictionaryComponent implements OnInit {
       next: (data) => {
         this.listResult = data.content;
         this.cd.detectChanges()
-        console.log(data);
+        //console.log(data);
         this.isSearched = true;
 
         // Navega para a mesma rota com o termo de pesquisa como parâmetro de consulta

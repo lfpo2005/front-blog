@@ -1,7 +1,7 @@
 <app-nav (searchResultsChanged)="onSearch($event.title)"></app-nav>
-<div *ngIf="isMaintenanceDay()">
-  Aviso: A manutenção será realizada no próximo sábado, dia {{ getNextSaturdayDate() | date:'dd/MM/yyyy' }}. O sistema pode ter instabilidades.
-</div>
+<p *ngFor="let alert of alerts" style="width: 80%; margin: 0 auto">
+  <ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
+</p>
 <router-outlet></router-outlet>
 <app-home></app-home>
 <app-cookie-handler></app-cookie-handler>
