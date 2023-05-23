@@ -53,7 +53,7 @@
         </script>
       </div>
       <p class="card-post">
-        <span [innerHTML]="post?.post"></span>
+        <span [innerHTML]="post?.post" (click)="onContentClick($event)"></span>
       </p>
       <p>
         <strong>Tags:</strong>

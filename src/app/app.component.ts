@@ -29,11 +29,11 @@ export class AppComponent implements OnInit {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         const navigationEndEvent = event as NavigationEnd;
-        this.isHomePage = navigationEndEvent.url === '/' || navigationEndEvent.url === '/home',
-          this.metaService.addTag({
-            name: 'description',
-            content: 'Aprenda sobre as melhores metodologias ágeis utilizadas na indústria de tecnologia e desenvolvimento de software. Nossos artigos e tutoriais detalhados irão ajudá-lo a entender os princípios, práticas e ferramentas por trás do desenvolvimento ágil.'
-          });
+        // this.isHomePage = navigationEndEvent.url === '/' || navigationEndEvent.url === '/home',
+        this.metaService.addTag({
+          name: 'description',
+          content: 'Aprenda sobre as melhores metodologias ágeis utilizadas na indústria de tecnologia e desenvolvimento de software. Nossos artigos e tutoriais detalhados irão ajudá-lo a entender os princípios, práticas e ferramentas por trás do desenvolvimento ágil.'
+        });
       });
   }
   isMaintenanceDay() {
@@ -65,6 +65,7 @@ export class AppComponent implements OnInit {
   onSearch(title: string | undefined) {
     this.router.navigate(['/'], { queryParams: { title: title } });
   }
+
   formatDate(date: Date) {
     const day = ('0' + date.getDate()).slice(-2);
     const month = ('0' + (date.getMonth() + 1)).slice(-2);

@@ -97,6 +97,25 @@ export class PostDetailsComponent implements OnInit {
       }
     );
   }
+  onContentClick(event: MouseEvent) {
+    const target = event.target as HTMLAnchorElement;
+    if (target.tagName.toLowerCase() === 'a') {
+      event.preventDefault();
+      const url = target.getAttribute('href');
+      if (url) {
+        if (url.startsWith('/')) {
+          this.router.navigateByUrl(url);
+        } else if (url.startsWith(window.location.origin)) {
+          const route = url.replace(window.location.origin, '');
+          this.router.navigateByUrl(route);
+        } else {
+          window.open(url, '_blank');
+        }
+      } else {
+      }
+    }
+  }
+
 
   onTagClick(tag: string) {
     this.router.navigate(['/'], { queryParams: { tag: tag } });

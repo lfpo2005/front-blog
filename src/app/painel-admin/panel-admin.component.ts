@@ -24,10 +24,7 @@ export class PanelAdminComponent implements OnInit {
     this.formOpen = null;
   }
   onPostCreated(newPost: PostModel) {
-    //console.log(newPost);
   }
-
   onDictionaryCreated(newDictionary: DictionaryModel) {
-    //console.log(newDictionary);
   }
 }

@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           if (roles.includes(RoleType.ROLE_ADMIN)) {
             this.router.navigate(['/admin']);
           } else if (roles.includes(RoleType.ROLE_USER)) {
-            const returnUrl = this.authService.getReturnUrl() || '/';
+            const returnUrl = this.authService.getReturnUrl() || '/simulado';
             this.router.navigate([returnUrl]);
             this.authService.setReturnUrl(this.route.snapshot.queryParams['returnUrl']);
           }

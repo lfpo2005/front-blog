@@ -18,7 +18,6 @@ export class FooterComponent {
   public postNewsletter() {
     this.service.postNewsletter(this.newsletterForm?.value).subscribe(
       (res) => {
-        //console.log('Newsletter enviada com sucesso!', res);
         // limpar o formulário
         this.newsletterForm.reset();
         // exibir mensagem pop-up de sucesso

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ValidationErrors, Validators } from "@angular/f
 import { BlogService } from "../shared/services/blog.service";
 import { UserModel } from "../shared/models/user.model";
 import {Title} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-created-user',
@@ -29,6 +30,7 @@ export class CreatedUserComponent implements OnInit {
     private fb: FormBuilder,
     private titleService: Title,
     private blogService: BlogService,
+    private router: Router,
   ) {
     this.userForm = this.fb.group({
       username: ['', Validators.required],
@@ -38,8 +40,6 @@ export class CreatedUserComponent implements OnInit {
       fullName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
     }, {validator: this.checkPasswords});
-
-    //console.log(this.userForm.controls);
   }
 
   validationMessages = {
@@ -80,6 +80,7 @@ export class CreatedUserComponent implements OnInit {
         (userCreated) => {
           this.userForm.reset();
           alert('User criado com sucesso!');
+          this.router.navigate(['/login']); // Adicionar esta linha
         },
         (err) => {
           alert('Erro ao criar user!');
