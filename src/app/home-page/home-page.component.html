@@ -1,12 +1,13 @@
 <main class="container-card">
+
   <div class="row">
     <div *ngFor="let post of listPosts" class="home-card">
+
       <div class="card home-card">
         <a [routerLink]="['/postDetails', post.postId]" class="no-underline">
           <img class="mr-3 img-card" [src]="'data:image/jpeg;base64,' + post.imgCover" [alt]="post.alt || 'Imagem do post'">
           <h1 class="card-title">{{ post.title }}</h1>
         </a>
-
         <div class="card-body">
           <p class="card-text">{{ post.description }}</p>
           <p><strong>Tags:</strong>
@@ -15,6 +16,17 @@
             </ng-container>
           </p>
         </div>
+      </div>
+      <!-- Espaço reservado para o anúncio do Google AdSense -->
+      <div class="ad-container" id="google-adsense-ad">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5280935303207200" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-5280935303207200"
+             data-ad-slot="1234567890"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </div>
     </div>
   </div>
