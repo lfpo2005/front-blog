@@ -24,7 +24,10 @@ const routes: Routes = [
   { path: 'createdUser', component: CreatedUserComponent },
   { path: 'dictionary', component: DictionaryComponent },
   { path: 'admin', component: PanelAdminComponent },
-  { path: 'simulado', component: SimulatedComponent, canActivate: [AuthGuard] },
+/*
+  { path: 'simulado', component: SimulatedComponent, canActivate: [AuthGuard] } // pausa login
+*/
+  { path: 'simulado', component: SimulatedComponent }, // remover apos configuração do google
   { path: '404', component: Error404Component },
   { path: '500', component: Error500Component },
   { path: 'heavy', loadChildren: () => import('./heavy/heavy.module').then(m => m.HeavyModule) },

@@ -17,7 +17,7 @@ import { DictionaryComponent } from "./dictionary/dictionary.component";
 import { PanelAdminComponent } from "./painel-admin/panel-admin.component";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { PostEditorComponent } from "./post-editor/post-editor.component";
-import { AuthInterceptor } from "./shared/services/auth.interceptor";
+// import { AuthInterceptor } from "./shared/services/auth.interceptor";  // pausa login
 import { CommonModule, DatePipe } from "@angular/common";
 import { DictionaryEditorComponent } from "./dictionary-editor/dictionary-editor.component";
 import { CreatedUserComponent } from "./created-user/created-user.component";
@@ -102,7 +102,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     NgcCookieConsentModule.forRoot(cookieConfig),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },  // pausa login
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     JwtHelperService,
     DatePipe,

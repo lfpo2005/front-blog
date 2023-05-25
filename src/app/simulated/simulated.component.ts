@@ -30,7 +30,7 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
   skipped?: boolean;
 
   constructor(private service: BlogService,
-              private authService: AuthService,
+              //private authService: AuthService, // pausa no login
               private titleService: Title,
               private metaService: Meta,
               private cdr: ChangeDetectorRef,
