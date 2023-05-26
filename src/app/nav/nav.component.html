@@ -18,18 +18,23 @@
         </li>
       </ul>
       <form class="d-flex" (ngSubmit)="onFormSubmit()">
-        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" [(ngModel)]="title" name="searchTerm" style="width: 300px;">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" [(ngModel)]="title" name="searchTerm" >
         <button class="btn btn-default-light" type="submit">Buscar</button>
       </form>
 
-      <!--<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="login" (click)="toggleNavbar()">Entrar</a>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item hide-on-mobile" routerLinkActive="active">
+          <a class="nav-link link-release" routerLink="release" (click)="toggleNavbar()">
+            R-1.0.0 <i class="fas fa-angle-down"></i>
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="postLogout(); toggleNavbar()">Sair</a>
-        </li>
-      </ul>-->
+<!--        <li class="nav-item" routerLinkActive="active">-->
+<!--          <a class="nav-link" routerLink="login" (click)="toggleNavbar()">Entrar</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" (click)="postLogout(); toggleNavbar()">Sair</a>-->
+<!--        </li>-->
+      </ul>
     </div>
   </div>
 </nav>

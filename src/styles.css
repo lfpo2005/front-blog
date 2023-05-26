@@ -50,6 +50,7 @@ body {
 .page-wrapper {
   padding-top: 20px;
 }
+/* ############ nav ############ */
 .nav-personalized {
   padding: 10px 10px ;
   background-image: linear-gradient(to bottom, #163945, #336699);
@@ -67,6 +68,13 @@ body {
   text-transform: uppercase;
   font-weight: bold;
 }
+.navbar-nav .nav-item > a.link-release {
+  margin: 0 2em;
+  font-size: 0.8em;
+  color: #fde8bb !important;
+}
+
+
 .form-control {
   font-size: 15px;
   padding: 3px 10px;
@@ -474,6 +482,9 @@ input[type="text"].password-field {
   }
 }
 @media (max-width: 992px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
   .container-dictionary {
     width: 100%;
   }
@@ -489,6 +500,9 @@ input[type="text"].password-field {
   }
 }
 @media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
   .home-card {
     width: 100%;
     max-width: 100%;
@@ -506,6 +520,9 @@ input[type="text"].password-field {
   }
 }
 @media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
   .home-card {
     width: 100%;
     max-width: 100%;
@@ -523,6 +540,9 @@ input[type="text"].password-field {
   }
 }
 @media (max-width: 576px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
   .login-container {
     margin: 1rem 0;
   }

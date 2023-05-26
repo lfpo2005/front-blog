@@ -13,6 +13,7 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { Error500Component } from "./error500/error500.component";
 import { Error404Component } from "./error404/error404.component";
 import {PolicyCookiesComponent} from "./policy-cookies/policy-cookies.component";
+import {AccordionComponentComponent} from "./accordion-component/accordion-component.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'createdUser', component: CreatedUserComponent },
   { path: 'dictionary', component: DictionaryComponent },
+  { path: 'release', component: AccordionComponentComponent },
   { path: 'admin', component: PanelAdminComponent },
 /*
   { path: 'simulado', component: SimulatedComponent, canActivate: [AuthGuard] } // pausa login
@@ -36,8 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  // imports: [RouterModule.forRoot(routes)],
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule{}

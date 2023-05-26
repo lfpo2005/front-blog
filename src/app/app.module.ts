@@ -34,6 +34,7 @@ import { ShareButtonsComponent } from "./share-buttons/share-buttons.component";
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { Angulartics2Module } from "angulartics2";
 import { CookieService} from 'ngx-cookie-service';
+import {AccordionComponentComponent} from "./accordion-component/accordion-component.component";
 
 
 
@@ -85,6 +86,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     Error404Component,
     Error500Component,
     CookieHandlerComponent,
+    AccordionComponentComponent,
     PolicyCookiesComponent,
   ],
   imports: [
