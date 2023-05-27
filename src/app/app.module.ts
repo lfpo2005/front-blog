@@ -27,17 +27,16 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { Error404Component } from "./error404/error404.component";
 import { Error500Component } from "./error500/error500.component";
 import { ErrorInterceptor } from "./shared/services/erro.inteceptor";
-import {CookieHandlerComponent} from "./cookie-handler/cookie-handler.component";
+import { CookieHandlerComponent } from "./cookie-handler/cookie-handler.component";
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { PolicyCookiesComponent } from "./policy-cookies/policy-cookies.component";
 import { ShareButtonsComponent } from "./share-buttons/share-buttons.component";
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { Angulartics2Module } from "angulartics2";
 import { CookieService} from 'ngx-cookie-service';
-import {AccordionComponentComponent} from "./accordion-component/accordion-component.component";
-
-
-
+import { AccordionComponentComponent } from "./accordion-component/accordion-component.component";
+import { MessageContactComponent } from "./message-contact/message-contact.component";
+import { ContactService } from "./shared/services/contact/contact.service";
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -87,6 +86,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     Error500Component,
     CookieHandlerComponent,
     AccordionComponentComponent,
+    MessageContactComponent,
     PolicyCookiesComponent,
   ],
   imports: [
@@ -109,6 +109,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     JwtHelperService,
     DatePipe,
     AuthGuard,
+    ContactService,
     CookieService
   ],
   bootstrap: [ AppComponent ]

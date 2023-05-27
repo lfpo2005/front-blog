@@ -2,45 +2,39 @@
   <div class="row">
     <div class="col-md-4 newsletter">
       <h3>Assine nossa newsletter!</h3>
-
-        <div >
-          <form [formGroup]="newsletterForm" (ngSubmit)="postNewsletter()">
+      <div>
+        <form [formGroup]="newsletterForm" (ngSubmit)="postNewsletter()">
           <label for="emailTo">E-mail:</label>
           <input type="email" class="form-control input-w" id="emailTo" formControlName="emailTo" required>
           <label for="name">Nome:</label>
           <input type="text" class="form-control input-w" id="name" formControlName="name" required>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="activeNewsletter" formControlName="activeNewsletter">
-          <p class="form-check-label" for="activeNewsletter">Aceito receber conteúdos e novidades!
-          Ao informar meus dados, eu concordo com a <a routerLink="policy" >Política de Privacidade</a></p>
-        </div>
-        <button type="submit" class="btn btn-default-light" >Enviar</button>
-      </form>
-    </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="activeNewsletter" formControlName="activeNewsletter">
+            <p class="form-check-label" for="activeNewsletter">Aceito receber conteúdos e novidades!
+              Ao informar meus dados, eu concordo com a <a class="link-policy" routerLink="policy">Política de Privacidade</a></p>
+          </div>
+          <button type="submit" class="btn btn-default-light">Enviar</button>
+        </form>
+      </div>
     </div>
     <div class="col-md-2">
     </div>
-    <div class="col-md-6 hide-on-mobile">
-      <h2 id="about">Quem sou!</h2>
-      <p>
-        Sou um apaixonado por tecnologia, com experiência em atendimento ao cliente e analista de sistema, já atuei
-        em diversos projetos, sou graduado em Gestão da Tecnologia da Informação, e pós-graduado em Engenharia de
-        Software com foco em metodologias ágeis. Além disso, tenho realizado diversos cursos de especialização e
-        busco constantemente aprender mais sobre agilidade para contribuir com soluções inovadoras e eficientes. Além
-        de experiência em desenvolvimento em fullstack java, angular e microsserviços com Spring.
-        Tenho orgulho em ter contribuído para projetos de sucesso e estou sempre em busca de novos desafios e oportunidades
-        para aplicar minhas habilidades e conhecimentos.
-      </p>
-    </div>
+
   </div>
+
   <div class="row">
-    <div class="col-md-6">
-      <h4>Informações de contato</h4>
-      <p>Endereço: São Joaquim da Barra/SP</p>
-      <p>Telefone: (16) 993649158</p>
-      <p>E-mail: contato@metodologia-agil.com.br
+      <div class="col-md-4">
+        <h4>Informações de contato</h4>
+        <p>Endereço: São Joaquim da Barra/SP</p>
+        <p>Telefone: (16) 993649158</p>
+        <p>E-mail: contato@metodologia-agil.com.br
+      </div>
+    <div class="col-md-2">
     </div>
+
   </div>
+
+
   <div class="row">
     <div class="col-md-12">
       <hr>

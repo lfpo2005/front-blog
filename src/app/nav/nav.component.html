@@ -16,6 +16,12 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="dictionary" (click)="toggleNavbar()">Dicionário</a>
         </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link"  (click)="openModal()">Sobre</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link"  (click)="isContactModalOpen = true">Contato</a>
+        </li>
       </ul>
       <form class="d-flex" (ngSubmit)="onFormSubmit()">
         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" [(ngModel)]="title" name="searchTerm" >
@@ -38,3 +44,61 @@
     </div>
   </div>
 </nav>
+
+<!-- ################## Modal About  ######################-->
+<ng-template #aboutModal >
+
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Quem sou!</h4>
+  </div>
+  <div class="modal-body" >
+    <p>
+      Sou um apaixonado por tecnologia, com experiência em atendimento ao cliente e analista de sistema, já atuei
+      em diversos projetos, sou graduado em Gestão da Tecnologia da Informação, e pós-graduado em Engenharia de
+      Software com foco em metodologias ágeis. Além disso, tenho realizado diversos cursos de especialização e
+      busco constantemente aprender mais sobre agilidade para contribuir com soluções inovadoras e eficientes. Além
+      de experiência em desenvolvimento em fullstack java, angular e microsserviços com Spring.
+      Tenho orgulho em ter contribuído para projetos de sucesso e estou sempre em busca de novos desafios e
+      oportunidades
+      para aplicar minhas habilidades e conhecimentos.
+    </p>
+    <button type="button" class="btn btn-default-right" data-bs-dismiss="modal" (click)="closeModal()">Fechar</button>
+  </div>
+</ng-template>
+
+<!-- ################## Modal Contact  ######################-->
+<div *ngIf="isContactModalOpen" class="modal" tabindex="-1" role="dialog" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Entre em contato</h4>
+        <button type="button" class="close" aria-label="Close" (click)="isContactModalOpen = false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="contactForm" (ngSubmit)="postContactForm()">
+          <div class="form-group">
+            <label for="contactEmail">E-mail:</label>
+            <input type="email" class="form-control contact-w" id="contactEmail" formControlName="contactEmail"
+                   placeholder="Digite seu email aqui" required>
+            <div *ngIf="contactForm.get('contactEmail')?.errors?.['required'] && contactForm.get('contactEmail')?.touched" class="text-danger">E-mail é obrigatório.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage">Mensagem:</label>
+            <textarea class="form-control contact-w" id="contactMessage" formControlName="contactMessage" maxlength="1000"
+                      rows="5" placeholder="Digite sua mensagem" required></textarea>
+            <div *ngIf="contactForm.get('contactMessage')?.errors?.['required'] && contactForm.get('contactMessage')?.touched" class="text-danger">Mensagem é obrigatória.</div>
+            <div *ngIf="contactForm.get('contactMessage')?.errors?.['maxlength'] && contactForm.get('contactMessage')?.touched" class="text-danger">A mensagem pode ter no máximo 1000 caracteres.</div>
+          </div>
+
+          <button type="submit" class="btn btn-default-right">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,54 @@
+<div class="container">
+  <h2>Gerenciamento de Mensagens</h2>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Mensagem</th>
+      <th>E-mail</th>
+      <th>Ação</th>
+      <th>Visualizado</th>
+      <th>Data</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let message of messages">
+      <td>{{ message.message }}</td>
+      <td>{{ message.email }}</td>
+      <td>{{ message.answered }}</td>
+      <td>{{ message.visualized }}</td>
+      <td>{{ message.creationDate }}</td>
+      <td>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="viewMessage(message.messageContactId)">
+          Ver
+        </button>
+        <button class="btn btn-danger" (click)="deleteMessage(message.messageContactId)">Excluir</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mensagem Atual</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="currentMessage">
+        <p>E-Mail: {{ currentMessage.email }}</p>
+        <p>Mensagem: {{ currentMessage.message }}</p>
+        <select (change)="onAnsweredTypeChange($event)">
+          <option *ngFor="let type of ['', 'YES', 'NOT', 'NO_ACTION']" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+<!--        <button type="submit" class="btn btn-success" >Responder</button>-->
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

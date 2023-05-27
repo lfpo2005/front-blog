@@ -1,7 +1,10 @@
-import {PostModel} from "../shared/models/post.model";
-import {BlogService} from "../shared/services/blog.service";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {Router} from "@angular/router";
+import { PostModel } from "../shared/models/post.model";
+import { BaseService } from "../shared/services/base.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Router } from "@angular/router";
+import { ContactService } from "../shared/services/contact/contact.service";
+import { ContactModel } from "../shared/models/contact.model";
+
 import {
   ChangeDetectorRef,
   Component,
@@ -12,7 +15,10 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
+
+
 import {ResponsePageable} from "../shared/models/responsePageable.model";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-nav',
@@ -21,7 +27,10 @@ import {ResponsePageable} from "../shared/models/responsePageable.model";
 export class NavComponent implements OnInit {
   @Output() searchResultsChanged = new EventEmitter<{ title: string | undefined; results: PostModel[] | undefined }>();
   @Output() searchCleared = new EventEmitter<void>();
+  @ViewChild('aboutModal') aboutModal!: ElementRef;
+  isContactModalOpen = false;
 
+  contactForm!: FormGroup;
   isCollapsed = true;
   title: string = '';
   listPosts?: PostModel[];
@@ -39,12 +48,19 @@ export class NavComponent implements OnInit {
     this.getPostsByTitleNav();
   }
   constructor(
-    private service: BlogService,
+    private service: BaseService,
     private modalService: NgbModal,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private formBuilder: FormBuilder,
+    private contactService: ContactService
+  ) {
+    this.contactForm = this.formBuilder.group({
+      contactEmail: ['', [Validators.required, Validators.email]],
+      contactMessage: ['', [Validators.required, Validators.maxLength(1000)]]
+    });
+  }
 
-  ) {}
   public postLogout() {
     this.service.logout().subscribe(
       (res) => {
@@ -56,7 +72,6 @@ export class NavComponent implements OnInit {
       }
     );
   }
-
   public getPostsByTitleNav(title?: string, clearTitle: boolean = false) {
     this.service.getPostsByTitle(title).subscribe({
       next: (data: ResponsePageable) => {
@@ -74,5 +89,37 @@ export class NavComponent implements OnInit {
   public onFormSubmit() {
     this.getPostsByTitleNav(this.title);
     this.title = '';
+  }
+  postContactForm() {
+    if (this.contactForm.valid) {
+      const contactModel: ContactModel = {
+        email: this.contactForm.value['contactEmail'],
+        message: this.contactForm.value['contactMessage']
+      };
+      this.contactService.createContact(contactModel).subscribe(
+        response => {
+          console.log('Formulário enviado com sucesso.', response);
+          this.contactForm.reset();
+          this.contactForm.markAsUntouched();
+          this.isContactModalOpen = false;
+          alert('Agradecemos pelo contato!');
+        },
+        error => {
+          console.log('Ocorreu um erro.', error);
+        }
+      );
+    } else {
+      // Exibe uma mensagem de erro informando que os campos são obrigatórios
+      alert('Por favor, preencha todos os campos obrigatórios.');
+    }
+  }
+
+
+  openModal() {
+    this.modalService.open(this.aboutModal, { ariaLabelledBy: 'modal-title' });
+  }
+
+  closeModal() {
+    this.modalService.dismissAll();
   }
 }

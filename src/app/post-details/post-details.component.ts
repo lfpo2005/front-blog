@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BlogService } from '../shared/services/blog.service';
+import { BaseService } from '../shared/services/base.service';
 import { DatePipe } from '@angular/common';
 import { PostModel } from '../shared/models/post.model';
 import { Meta, Title } from '@angular/platform-browser';
@@ -14,11 +14,11 @@ export class PostDetailsComponent implements OnInit {
   @Input() listPosts?: PostModel[];
   @Output() tagClicked = new EventEmitter<string>();
   private _post: any;
-  currentUrl!: string; // Adicionado o ponto de exclamação aqui
+  currentUrl!: string;
 
   constructor(
     private route: ActivatedRoute,
-    private blogService: BlogService,
+    private blogService: BaseService,
     private datePipe: DatePipe,
     private titleService: Title,
     private router: Router,
@@ -115,7 +115,6 @@ export class PostDetailsComponent implements OnInit {
       }
     }
   }
-
 
   onTagClick(tag: string) {
     this.router.navigate(['/'], { queryParams: { tag: tag } });

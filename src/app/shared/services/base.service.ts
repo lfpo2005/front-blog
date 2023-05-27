@@ -13,23 +13,33 @@ import {AnswerSubmission} from "../models/answerSubmission.model";
 @Injectable({
   providedIn: 'root'
 })
-export class BlogService {
+export class BaseService {
 
   isAuthenticated() {
 
   }
 
-  // apiUrl = 'http://localhost:8087/blog';
-  apiUrl = 'https://metodologia-agil.com.br/blog';
+  apiUrl = 'http://localhost:8087/blog';
+  //apiUrl = 'https://metodologia-agil.com.br/blog';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   };
   constructor(
-    private httpClient: HttpClient
+    protected httpClient: HttpClient
+
   ) {}
 
+  public createPosts(postData: FormData): Observable<HttpEvent<any>> {
+    return this.httpClient.post<any>(`${this.apiUrl}/posts`, postData, {
+      reportProgress: true,
+      observe: 'events',
+    });
+  }
+  public uploadPostImages(formData: FormData): Observable<HttpEvent<any>> {
+    return this.httpClient.post<any>(`${ this.apiUrl }/upload-body-img`, formData, this.httpOptions);
+  }
   public submitQuiz(answerSubmissions: AnswerSubmission[]): Observable<QuestionModel[]> {
     return this.httpClient.post<QuestionModel[]>(`${this.apiUrl}/quiz/submit`, answerSubmissions);
   }
@@ -64,15 +74,6 @@ export class BlogService {
     return this.httpClient.get<PostModel>(`${ this.apiUrl }/public/posts/${postId}`);
   }
 
-  public createPosts(postData: FormData): Observable<HttpEvent<any>> {
-    return this.httpClient.post<any>(`${this.apiUrl}/posts`, postData, {
-      reportProgress: true,
-      observe: 'events',
-    });
-  }
-  public uploadPostImages(formData: FormData): Observable<HttpEvent<any>> {
-    return this.httpClient.post<any>(`${ this.apiUrl }/upload-body-img`, formData, this.httpOptions);
-  }
 
   public createDictionary(dictionaryModel: DictionaryModel): Observable<DictionaryModel> {
     return this.httpClient.post<DictionaryModel>(`${ this.apiUrl }/dictionaries`, dictionaryModel, this.httpOptions);

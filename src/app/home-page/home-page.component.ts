@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogService } from "../shared/services/blog.service";
+import { BaseService } from "../shared/services/base.service";
 import { ActivatedRoute } from "@angular/router";
 import { ResponsePageable } from "../shared/models/responsePageable.model";
 import { map } from 'rxjs/operators';
@@ -15,7 +15,7 @@ export class HomePageComponent implements OnInit {
   listPosts: any;
   showClock: boolean = true;
   constructor(
-    private service : BlogService,
+    private service : BaseService,
     private route: ActivatedRoute,
     private titleService: Title,
     private cookieService: CookieService

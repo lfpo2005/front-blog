@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {BlogService} from "../shared/services/blog.service";
+import {BaseService} from "../shared/services/base.service";
 import { DictionaryModel } from "../shared/models/dictionary.model";
 
 @Component({
@@ -15,7 +15,7 @@ export class DictionaryEditorComponent implements OnInit {
   ngOnInit(): void {
   }
   constructor(private fb: FormBuilder,
-              private blogService: BlogService,
+              private blogService: BaseService,
   ) {
     this.dictionaryForm = this.fb.group({
       word: ['', Validators.required],

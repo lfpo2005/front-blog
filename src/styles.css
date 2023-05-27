@@ -22,18 +22,31 @@ body {
 .no-underline {
    text-decoration: none;
 }
+.btn-default-right{
+  background-color: #163945;
+  padding: 10px;
+  border-radius: 5px;
+  color: #f8f9fa;
+  transition: background-color 0.3s;
+  border: 0.1em solid #011a1e;
+  float: right;
+}
+.btn-default-right:hover {
+  background-color: #1a4a5f;}
 
 .btn-default-light {
   background-color: #f8f9fa;
   padding: 5px 10px;
   border-radius: 5px;
   color: #011a1e;
-  transition: background-color 0.3s;
+  transition: background-color 2.5ms;
+  font-size: 1.2em;
+  border: 0.1em solid #011a1e;
+  float: right;
 }
 .btn-default-light:hover {
   background-color: #5c9ab6;
 }
-
 .btn-default {
   background-color: #163945;
   padding: 10px;
@@ -73,14 +86,13 @@ body {
   font-size: 0.8em;
   color: #fde8bb !important;
 }
-
-
 .form-control {
   font-size: 15px;
   padding: 3px 10px;
   width: 450px;
   /*height: 18px;*/
 }
+/* ############ footer ############ */
 footer {
   position: relative;
   bottom: 0;
@@ -104,10 +116,22 @@ footer {
   margin-bottom: 2rem;
 }
 .newsletter .input-w {
-  width: 100%;}
+  width: 100%;
+  margin-bottom: 1em;
+}
+.link-policy {
+  color: #d0d9f3;
+}
+.link-policy:hover {
+  color: royalblue;
+}
 
 .contact {
   margin-top: 13px;
+}
+.contact-w {
+  width: 100%;
+  margin-bottom: 1em;
 }
 .container-card {
   display: flex;
@@ -252,6 +276,7 @@ footer {
 .modal-footer {
   justify-content: flex-end;
 }
+
 .btn-end {
   display: flex;
   justify-content: space-between;

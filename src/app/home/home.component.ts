@@ -1,5 +1,5 @@
 import { PostModel } from "../shared/models/post.model";
-import { BlogService } from "../shared/services/blog.service";
+import { BaseService } from "../shared/services/base.service";
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { map } from 'rxjs/operators';

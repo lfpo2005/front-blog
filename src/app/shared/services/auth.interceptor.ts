@@ -41,7 +41,7 @@ import {BehaviorSubject} from "rxjs";
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(true); // Assume que o usuário está sempre autenticado
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(true);
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   // Add this line
@@ -64,7 +64,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.isAuthenticatedSubject.next(true); // Mesmo após o logout, considera que o usuário está autenticado
+    this.isAuthenticatedSubject.next(true);
   }
 
   setReturnUrl(url: string | null) {

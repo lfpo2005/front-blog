@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from "@angular/forms";
-import { BlogService } from "../shared/services/blog.service";
+import { BaseService } from "../shared/services/base.service";
 import { UserModel } from "../shared/models/user.model";
 import {Title} from "@angular/platform-browser";
 import {Router} from "@angular/router";
@@ -29,7 +29,7 @@ export class CreatedUserComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private titleService: Title,
-    private blogService: BlogService,
+    private blogService: BaseService,
     private router: Router,
   ) {
     this.userForm = this.fb.group({

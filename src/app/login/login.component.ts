@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { BlogService } from '../shared/services/blog.service';
+import { BaseService } from '../shared/services/base.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import { RoleType } from "../shared/enum/roleType.enum";
@@ -14,7 +14,7 @@ import {AuthService} from "../shared/services/auth.service";
 })
 export class LoginComponent implements OnInit {
   constructor(
-    private service: BlogService,
+    private service: BaseService,
     private route: ActivatedRoute,
     private router: Router,
     private titleService: Title,

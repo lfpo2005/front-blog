@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   alerts: any[] = [
 
   ];
-  private MAINTENANCE_START_DATE = new Date(2023, 5 - 1, 21, 0, 0, 0, 0);
-  private MAINTENANCE_END_DATE = new Date(2023, 5 - 1, 27, 0, 0, 0, 0);
+  private MAINTENANCE_START_DATE = new Date(2023, 7 - 1, 25, 0, 0, 0, 0);
+  private MAINTENANCE_END_DATE = new Date(2023, 8 - 1, 1, 0, 0, 0, 0);
 
   constructor(private router: Router,
               private metaService: Meta,

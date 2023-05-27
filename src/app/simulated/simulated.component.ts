@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { BlogService } from '../shared/services/blog.service';
+import { BaseService } from '../shared/services/base.service';
 import { AnswerSubmission } from '../shared/models/answerSubmission.model';
 import { AuthService } from '../shared/services/auth.service';
 import { interval, Subscription } from 'rxjs';
@@ -29,7 +29,7 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
   currentQuestionIndex = 0;
   skipped?: boolean;
 
-  constructor(private service: BlogService,
+  constructor(private service: BaseService,
               //private authService: AuthService, // pausa no login
               private titleService: Title,
               private metaService: Meta,

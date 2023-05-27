@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { DictionaryModel } from '../shared/models/dictionary.model';
-import { BlogService } from '../shared/services/blog.service';
+import { BaseService } from '../shared/services/base.service';
 import {Meta, Title} from "@angular/platform-browser";
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -14,7 +14,7 @@ export class DictionaryComponent implements OnInit {
   listResult?: DictionaryModel[];
   public isSearched = false;
 
-  constructor(private service: BlogService,
+  constructor(private service: BaseService,
               private cd: ChangeDetectorRef,
               private titleService: Title,
               private metaService: Meta,

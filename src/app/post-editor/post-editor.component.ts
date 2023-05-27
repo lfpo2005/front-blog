@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostModel } from '../shared/models/post.model';
-import { BlogService } from '../shared/services/blog.service';
+import { BaseService } from '../shared/services/base.service';
 import { Router } from '@angular/router';
 import { DatePipe } from "@angular/common";
 import { HttpEventType, HttpResponse } from "@angular/common/http";
@@ -46,7 +46,7 @@ export class PostEditorComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private blogService: BlogService,
+    private blogService: BaseService,
     private router: Router,
   ) {
     this.postForm = this.fb.group({
