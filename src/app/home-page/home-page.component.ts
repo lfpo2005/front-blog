@@ -5,6 +5,7 @@ import { ResponsePageable } from "../shared/models/responsePageable.model";
 import { map } from 'rxjs/operators';
 import { Title } from "@angular/platform-browser";
 import { CookieService } from "ngx-cookie-service";
+import {PostService} from "../shared/services/post/post.service";
 
 
 @Component({
@@ -15,13 +16,13 @@ export class HomePageComponent implements OnInit {
   listPosts: any;
   showClock: boolean = true;
   constructor(
-    private service : BaseService,
+    private postService : PostService,
     private route: ActivatedRoute,
     private titleService: Title,
     private cookieService: CookieService
   ) { }
   onTagClick(tag: string) {
-    this.service.searchPostsByTag(tag).subscribe({
+    this.postService.searchPostsByTag(tag).subscribe({
       next: (data) => {
         this.listPosts = data;
       },
@@ -42,7 +43,7 @@ export class HomePageComponent implements OnInit {
       });
   }
   public getPostsByTitle(title: string) {
-    this.service.getPostsByTitle(title).subscribe({
+    this.postService.getPostsByTitle(title).subscribe({
       next: (data: ResponsePageable) => {
         this.listPosts = data.content;
       },
@@ -50,13 +51,11 @@ export class HomePageComponent implements OnInit {
     });
   }
   public getAllPosts() {
-    this.service.getAllPosts().subscribe({
+    this.postService.getAllPosts().subscribe({
       next: (data: ResponsePageable) => {
         this.listPosts = data.content;
       },
       error: (e: any) => console.error(e),
     });
   }
-
-
 }

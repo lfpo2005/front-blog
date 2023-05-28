@@ -31,15 +31,24 @@ export class BaseService {
 
   ) {}
 
-  public createPosts(postData: FormData): Observable<HttpEvent<any>> {
-    return this.httpClient.post<any>(`${this.apiUrl}/posts`, postData, {
-      reportProgress: true,
-      observe: 'events',
-    });
+ protected getHttpOptions(): { headers: HttpHeaders } {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
   }
-  public uploadPostImages(formData: FormData): Observable<HttpEvent<any>> {
-    return this.httpClient.post<any>(`${ this.apiUrl }/upload-body-img`, formData, this.httpOptions);
+
+  protected getAuthenticatedHttpOptions(token: string): { headers: HttpHeaders } {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      })
+    };
   }
+
+
   public submitQuiz(answerSubmissions: AnswerSubmission[]): Observable<QuestionModel[]> {
     return this.httpClient.post<QuestionModel[]>(`${this.apiUrl}/quiz/submit`, answerSubmissions);
   }
@@ -51,29 +60,9 @@ export class BaseService {
     return this.httpClient.get<QuestionModel[]>(`${this.apiUrl}/quiz/start`, { params });
   }
 
-  public getAllPosts(): Observable<ResponsePageable> {
-    const url = `${this.apiUrl}/public/posts/all`;
-    return this.httpClient.get<ResponsePageable>(url);
-  }
-
-  public getPostsByTitle(title?: string): Observable<ResponsePageable> {
-    let url = `${this.apiUrl}/public/posts`;
-    if (title) {
-      url += `?title=${title}`;
-    }
-    return this.httpClient.get<ResponsePageable>(url);
-  }
-
-  public searchPostsByTag(tag: string): Observable<PostModel[]> {
-    return this.httpClient.get<PostModel[]>(`${this.apiUrl}/public/search?searchTerm=${tag}`)
-  }
   public getDictionaryWord(word: string): Observable<ResponsePageable> {
     return this.httpClient.get<ResponsePageable>(`${this.apiUrl}/dictionaries?word=${word}`)
   }
-  public getByIdPosts(postId: string): Observable<PostModel> {
-    return this.httpClient.get<PostModel>(`${ this.apiUrl }/public/posts/${postId}`);
-  }
-
 
   public createDictionary(dictionaryModel: DictionaryModel): Observable<DictionaryModel> {
     return this.httpClient.post<DictionaryModel>(`${ this.apiUrl }/dictionaries`, dictionaryModel, this.httpOptions);

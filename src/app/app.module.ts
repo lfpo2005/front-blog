@@ -37,6 +37,8 @@ import { CookieService} from 'ngx-cookie-service';
 import { AccordionComponentComponent } from "./accordion-component/accordion-component.component";
 import { MessageContactComponent } from "./message-contact/message-contact.component";
 import { ContactService } from "./shared/services/contact/contact.service";
+import {PostListComponent} from "./post-list-component/post-list.component";
+import {PostService} from "./shared/services/post/post.service";
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -86,6 +88,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     Error500Component,
     CookieHandlerComponent,
     AccordionComponentComponent,
+    PostListComponent,
     MessageContactComponent,
     PolicyCookiesComponent,
   ],
@@ -110,6 +113,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     DatePipe,
     AuthGuard,
     ContactService,
+    PostService,
     CookieService
   ],
   bootstrap: [ AppComponent ]

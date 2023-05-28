@@ -2,8 +2,7 @@ import { BaseService } from "../base.service";
 import { DictionaryModel } from "../../models/dictionary.model";
 import { Observable } from "rxjs";
 import { ContactModel } from "../../models/contact.model";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { AuthService } from "../auth.service";
+import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import {AnsweredType} from "../../enum/answeredType";
 
@@ -18,18 +17,18 @@ export class ContactService extends BaseService {
   }
 
   public getAllMsgContacts(token: string | null): Observable<any[]> {
-    const finalToken = token || ''; // Definir um valor padrão vazio caso o token seja nulo
+    const finalToken = token || '';
     return this.httpClient.get<any[]>(`${this.apiUrl}/contact`, this.getAuthenticatedHttpOptions(finalToken));
   }
 
   public getMsgContactById(id: string, token: string | null): Observable<any> {
-    const finalToken = token || ''; // Definir um valor padrão vazio caso o token seja nulo
+    const finalToken = token || '';
     const url = `${this.apiUrl}/contact/${id}`;
     return this.httpClient.get<any>(url, this.getAuthenticatedHttpOptions(finalToken));
   }
 
   public deleteMsgContact(id: string, token: string | null): Observable<void> {
-    const finalToken = token || ''; // Definir um valor padrão vazio caso o token seja nulo
+    const finalToken = token || '';
     const url = `${this.apiUrl}/contact/${id}`;
     return this.httpClient.delete<void>(url, this.getAuthenticatedHttpOptions(finalToken));
   }
@@ -42,21 +41,4 @@ export class ContactService extends BaseService {
     return this.httpClient.patch(`${this.apiUrl}/contact/` + id, JSON.stringify(answeredTypeWrapper), {headers: headers});
   }
 
-
-  private getHttpOptions(): { headers: HttpHeaders } {
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-  }
-
-  private getAuthenticatedHttpOptions(token: string): { headers: HttpHeaders } {
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      })
-    };
-  }
 }

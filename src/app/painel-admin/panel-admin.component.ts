@@ -24,7 +24,7 @@ export class PanelAdminComponent implements OnInit {
   public closeForm() {
     this.formOpen = null;
   }
-  onPostCreated(newPost: PostModel) {
+  onPostEditorCreated(newPost: PostModel) {
   }
   onDictionaryCreated(newDictionary: DictionaryModel) {
   }

@@ -1,5 +1,4 @@
 import { PostModel } from "../shared/models/post.model";
-import { BaseService } from "../shared/services/base.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Router } from "@angular/router";
 import { ContactService } from "../shared/services/contact/contact.service";
@@ -19,6 +18,7 @@ import {
 
 import {ResponsePageable} from "../shared/models/responsePageable.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {PostService} from "../shared/services/post/post.service";
 
 @Component({
   selector: 'app-nav',
@@ -48,7 +48,7 @@ export class NavComponent implements OnInit {
     this.getPostsByTitleNav();
   }
   constructor(
-    private service: BaseService,
+    private postService: PostService,
     private modalService: NgbModal,
     private router: Router,
     private cdr: ChangeDetectorRef,
@@ -62,7 +62,7 @@ export class NavComponent implements OnInit {
   }
 
   public postLogout() {
-    this.service.logout().subscribe(
+    this.postService.logout().subscribe(
       (res) => {
         localStorage.removeItem('token');
         this.router.navigate(['/']);
@@ -73,7 +73,7 @@ export class NavComponent implements OnInit {
     );
   }
   public getPostsByTitleNav(title?: string, clearTitle: boolean = false) {
-    this.service.getPostsByTitle(title).subscribe({
+    this.postService.getPostsByTitle(title).subscribe({
       next: (data: ResponsePageable) => {
         this.listPosts = data.content;
         this.searchResultsChanged.emit({ title: title, results: this.listPosts });

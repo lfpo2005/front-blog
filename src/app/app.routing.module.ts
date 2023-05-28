@@ -14,6 +14,7 @@ import { Error500Component } from "./error500/error500.component";
 import { Error404Component } from "./error404/error404.component";
 import {PolicyCookiesComponent} from "./policy-cookies/policy-cookies.component";
 import {AccordionComponentComponent} from "./accordion-component/accordion-component.component";
+import {PostEditorComponent} from "./post-editor/post-editor.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -25,6 +26,8 @@ const routes: Routes = [
   { path: 'createdUser', component: CreatedUserComponent },
   { path: 'dictionary', component: DictionaryComponent },
   { path: 'release', component: AccordionComponentComponent },
+  { path: 'post-editor', component: PostEditorComponent },
+  { path: 'post-editor/:postId', component: PostEditorComponent },
   { path: 'admin', component: PanelAdminComponent },
 /*
   { path: 'simulado', component: SimulatedComponent, canActivate: [AuthGuard] } // pausa login

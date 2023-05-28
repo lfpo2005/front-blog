@@ -18,7 +18,7 @@
       <!-- Formulário para criar postagens -->
       <div *ngIf="formOpen === 'post'">
         <h2>Criar postagem</h2>
-        <app-post-editor (postCreated)="onPostCreated($event)"></app-post-editor>
+        <app-post-list-component (postEditorCreated)="onPostEditorCreated($event)"></app-post-list-component>
       </div>
 
       <!-- Formulário para criar dicionários -->

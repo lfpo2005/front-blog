@@ -1,0 +1,22 @@
+<div class="container">
+  <button class="btn btn-primary mb-3" (click)="createNewPost()">New Post</button>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Titulo</th>
+      <th scope="col">Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let post of posts">
+      <a [routerLink]="['/postDetails', post.postId]" class="no-underline">
+        <td class="card-title">{{ post.title }}</td>
+      </a>
+      <td>
+        <button class="btn btn-info mr-2" (click)="editPost(post.postId)">Editar</button>
+        <button class="btn btn-danger" (click)="deletePost(post.postId)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
