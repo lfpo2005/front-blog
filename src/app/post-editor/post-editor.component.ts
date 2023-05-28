@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { DatePipe } from "@angular/common";
 import { HttpEventType, HttpResponse } from "@angular/common/http";
 import { SummernoteOptions } from "ngx-summernote/lib/summernote-options";
+import {AuthService} from "../shared/services/auth.service";
 
 
 declare let $: any;
@@ -48,6 +49,7 @@ export class PostEditorComponent implements OnInit {
     private fb: FormBuilder,
     private blogService: BaseService,
     private router: Router,
+    private authService: AuthService,
   ) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
@@ -65,6 +67,7 @@ export class PostEditorComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('Token: ', localStorage.getItem('token'));
     if (this.postForm.valid) {
       // Verifique o tamanho das imagens aqui antes de salvar o post
       const content = this.postForm.get('post')?.value;
@@ -84,7 +87,6 @@ export class PostEditorComponent implements OnInit {
         }
       }
 
-      // Continue com o restante do código para salvar o post
       const post: PostModel = this.postForm.value;
       const tagsInput = this.postForm.get('tags')?.value;
       if (typeof tagsInput === 'string') {

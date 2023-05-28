@@ -8,7 +8,6 @@ export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
-  // Add this line
   private returnUrl = new BehaviorSubject<string | null>(null);
 
   constructor() { }
@@ -16,7 +15,6 @@ export class AuthService {
   public getToken(): string | null {
     return localStorage.getItem('token');
   }
-
 
   isAuthenticated(): boolean {
     return !!this.getToken();

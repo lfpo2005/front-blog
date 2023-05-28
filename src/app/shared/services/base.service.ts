@@ -19,8 +19,8 @@ export class BaseService {
 
   }
 
-  //apiUrl = 'http://localhost:8087/blog';
-  apiUrl = 'https://metodologia-agil.com.br/blog';
+  apiUrl = 'http://localhost:8087/blog';
+  //apiUrl = 'https://metodologia-agil.com.br/blog';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
