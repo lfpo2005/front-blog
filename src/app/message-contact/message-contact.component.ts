@@ -4,6 +4,7 @@ import { ContactModel } from "../shared/models/contact.model";
 import { AuthService } from "../shared/services/auth.service";
 import {AnsweredType} from "../shared/enum/answeredType";
 import {Subject} from "rxjs";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-message-contact',
@@ -19,13 +20,18 @@ export class MessageContactComponent {
   private newAnsweredType: any;
   constructor(
     private contactService: ContactService,
-    private authService: AuthService
+    private authService: AuthService,
+    private datePipe: DatePipe,
+
   ) {}
 
   ngOnInit() {
     this.getMessages();
   }
-
+  formatData(data: string | null): string {
+    const dataFormat = this.datePipe.transform(data, 'dd/MM/yyyy');
+    return dataFormat ? dataFormat : '';
+  }
   getMessages() {
     const token = this.authService.getToken(); // Obter o token de autenticação
 
@@ -41,23 +47,19 @@ export class MessageContactComponent {
       return;
     }
 
-    const token = this.authService.getToken(); // Obter o token de autenticação
+    const token = this.authService.getToken();
 
     this.contactService.getMsgContactById(id, token).subscribe(
       (data) => {
-        // Atualiza a variável currentMessage com os dados da mensagem
         this.currentMessage = data;
       },
       (error) => console.error(error)
     );
   }
   onAnsweredTypeChange(event: Event): void {
-    console.log('onAnsweredTypeChange called');
 
     const selectElement = event.target as HTMLSelectElement;
     const selectedValue = selectElement.value;
-
-    console.log(`Selected value: ${selectedValue}`);
 
     let answeredType: AnsweredType;
     switch (selectedValue) {
@@ -73,13 +75,7 @@ export class MessageContactComponent {
         break;
     }
 
-    console.log(`AnsweredType to be sent: ${answeredType}`);
-
     const token = this.authService.getToken();
-
-    console.log(`Token: ${token}`);
-
-    console.log(`Current message ID: ${this.currentMessage.messageContactId}`);
 
     if (this.currentMessage && this.currentMessage.messageContactId) {
       const answeredTypeWrapper = { newAnsweredType: answeredType };
@@ -91,12 +87,8 @@ export class MessageContactComponent {
       }
 
       this.contactService.updateAnsweredStatus(this.currentMessage.messageContactId, answeredTypeWrapper, token).subscribe(() => {
-        console.log('HTTP request successful');
         this.currentMessage.answered = answeredType;
       }, error => {
-        console.log('HTTP request failed');
-        console.log(error);
-        // Handle error.
       });
     } else {
       console.error('Current message or message ID is undefined');

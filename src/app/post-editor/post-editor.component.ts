@@ -79,6 +79,7 @@ export class PostEditorComponent implements OnInit {
             post: data.post,
             description: data.description,
             alt: data.alt,
+            // imgCover: data.imgCover,
             tags: data.tags?.join(','),
           });
         },
@@ -86,27 +87,6 @@ export class PostEditorComponent implements OnInit {
       );
     }
   }
-  // onEdit() {
-  //   if (this.postForm.valid) {
-  //     const postId = this.route.snapshot.paramMap.get('postId');
-  //     const postData = this.postForm.value;
-  //     const token = this.authService.getToken();
-  //
-  //     this.postService.editPost(postId, postData, token).subscribe(
-  //       () => {
-  //         alert('Post editado com sucesso!');
-  //         this.router.navigate(['/postDetails', postId]);
-  //       },
-  //       (error) => {
-  //         alert('Erro ao editar o post.');
-  //         console.error(error);
-  //       }
-  //     );
-  //   } else {
-  //     alert('Verifique os campos do formulário antes de enviar a edição do post.');
-  //   }
-  // }
-
   onSubmit() {
     if (this.postForm.valid) {
       const content = this.postForm.get('post')?.value;
@@ -150,8 +130,6 @@ export class PostEditorComponent implements OnInit {
         for (let i = 0; i < postImages.length; i++) {
           postImagesFormData.append('postImages', postImages[i].file);
         }
-        console.log('JSON:', formData);
-
         this.postService.uploadPostImages(postImagesFormData).subscribe(
           (event: any) => {
           },
@@ -165,7 +143,6 @@ export class PostEditorComponent implements OnInit {
       if (postId) {
             this.postService.editPost(postId, formData).subscribe(
           () => {
-            console.log('Success on editing post');
             alert('Post editado com sucesso!');
             this.router.navigate(['/postDetails', postId]);
           },
@@ -178,9 +155,7 @@ export class PostEditorComponent implements OnInit {
         this.postService.createPosts(formData).subscribe(
           (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
-              console.log('Upload progress:', event);
             } else if (event instanceof HttpResponse) {
-              console.log('Success on creating post');
               alert("Post criado com sucesso!");
               const newPostId = event.body.postId;
               this.postForm.reset();

@@ -98,14 +98,12 @@ export class NavComponent implements OnInit {
       };
       this.contactService.createContact(contactModel).subscribe(
         response => {
-          console.log('Formulário enviado com sucesso.', response);
           this.contactForm.reset();
           this.contactForm.markAsUntouched();
           this.isContactModalOpen = false;
           alert('Agradecemos pelo contato!');
         },
         error => {
-          console.log('Ocorreu um erro.', error);
         }
       );
     } else {

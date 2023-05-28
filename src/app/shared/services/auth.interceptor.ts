@@ -19,7 +19,6 @@ export class AuthInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log('Token adicionado ao cabeçalho da requisição:', token); // registrar o token no console
     }
 
     return next.handle(request).pipe(
