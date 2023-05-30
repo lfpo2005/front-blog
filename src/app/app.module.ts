@@ -62,7 +62,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     dismiss: 'Entendi',
     deny: 'Recusar',
     link: 'Saiba mais',
-    href: 'cookies',
+    href: 'cookies', //aqui esta chanando a rota
     policy: 'Cookie Policy'
   }
 };
