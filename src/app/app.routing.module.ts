@@ -10,8 +10,7 @@ import { CreatedUserComponent } from "./created-user/created-user.component";
 import { SimulatedComponent } from "./simulated/simulated.component";
 import { AuthGuard } from './shared/guards/auth.guard';
 import { HomePageComponent } from "./home-page/home-page.component";
-import { Error500Component } from "./error500/error500.component";
-import { Error404Component } from "./error404/error404.component";
+import { PageNotFoundComponent } from "./page-notFound/page-not-found.component";
 import {PolicyCookiesComponent} from "./policy-cookies/policy-cookies.component";
 import {AccordionComponentComponent} from "./accordion-component/accordion-component.component";
 import {PostEditorComponent} from "./post-editor/post-editor.component";
@@ -33,11 +32,10 @@ const routes: Routes = [
   { path: 'simulado', component: SimulatedComponent, canActivate: [AuthGuard] } // pausa login
 */
   { path: 'simulado', component: SimulatedComponent }, // remover apos configuração do google
-  { path: '404', component: Error404Component },
-  { path: '500', component: Error500Component },
   { path: 'heavy', loadChildren: () => import('./heavy/heavy.module').then(m => m.HeavyModule) },
   { path: 'lazy', loadChildren: () => import('./heavy/lazy.module').then(m => m.LazyModule) },
-  { path: '**', redirectTo: '404' }
+  { path: '404', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

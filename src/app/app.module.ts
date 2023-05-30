@@ -25,9 +25,7 @@ import { CreatedUserComponent } from "./created-user/created-user.component";
 import { SimulatedComponent } from "./simulated/simulated.component";
 import { AuthGuard } from './shared/guards/auth.guard';
 import { HomePageComponent } from "./home-page/home-page.component";
-import { Error404Component } from "./error404/error404.component";
-import { Error500Component } from "./error500/error500.component";
-import { ErrorInterceptor } from "./shared/services/erro.inteceptor";
+import { PageNotFoundComponent } from "./page-notFound/page-not-found.component";
 import { CookieHandlerComponent } from "./cookie-handler/cookie-handler.component";
 import { PolicyCookiesComponent } from "./policy-cookies/policy-cookies.component";
 import { ShareButtonsComponent } from "./share-buttons/share-buttons.component";
@@ -39,6 +37,7 @@ import { MessageContactComponent } from "./message-contact/message-contact.compo
 import { ContactService } from "./shared/services/contact/contact.service";
 import {PostListComponent} from "./post-list-component/post-list.component";
 import {PostService} from "./shared/services/post/post.service";
+import {ErrorInterceptor} from "./shared/services/erro.inteceptor";
 
 //let domain = window.location.hostname.includes('localhost') ? 'http://localhost:4200' : 'https://agiledomain.com.br';
 const cookieConfig: NgcCookieConsentConfig = {
@@ -62,7 +61,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     dismiss: 'Entendi',
     deny: 'Recusar',
     link: 'Saiba mais',
-    href: 'cookies', //aqui esta chanando a rota
+    href: 'cookies',
     policy: 'Cookie Policy'
   }
 };
@@ -86,8 +85,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     SimulatedComponent,
     HomeComponent,
     ShareButtonsComponent,
-    Error404Component,
-    Error500Component,
+    PageNotFoundComponent,
     AccordionComponentComponent,
     PostListComponent,
     MessageContactComponent,
