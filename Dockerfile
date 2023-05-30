@@ -11,7 +11,7 @@ RUN npm run build
 FROM node:14-alpine as express
 WORKDIR /app
 COPY --from=angular /app/dist/front-blog /app
-COPY server.js /app
+COPY /src/server.js /app
 RUN npm install express connect-history-api-fallback
 
 # Stage 3 - Run with Nginx
