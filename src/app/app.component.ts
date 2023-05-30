@@ -1,16 +1,32 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PostModel} from "./shared/models/post.model";
 import {NavigationEnd, Router} from "@angular/router";
 import { filter } from 'rxjs/operators';
 import {Meta} from "@angular/platform-browser";
 import {Angulartics2GoogleTagManager} from "angulartics2";
-import {NgcCookieConsentService, NgcStatusChangeEvent} from "ngx-cookieconsent";
+import {
+  NgcCookieConsentService,
+  NgcInitializationErrorEvent, NgcInitializingEvent,
+  NgcNoCookieLawEvent,
+  NgcStatusChangeEvent
+} from "ngx-cookieconsent";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+
+  private popupOpenSubscription!: Subscription;
+  private popupCloseSubscription!: Subscription;
+  private initializingSubscription!: Subscription;
+  private initializedSubscription!: Subscription;
+  private initializationErrorSubscription!: Subscription;
+  private statusChangeSubscription!: Subscription;
+  private revokeChoiceSubscription!: Subscription;
+  private noCookieLawSubscription!: Subscription;
+
   listPosts: PostModel[] | null | undefined = null;
   isHomePage: boolean = true;
   alerts: any[] = [
@@ -22,7 +38,8 @@ export class AppComponent implements OnInit {
   constructor(private router: Router,
               private metaService: Meta,
               private angulartics2GoogleTagManager: Angulartics2GoogleTagManager,
-              private ccService: NgcCookieConsentService
+              private ccService: NgcCookieConsentService,
+              private cookieService: NgcCookieConsentService
   ) {
     angulartics2GoogleTagManager.startTracking();
     this.router.events
@@ -49,14 +66,65 @@ export class AppComponent implements OnInit {
           + this.formatDate(this.MAINTENANCE_END_DATE) + ', das 06:00 às 08:00. O sistema pode sofrer instabilidades no período.'
       });
     }
-    this.ccService.statusChange$.subscribe(
-      (event: NgcStatusChangeEvent) => {
-        if (event.status === this.ccService.getStatus().deny) {
-        } else if (event.status === this.ccService.getStatus().allow) {
-        }
+    if (this.ccService.getConfig()) {
+      this.ccService.getConfig().content = this.ccService.getConfig().content || {};
+    }
+    this.popupOpenSubscription = this.cookieService.popupOpen$.subscribe(
+      () => {
+        // you can use this.cookieService.getConfig() to do stuff...
       });
-  }
 
+    this.popupCloseSubscription = this.cookieService.popupClose$.subscribe(
+      () => {
+        // you can use this.cookieService.getConfig() to do stuff...
+      });
+
+    this.initializingSubscription = this.cookieService.initializing$.subscribe(
+      (event: NgcInitializingEvent) => {
+        // the cookieconsent is initilializing... Not yet safe to call methods like `NgcCookieConsentService.hasAnswered()`
+        console.log(`initializing: ${JSON.stringify(event)}`);
+      });
+
+    this.initializedSubscription = this.cookieService.initialized$.subscribe(
+      () => {
+        // the cookieconsent has been successfully initialized.
+        // It's now safe to use methods on NgcCookieConsentService that require it, like `hasAnswered()` for eg...
+        console.log(`initialized: ${JSON.stringify(event)}`);
+      });
+
+    this.initializationErrorSubscription = this.cookieService.initializationError$.subscribe(
+      (event: NgcInitializationErrorEvent) => {
+        // the cookieconsent has failed to initialize...
+        console.log(`initializationError: ${JSON.stringify(event.error?.message)}`);
+      });
+
+    this.statusChangeSubscription = this.cookieService.statusChange$.subscribe(
+      (event: NgcStatusChangeEvent) => {
+        // you can use this.cookieService.getConfig() to do stuff...
+      });
+
+    this.revokeChoiceSubscription = this.cookieService.revokeChoice$.subscribe(
+      () => {
+        // you can use this.cookieService.getConfig() to do stuff...
+      });
+
+    this.noCookieLawSubscription = this.cookieService.noCookieLaw$.subscribe(
+      (event: NgcNoCookieLawEvent) => {
+        // you can use this.cookieService.getConfig() to do stuff...
+      });
+
+  }
+  ngOnDestroy() {
+    // unsubscribe to cookieconsent observables to prevent memory leaks
+    this.popupOpenSubscription.unsubscribe();
+    this.popupCloseSubscription.unsubscribe();
+    this.initializingSubscription.unsubscribe();
+    this.initializedSubscription.unsubscribe();
+    this.initializationErrorSubscription.unsubscribe();
+    this.statusChangeSubscription.unsubscribe();
+    this.revokeChoiceSubscription.unsubscribe();
+    this.noCookieLawSubscription.unsubscribe();
+  }
 
   close(alert: any) {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
@@ -72,6 +140,5 @@ export class AppComponent implements OnInit {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   }
-
 
 }

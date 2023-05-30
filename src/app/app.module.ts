@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,7 +29,6 @@ import { Error404Component } from "./error404/error404.component";
 import { Error500Component } from "./error500/error500.component";
 import { ErrorInterceptor } from "./shared/services/erro.inteceptor";
 import { CookieHandlerComponent } from "./cookie-handler/cookie-handler.component";
-import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { PolicyCookiesComponent } from "./policy-cookies/policy-cookies.component";
 import { ShareButtonsComponent } from "./share-buttons/share-buttons.component";
 import { NgxSummernoteModule } from 'ngx-summernote';
@@ -40,12 +40,13 @@ import { ContactService } from "./shared/services/contact/contact.service";
 import {PostListComponent} from "./post-list-component/post-list.component";
 import {PostService} from "./shared/services/post/post.service";
 
+//let domain = window.location.hostname.includes('localhost') ? 'http://localhost:4200' : 'https://agiledomain.com.br';
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
     domain: 'https://metodologia-agil.com.br/'
   },
   position: 'bottom',
-  theme: 'classic',
+  theme: 'block',
   palette: {
     popup: {
       background: '#000000',
@@ -70,6 +71,7 @@ const cookieConfig: NgcCookieConsentConfig = {
   declarations: [
     AppComponent,
     PostModalComponent,
+    CookieHandlerComponent,
     HomePageComponent,
     NavComponent,
     FooterComponent,
@@ -86,7 +88,6 @@ const cookieConfig: NgcCookieConsentConfig = {
     ShareButtonsComponent,
     Error404Component,
     Error500Component,
-    CookieHandlerComponent,
     AccordionComponentComponent,
     PostListComponent,
     MessageContactComponent,
@@ -109,12 +110,12 @@ const cookieConfig: NgcCookieConsentConfig = {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    CookieService,
     JwtHelperService,
     DatePipe,
     AuthGuard,
     ContactService,
-    PostService,
-    CookieService
+    PostService
   ],
   bootstrap: [ AppComponent ]
 })

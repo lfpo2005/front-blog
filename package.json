@@ -28,6 +28,7 @@
     "angulartics2": "^12.2.0",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",
+    "cookieconsent": "^3.1.1",
     "jquery": "^3.7.0",
     "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
