@@ -28,7 +28,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private noCookieLawSubscription!: Subscription;
 
   listPosts: PostModel[] | null | undefined = null;
-  isHomePage: boolean = true;
   alerts: any[] = [
 
   ];
@@ -46,7 +45,6 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         const navigationEndEvent = event as NavigationEnd;
-        // this.isHomePage = navigationEndEvent.url === '/' || navigationEndEvent.url === '/home',
         this.metaService.addTag({
           name: 'description',
           content: 'Aprenda sobre as melhores metodologias ágeis utilizadas na indústria de tecnologia e desenvolvimento de software. Nossos artigos e tutoriais detalhados irão ajudá-lo a entender os princípios, práticas e ferramentas por trás do desenvolvimento ágil.'

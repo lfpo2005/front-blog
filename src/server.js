@@ -1,17 +1,28 @@
 const express = require('express');
 const path = require('path');
-const historyApiFallback = require('connect-history-api-fallback');
+const history = require('connect-history-api-fallback');
 
 const app = express();
 
-app.use(historyApiFallback({
+const html404 = path.join(__dirname, 'dist/your-angular-app/404.html');
+
+app.use(history({
   rewrites: [
-    { from: /\/404$/, to: '/404.html' }
+    {
+      from: /^\/404$/,
+      to: function(context) {
+        return '/404.html';
+      }
+    },
+    {
+      from: /\/[^]/,
+      to: function(context) {
+        return '/index.html';
+      }
+    }
   ]
 }));
 
-// Serve static files
-app.use(express.static(__dirname + '/dist/your-angular-app'));
+app.use(express.static(path.join(__dirname, 'dist/your-angular-app')));
 
-// Start the app by listening on the default Heroku port
 app.listen(process.env['PORT'] || 8080);

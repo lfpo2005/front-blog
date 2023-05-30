@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -24,7 +24,6 @@ import { DictionaryEditorComponent } from "./dictionary-editor/dictionary-editor
 import { CreatedUserComponent } from "./created-user/created-user.component";
 import { SimulatedComponent } from "./simulated/simulated.component";
 import { AuthGuard } from './shared/guards/auth.guard';
-import { HomePageComponent } from "./home-page/home-page.component";
 import { PageNotFoundComponent } from "./page-notFound/page-not-found.component";
 import { CookieHandlerComponent } from "./cookie-handler/cookie-handler.component";
 import { PolicyCookiesComponent } from "./policy-cookies/policy-cookies.component";
@@ -35,14 +34,15 @@ import { CookieService} from 'ngx-cookie-service';
 import { AccordionComponentComponent } from "./accordion-component/accordion-component.component";
 import { MessageContactComponent } from "./message-contact/message-contact.component";
 import { ContactService } from "./shared/services/contact/contact.service";
-import {PostListComponent} from "./post-list-component/post-list.component";
-import {PostService} from "./shared/services/post/post.service";
-import {ErrorInterceptor} from "./shared/services/erro.inteceptor";
+import { PostListComponent } from "./post-list-component/post-list.component";
+import { PostService } from "./shared/services/post/post.service";
+import { Error500Component } from "./error500/error500.component";
+import {GlobalErrorHandler} from "./shared/services/erro-handler";
 
 //let domain = window.location.hostname.includes('localhost') ? 'http://localhost:4200' : 'https://agiledomain.com.br';
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: 'https://metodologia-agil.com.br/'
+    domain: 'http://localhost:4200'
   },
   position: 'bottom',
   theme: 'block',
@@ -61,7 +61,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     dismiss: 'Entendi',
     deny: 'Recusar',
     link: 'Saiba mais',
-    href: 'cookies',
+    href: '/cookies',
     policy: 'Cookie Policy'
   }
 };
@@ -71,7 +71,6 @@ const cookieConfig: NgcCookieConsentConfig = {
     AppComponent,
     PostModalComponent,
     CookieHandlerComponent,
-    HomePageComponent,
     NavComponent,
     FooterComponent,
     PostDetailsComponent,
@@ -89,6 +88,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     AccordionComponentComponent,
     PostListComponent,
     MessageContactComponent,
+    Error500Component,
     PolicyCookiesComponent,
   ],
   imports: [
@@ -107,7 +107,7 @@ const cookieConfig: NgcCookieConsentConfig = {
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
     CookieService,
     JwtHelperService,
     DatePipe,

@@ -9,15 +9,16 @@ import { PanelAdminComponent } from "./painel-admin/panel-admin.component";
 import { CreatedUserComponent } from "./created-user/created-user.component";
 import { SimulatedComponent } from "./simulated/simulated.component";
 import { AuthGuard } from './shared/guards/auth.guard';
-import { HomePageComponent } from "./home-page/home-page.component";
 import { PageNotFoundComponent } from "./page-notFound/page-not-found.component";
 import {PolicyCookiesComponent} from "./policy-cookies/policy-cookies.component";
 import {AccordionComponentComponent} from "./accordion-component/accordion-component.component";
-import {PostEditorComponent} from "./post-editor/post-editor.component";
+import { PostEditorComponent } from "./post-editor/post-editor.component";
+import { HomeComponent } from "./home/home.component";
+import {Error500Component} from "./error500/error500.component";
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
-  { path: 'home', component: HomePageComponent },
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'policy', component: PolicyPSComponent },
   { path: 'cookies', component: PolicyCookiesComponent },
   { path: 'postDetails/:postId', component: PostDetailsComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'simulado', component: SimulatedComponent }, // remover apos configuração do google
   { path: 'heavy', loadChildren: () => import('./heavy/heavy.module').then(m => m.HeavyModule) },
   { path: 'lazy', loadChildren: () => import('./heavy/lazy.module').then(m => m.LazyModule) },
+  { path: '500', component: Error500Component },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/404' }
 ];
