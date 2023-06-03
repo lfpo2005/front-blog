@@ -28,9 +28,10 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
   public showAllQuestionsModal = false;
   currentQuestionIndex = 0;
   skipped?: boolean;
+  currentUrl!: string;
 
   constructor(private service: BaseService,
-              //private authService: AuthService, // pausa no login
+              private authService: AuthService,
               private titleService: Title,
               private metaService: Meta,
               private cdr: ChangeDetectorRef,
@@ -46,7 +47,8 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
     this.service.startQuiz().subscribe((questions) => {
       this.questions = questions;
     });
-    this.titleService.setTitle('Blog Agil - Simulado Scrum');
+    this.titleService.setTitle('Agile Domain - Simulado Scrum');
+    this.currentUrl = `https://agiledomain.com.br/simulado`;
   }
   nextQuestion() {
     if (this.currentQuestionIndex < this.questions.length - 1) {
@@ -97,7 +99,6 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       console.error('Elemento rulesModal não encontrado');
     }
-    // Chame a função startSimulado() quando o botão "Start" for clicado
     const startButton = this.el.nativeElement.querySelector('#startButton');
     this.renderer.listen(startButton, 'click', () => {
       if (rulesModal) {

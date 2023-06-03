@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Blog Agil - Home');
+    this.titleService.setTitle('Agile Domain - Home');
     this.route.queryParams
       .pipe(map((params: any) => params.title))
       .subscribe(title => {

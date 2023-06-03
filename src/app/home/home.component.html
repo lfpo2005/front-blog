@@ -16,36 +16,20 @@
   </div>
 
   <div class="row">
-    <div *ngFor="let post of listPosts" class="home-card">
+    <div *ngFor="let post of listPosts" class="col-md-3 tag-container">
 
-      <div class="card home-card">
+      <div class="card home-card tag-container">
         <a [routerLink]="['/postDetails', post.postId]" class="no-underline">
           <img class="mr-3 img-card" [src]="'data:image/jpeg;base64,' + post.imgCover" [alt]="post.alt || 'Imagem do post'">
           <h1 class="card-title">{{ post.title }}</h1>
         </a>
         <div class="card-body">
-          <p class="card-text">{{ post.description }}</p>
-          <p><strong>Tags:</strong>
+          <p class="card-text">{{ post.description }}</p><p>
             <ng-container *ngFor="let tag of post.tags; let i = index">
-              <a *ngIf="i < 2" class="tag-link" (click)="onTagClick(tag)" text="{{ tag }}">{{ tag }}</a>
+              <a *ngIf="i < 2" class="tag-link" (click)="onTagClick(tag)" [textContent]="'#' + tag"> {{ tag }}</a>
             </ng-container>
           </p>
         </div>
-      </div>
-      <!-- Espaço reservado para o anúncio do Google AdSense -->
-      <div class="ad-container">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5280935303207200"
-                crossorigin="anonymous"></script>
-        <!-- Lateral -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-5280935303207200"
-             data-ad-slot="1330696608"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
       </div>
     </div>
   </div>

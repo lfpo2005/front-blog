@@ -95,34 +95,32 @@
     <p *ngIf="question.incorrect" class="explanation">{{ question.explanation }}</p>
   </div>
 
-
   <!-- Modal inicial -->
-<!--  <div class="modal fade" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog">-->
-<!--      <div class="modal-content">-->
-<!--        <div class="modal-header">-->
-<!--          <h5 class="modal-title" id="rulesModalLabel">Regras do Simulado</h5>-->
-<!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--        </div>-->
-<!--        <div class="modal-body">-->
-<!--          <p>Instructions</p>-->
-<!--          <ul>-->
-<!--            <li>Number of questions: 80</li>-->
-<!--            <li>Has a time limit of: 01:00:00</li>-->
-<!--            <li>Must be finished in one sitting. You cannot save and finish later.</li>-->
-<!--            <li>Questions displayed per page: 1</li>-->
-<!--            <li>Will allow you to go back and change your answers.</li>-->
-<!--            <li>Will not let you finish with any questions unattempted.</li>-->
-<!--            <li>Has a pass mark of: 85%</li>-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--        <div class="modal-footer">-->
-<!--          <button id="startButton" type="button" class="btn btn-primary">Start</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
+  <div class="modal fade" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="rulesModalLabel">Regras do Simulado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Instructions</p>
+          <ul>
+            <li>Number of questions: 80</li>
+            <li>Has a time limit of: 01:00:00</li>
+            <li>Must be finished in one sitting. You cannot save and finish later.</li>
+            <li>Questions displayed per page: 1</li>
+            <li>Will allow you to go back and change your answers.</li>
+            <li>Will not let you finish with any questions unattempted.</li>
+            <li>Has a pass mark of: 85%</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button id="startButton" type="button" class="btn btn-primary">Start</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ############### Modal Resultado do Simulado ################-->
   <div class="modal" tabindex="-1" [ngClass]="{'show': showResults, 'd-block': showResults, 'd-none': !showResults}">
@@ -138,8 +136,12 @@
             <p class="explanation explanation-red">{{ question.explanation }}</p>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="showResults = false;">Fechar</button>
+        <div class="modal-footer result-simulator">
+          <div style="order: 1;">
+            <h5>Compartilhe:</h5>
+            <app-share-buttons class="share-buttons" [url]="currentUrl" ></app-share-buttons>
+          </div>
+          <button type="button" class="btn btn-primary close-button" (click)="showResults = false;">Fechar</button>
         </div>
       </div>
     </div>
@@ -181,7 +183,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 

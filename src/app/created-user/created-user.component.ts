@@ -16,7 +16,7 @@ export class CreatedUserComponent implements OnInit {
   alertMessage: string | null = null;
 
   ngOnInit(): void {
-    this.titleService.setTitle('Blog Agil - Cadastro de usuário');
+    this.titleService.setTitle('Agile Domain - Cadastro de usuário');
   }
 
   showAlert(message: string) {

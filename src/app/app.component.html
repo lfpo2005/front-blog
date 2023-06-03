@@ -2,6 +2,9 @@
 <p *ngFor="let alert of alerts" style="width: 90%; margin: 0 auto">
   <ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
 </p>
-<app-cookie-handler></app-cookie-handler>
+<app-cookie-handler
+  (cookieStatusChange)="onCookieAccept()"
+  (learnMore)="onCookieLearnMore()"
+></app-cookie-handler>
 <router-outlet></router-outlet>
 <app-footer></app-footer>

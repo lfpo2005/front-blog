@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.titleService.setTitle('Blog Agil - Cadastro de usuário');
+    this.titleService.setTitle('Agile Domain - Cadastro de usuário');
   }
 
   public loginForm: FormGroup = new FormGroup({

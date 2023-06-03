@@ -56,8 +56,7 @@
         <span [innerHTML]="post?.post" (click)="onContentClick($event)"></span>
       </p>
       <p>
-        <strong>Tags:</strong>
-        <a *ngFor="let tag of post.tags" class="tag-link" (click)="onTagClick(tag)" text="{{ tag }}">{{ tag }}</a>
+        <a *ngFor="let tag of post.tags" class="tag-link" (click)="onTagClick(tag)" [textContent]="'#' + tag">{{ tag }}</a>
       </p>
     </section>
 
