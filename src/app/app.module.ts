@@ -38,7 +38,7 @@ import {PostListComponent} from "./post-list-component/post-list.component";
 import {PostService} from "./shared/services/post/post.service";
 import {Error500Component} from "./error500/error500.component";
 
-let domain = window.location.hostname.includes('localhost') ? 'localhost' : 'agiledomain.com.br';
+let domain = window.location.hostname.includes('localhost') ? 'localhost' : 'metodologia-agil.com.br';
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
     domain: domain,

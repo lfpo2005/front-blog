@@ -55,7 +55,7 @@ export class PostDetailsComponent implements OnInit {
       const postId = params.get('postId');
       if (postId !== null) {
         this.getPostDetails(postId);
-        this.currentUrl = `https://agiledomain.com.br/postDetails/${postId}`;
+        this.currentUrl = `https://metodologia-agil.com.br/postDetails/${postId}`;
       } else {
         console.error('postId is null');
       }

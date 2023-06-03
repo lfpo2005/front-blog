@@ -47,8 +47,8 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
     this.service.startQuiz().subscribe((questions) => {
       this.questions = questions;
     });
-    this.titleService.setTitle('Agile Domain - Simulado Scrum');
-    this.currentUrl = `https://agiledomain.com.br/simulado`;
+    this.titleService.setTitle('Metodologia-Agil - Simulado Scrum');
+    this.currentUrl = `https://metodologia-agil.com.br/simulado`;
   }
   nextQuestion() {
     if (this.currentQuestionIndex < this.questions.length - 1) {

@@ -12,7 +12,7 @@ export class PanelAdminComponent implements OnInit {
 
   constructor(private titleService: Title) {}
   ngOnInit(): void {
-    this.titleService.setTitle('Agile Domain - Cadastro de usuário');
+    this.titleService.setTitle('Metodologia-Agil - Cadastro de usuário');
   }
   public formOpen: 'post' | 'dictionary' | 'contact' | 'dashboard' | null = 'post';
 
