@@ -56,7 +56,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     },
   },
   type: 'opt-in',
-  // revokable: true,
+   revokable: true,
   content: {
     message: 'Este site usa cookies para garantir que você obtenha a melhor experiência em nosso site.',
     allow: 'Aceito',
