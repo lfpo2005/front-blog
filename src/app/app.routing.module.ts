@@ -15,6 +15,7 @@ import { PostEditorComponent } from "./post-editor/post-editor.component";
 import { HomeComponent } from "./home/home.component";
 import { Error500Component } from "./error500/error500.component";
 import { CookieGuard } from "./shared/services/cookie/cookieGuard";
+import {ContactComponent} from "./contact/contact.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'release', component: AccordionComponentComponent },
   { path: 'post-editor', component: PostEditorComponent },
   { path: 'post-editor/:postId', component: PostEditorComponent },
+  { path: 'contato', component: ContactComponent },
   { path: '', component: HomeComponent, canActivate: [CookieGuard] },
   { path: 'admin', component: PanelAdminComponent },
   { path: 'simulado', component: SimulatedComponent, canActivate: [AuthGuard] },

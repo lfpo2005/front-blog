@@ -75,12 +75,12 @@ export class CreatedUserComponent implements OnInit {
   onSubmit() {
     if (this.userForm.valid) {
       const user: UserModel = this.userForm.value;
-
+      this.router.navigate(['/login'], { queryParams: { event: 'confirmacadastro' } });
       this.blogService.createdUser(user).subscribe(
         (userCreated) => {
           this.userForm.reset();
           alert('User criado com sucesso!');
-          this.router.navigate(['/login']); // Adicionar esta linha
+          this.router.navigate(['/login']);
         },
         (err) => {
           alert('Erro ao criar user!');

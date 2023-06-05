@@ -20,7 +20,7 @@
           <a class="nav-link"  (click)="openModal()">Sobre</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link"  (click)="isContactModalOpen = true">Contato</a>
+          <a class="nav-link" routerLink="/contato">Contato</a>
         </li>
       </ul>
       <form class="d-flex" (ngSubmit)="onFormSubmit()">
@@ -66,39 +66,6 @@
   </div>
 </ng-template>
 
-<!-- ################## Modal Contact  ######################-->
-<div *ngIf="isContactModalOpen" class="modal" tabindex="-1" role="dialog" style="display: block;">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Entre em contato</h4>
-        <button type="button" class="close" aria-label="Close" (click)="isContactModalOpen = false">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="contactForm" (ngSubmit)="postContactForm()">
-          <div class="form-group">
-            <label for="contactEmail">E-mail:</label>
-            <input type="email" class="form-control contact-w" id="contactEmail" formControlName="contactEmail"
-                   placeholder="Digite seu email aqui" required>
-            <div *ngIf="contactForm.get('contactEmail')?.errors?.['required'] && contactForm.get('contactEmail')?.touched" class="text-danger">E-mail é obrigatório.</div>
-          </div>
-
-          <div class="form-group">
-            <label for="contactMessage">Mensagem:</label>
-            <textarea class="form-control contact-w" id="contactMessage" formControlName="contactMessage" maxlength="1000"
-                      rows="5" placeholder="Digite sua mensagem" required></textarea>
-            <div *ngIf="contactForm.get('contactMessage')?.errors?.['required'] && contactForm.get('contactMessage')?.touched" class="text-danger">Mensagem é obrigatória.</div>
-            <div *ngIf="contactForm.get('contactMessage')?.errors?.['maxlength'] && contactForm.get('contactMessage')?.touched" class="text-danger">A mensagem pode ter no máximo 1000 caracteres.</div>
-          </div>
-
-          <button type="submit" class="btn btn-default-right">Enviar</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 

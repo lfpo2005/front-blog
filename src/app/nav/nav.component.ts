@@ -1,9 +1,6 @@
 import { PostModel } from "../shared/models/post.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Router } from "@angular/router";
-import { ContactService } from "../shared/services/contact/contact.service";
-import { ContactModel } from "../shared/models/contact.model";
-
 import {
   ChangeDetectorRef,
   Component,
@@ -11,7 +8,6 @@ import {
   EventEmitter,
   OnInit,
   Output,
-  SimpleChanges,
   ViewChild
 } from '@angular/core';
 
@@ -53,7 +49,6 @@ export class NavComponent implements OnInit {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private formBuilder: FormBuilder,
-    private contactService: ContactService
   ) {
     this.contactForm = this.formBuilder.group({
       contactEmail: ['', [Validators.required, Validators.email]],
@@ -90,28 +85,6 @@ export class NavComponent implements OnInit {
     this.getPostsByTitleNav(this.title);
     this.title = '';
   }
-  postContactForm() {
-    if (this.contactForm.valid) {
-      const contactModel: ContactModel = {
-        email: this.contactForm.value['contactEmail'],
-        message: this.contactForm.value['contactMessage']
-      };
-      this.contactService.createContact(contactModel).subscribe(
-        response => {
-          this.contactForm.reset();
-          this.contactForm.markAsUntouched();
-          this.isContactModalOpen = false;
-          alert('Agradecemos pelo contato!');
-        },
-        error => {
-        }
-      );
-    } else {
-      // Exibe uma mensagem de erro informando que os campos são obrigatórios
-      alert('Por favor, preencha todos os campos obrigatórios.');
-    }
-  }
-
 
   openModal() {
     this.modalService.open(this.aboutModal, { ariaLabelledBy: 'modal-title' });
