@@ -6,7 +6,7 @@
           <h4 class="modal-title">Entre em contato</h4>
         </div>
         <div class="card-body">
-          <form [formGroup]="contactForm" (ngSubmit)="postContactForm()">
+          <form [formGroup]="contactForm" (ngSubmit)="postContactForm()" id="mensagemenviada">
             <div class="form-group">
               <label for="contactEmail">E-mail:</label>
               <input type="email" class="form-control contact-w" id="contactEmail" formControlName="contactEmail"

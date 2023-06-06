@@ -35,6 +35,8 @@ export class ContactComponent implements OnInit {
         response => {
           this.contactForm.reset();
           this.contactForm.markAsUntouched();
+          this.router.navigate(['/contato'], { queryParams: { event: 'mensagemenviada' } });
+
           alert('Agradecemos pelo contato!');
         },
         error => {
