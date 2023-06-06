@@ -17,6 +17,7 @@ export class ContactComponent implements OnInit {
     private router: Router
   ) {
     this.contactForm = this.formBuilder.group({
+      contactName: ['', Validators.required],
       contactEmail: ['', [Validators.required, Validators.email]],
       contactMessage: ['', [Validators.required, Validators.maxLength(1000)]]
     });
@@ -28,6 +29,7 @@ export class ContactComponent implements OnInit {
   postContactForm() {
     if (this.contactForm.valid) {
       const contactModel: ContactModel = {
+        name: this.contactForm.value['contactName'],
         email: this.contactForm.value['contactEmail'],
         message: this.contactForm.value['contactMessage']
       };

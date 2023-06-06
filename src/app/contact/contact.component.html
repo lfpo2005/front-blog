@@ -8,6 +8,13 @@
         <div class="card-body">
           <form [formGroup]="contactForm" (ngSubmit)="postContactForm()" id="mensagemenviada">
             <div class="form-group">
+              <label for="contactName">Nome:</label>
+              <input type="text" class="form-control contact-w" id="contactName" formControlName="contactName"
+                     placeholder="Digite seu nome aqui" required>
+              <div *ngIf="contactForm.get('contactName')?.errors?.['required'] && contactForm.get('contactName')?.touched" class="text-danger">Nome é obrigatório.</div>
+            </div>
+
+            <div class="form-group">
               <label for="contactEmail">E-mail:</label>
               <input type="email" class="form-control contact-w" id="contactEmail" formControlName="contactEmail"
                      placeholder="Digite seu email aqui" required>
