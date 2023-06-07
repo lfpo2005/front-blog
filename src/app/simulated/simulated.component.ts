@@ -181,7 +181,7 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
       )
       .filter(index => index !== -1);
   }
-  startQuiz(): void {
+/*  startQuiz(): void {
     this.startTimer();
     this.quizStarted = true;
     setTimeout(() => {
@@ -190,7 +190,7 @@ export class SimulatedComponent implements OnInit, OnDestroy, AfterViewInit {
         countdownText.classList.add('fixed-countdown');
       }
     }, 0);
-  }
+  }*/
 
   displayResults(percentage: number, incorrectQuestions: QuestionModel[]): void {
     this.showResults = true;

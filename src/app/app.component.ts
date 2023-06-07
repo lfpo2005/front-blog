@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
   alerts: any[] = [
 
   ];
-  private MAINTENANCE_START_DATE = new Date(2023, 6 - 1, 7, 0, 0, 0, 0);
-  private MAINTENANCE_END_DATE = new Date(2023, 6 - 1, 9, 8, 0, 0, 0);
+  private MAINTENANCE_START_DATE = new Date(2023, 6 - 1, 17, 0, 0, 0, 0);
+  private MAINTENANCE_END_DATE = new Date(2023, 6 - 1, 18, 9, 0, 0, 0);
 
   constructor(private router: Router,
               private metaService: Meta,
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
       this.alerts.push({
         type: 'warning',
         message: 'Aviso: Manutenção programada, agendada para o próximo sábado, dia '
-          + this.formatDate(this.MAINTENANCE_END_DATE) + ', das 06:00 às 08:00. O sistema pode sofrer instabilidades no período.'
+          + this.formatDate(this.MAINTENANCE_END_DATE) + ', das 07:00 às 09:00. O sistema pode sofrer instabilidades no período.'
       });
     }
     if (this.ccService.getConfig()) {

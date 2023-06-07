@@ -5,24 +5,39 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 body {
   width: 100%;
   min-height: 100vh;
   background-color: #f8f9fa;
   margin: 0;
-  padding:  80px 0 0 0;
+  padding: 80px 0 0 0;
 }
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  align-items: center;
+}
+
 .logo {
   height: 35px;
   width: 35px;
   margin: 0 30px 0 10px;
   padding: 0;
 }
+
 .no-underline {
-   text-decoration: none;
+  text-decoration: none;
 }
-.btn-default-right{
+
+.btn-default-right {
   background-color: #163945;
   padding: 10px;
   border-radius: 5px;
@@ -31,8 +46,10 @@ body {
   border: 0.1em solid #011a1e;
   float: right;
 }
+
 .btn-default-right:hover {
-  background-color: #1a4a5f;}
+  background-color: #1a4a5f;
+}
 
 .btn-default-light {
   background-color: #f8f9fa;
@@ -44,9 +61,11 @@ body {
   border: 0.1em solid #011a1e;
   float: right;
 }
+
 .btn-default-light:hover {
   background-color: #5c9ab6;
 }
+
 .btn-default {
   background-color: #163945;
   padding: 10px;
@@ -54,44 +73,54 @@ body {
   color: #f8f9fa;
   transition: background-color 0.3s;
 }
+
 .btn-default:hover {
   background-color: #1a4a5f;
 }
+
 .main-content {
   min-height: calc(50vh - 100px);
 }
+
 .page-wrapper {
   padding-top: 20px;
 }
+
 /* ############ nav ############ */
 .nav-personalized {
-  padding: 10px 10px ;
+  padding: 10px 10px;
   background-image: linear-gradient(to bottom, #163945, #336699);
   /*background-color: #163945 !important;*/
 }
+
 .navbar-nav .nav-item.active > a {
   color: cornsilk !important;
   border-bottom: 0.01em solid white;
   font-weight: bolder;
 }
+
 .navbar-nav .nav-item > a {
   color: white !important;
 }
+
 .logo {
   text-transform: uppercase;
   font-weight: bold;
 }
+
 .navbar-nav .nav-item > a.link-release {
   margin: 0 2em;
   font-size: 0.8em;
   color: #fde8bb !important;
 }
+
 .form-control {
   font-size: 15px;
   padding: 3px 10px;
   width: 450px;
   /*height: 18px;*/
 }
+
 /* ############ footer ############ */
 footer {
   position: relative;
@@ -109,46 +138,42 @@ footer {
 .newsletter .form-group {
   margin: 1rem;
 }
+
 .newsletter button {
   float: right;
 }
+
 .newsletter {
   margin-bottom: 2rem;
 }
+
 .newsletter .input-w {
   width: 100%;
   margin-bottom: 1em;
 }
+
 .link-policy {
   color: #d0d9f3;
 }
+
 .link-policy:hover {
   color: royalblue;
 }
 
-.contact {
-  margin-top: 13px;
-}
 .contact-w {
   width: 100%;
   margin-bottom: 1em;
 }
-.container-card {
-  display: flex;
-  justify-content: center;
-  margin: 0 5%;
-}
-.card-body {
-  overflow: hidden;
 
-}
 .login .form-control {
   max-width: 310px;
   margin-right: 10px;
 }
+
 .container-policy {
   margin: 50px 20%;
 }
+
 /* ############ Dictionary ############ */
 
 .container-dictionary {
@@ -157,66 +182,64 @@ footer {
   width: 800px;
   margin: 100px auto 100px;
 }
+
 .result-dictionary {
   margin: 20px;
 }
+
 .card-text-dictionary {
   height: 80%;
 }
+
+/*.card-text {*/
+/*  display: -webkit-box;*/
+/*  max-height: 9em;*/
+/*  min-height: 9em;*/
+/*  line-height: 1.2em;*/
+/*  overflow: hidden;*/
+/*  text-overflow: ellipsis;*/
+/*  margin-bottom: 1rem;*/
+/*}*/
 /* ############ Simulator ############ */
 
 .title-simulator {
   margin-top: 1rem;
 }
+
 .hidden {
   display: none;
 }
-.quiz-btn-container {
-  position: fixed;
-  top: 80px;
-  right: 50px;
-  /*z-index: 9999;*/
-  background-color: #163945;
-  padding: 10px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  color: #f8f9fa;
-}
+
 .container-quiz {
   width: 75%;
   margin: 2em;
 }
+
 .form-quiz {
   padding: 0.3em;
 }
-.fixed-countdown {
-  /*position: fixed;*/
+
+/*.fixed-countdown {
+  !*position: fixed;*!
   top: 80px;
   right: 50px;
   z-index: 9999;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-}
-.questions-container {
-  width: 85%;
-  margin-left: 20px;
-}
-.skipped-questions-container {
+}*/
+
+/*.skipped-questions-container {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   margin-top: 50px;
   width: 185px;
-}
+}*/
 .input-quiz {
   margin: 0 0.5em;
 }
-.btn-skip {
-  margin: 0.5em;
-}
+
 .bookmark-unfilled {
   color: #ccc;
   cursor: pointer;
@@ -225,6 +248,7 @@ footer {
   min-width: 1.5em;
   min-height: 1.5em;
 }
+
 .bookmark-filled {
   color: #ffae00;
   cursor: pointer;
@@ -233,6 +257,7 @@ footer {
   min-width: 1.5em;
   min-height: 1.5em;
 }
+
 .bookmark-skipped {
   color: #ffae00;
   width: 1.5em;
@@ -245,6 +270,7 @@ footer {
   display: flex;
   align-items: center;
 }
+
 .time-left-container {
   display: flex;
   align-items: center;
@@ -256,6 +282,7 @@ footer {
   width: 1em;
   height: 1em;
 }
+
 .time-left-container {
   display: flex;
   align-items: center;
@@ -287,6 +314,7 @@ footer {
   font-size: 1em;
   margin-right: 5px;
 }
+
 .answered {
   color: green;
 }
@@ -294,10 +322,12 @@ footer {
 .unanswered {
   color: lightcoral;
 }
+
 .modal-body {
   max-height: 300px;
   overflow-y: auto;
 }
+
 .submitQuizButton {
   background-color: #0b5ed8;
   padding: 7px 15px;
@@ -306,17 +336,21 @@ footer {
   transition: background-color 0.3s;
   margin: 0 auto;
 }
+
 .submitQuizButton:hover {
   background-color: #092879;
 
 }
+
 .explanation-red {
   color: red;
 }
+
 .result-simulator {
-  display:flex;
+  display: flex;
   justify-content: space-between;
 }
+
 .share-buttons {
   order: 1;
 }
@@ -324,11 +358,13 @@ footer {
 .close-button {
   order: 2;
 }
+
 /* ############ postDetails ############ */
 .container-postDetails {
   width: 90%;
   margin: 0 auto;
 }
+
 .tag-link {
   color: #007bff;
   cursor: pointer;
@@ -341,55 +377,69 @@ footer {
   margin-bottom: 0.25rem;
   text-transform: lowercase;
 }
+
 .tag-link:hover {
   text-decoration: underline;
 }
-.img-post {
-  display: block;
-  margin: 0 auto ;
-  object-fit: cover;
-  max-width: 1200px;
-  max-height: 200px;
-}
+
 .share-icons {
   margin: 5px;
   font-size: 2.5em;
 }
-/* ############ Cards ############ */
-.card-post{
+
+.card-post {
   margin: 2rem;
 }
+
 .h1-postDetails {
   margin: 1rem;
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
 }
+
+/* ############ Cards ############ */
 .container-card {
   display: flex;
-  justify-content: center;
-  margin: 0 5%;
   flex-wrap: wrap;
+  max-width: 90%;
+  margin: 0 auto;
 }
+
+.container-card > div {
+  flex: 1 1 20%;
+  margin: 1rem;
+}
+
+.card-body {
+  overflow: hidden;
+}
+
 .card-text {
   display: -webkit-box;
-  max-height: 6em;
+  max-height: 9em;
+  min-height: 8em;
   line-height: 1.2em;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 100%;
   margin-bottom: 1rem;
 }
-.home-card {
+
+.tag-container {
+  min-height: 20px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.home-card {
   justify-content: center;
   align-items: center;
-  width: 254px;
+  width: 245px;
   height: 450px;
-  margin: 10px;
   position: relative;
 }
+
 .home-card:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -399,15 +449,17 @@ footer {
   font-size: 16px;
   font-weight: bold;
   color: black;
-  text-decoration: none;
-  text-align: center;
   padding: 0 1rem;
+  max-height: 4em;
+  overflow: hidden;
 }
+
 .img-card-Post {
   width: 100%;
   max-height: 30%;
   margin-bottom: 1rem;
 }
+
 .img-card {
   width: 252px;
   height: 150px;
@@ -415,16 +467,8 @@ footer {
   margin-bottom: 1rem;
   position: relative;
 }
-.home-card .tag-container {
-  min-height: 20px; /* Ajuste a altura mínima conforme necessário */
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
 
 /* ############ Login e cadastro de user ############ */
-css
-Copy code
 .login-container {
   display: flex;
   flex-direction: column;
@@ -452,12 +496,14 @@ Copy code
 .login-form .form-group {
   margin-bottom: 1rem;
 }
+
 .login-form label {
   display: block;
   font-size: 0.9rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
+
 .login-form input {
   width: 100%;
   padding: 0.5rem;
@@ -476,6 +522,7 @@ Copy code
   font-size: 1rem;
   text-align: center;
 }
+
 .register-form {
   display: flex;
   flex-direction: column;
@@ -524,94 +571,45 @@ Copy code
 }
 
 input[type="password"],
-input[type="text"].password-field {
+input[type="text"] {
   width: 100%;
 }
-/* ############ mobile ############ */
 
-@media (max-width: 1200px) {
+@media only screen and (max-width: 636px) {
+  body {
+    padding: 20px 0 0 0;
+  }
+
   .form-control {
     width: 100%;
-    max-width: 100%;
+    padding: 10px;
   }
+
+  .container-dictionary, .container-policy {
+    width: 100%;
+    margin: 20px auto;
+  }
+
   .container-card {
-    margin: 0 2%;
-  }
-}
-@media (max-width: 992px) {
-  .hide-on-mobile {
-    display: none !important;
-  }
-  .container-dictionary {
-    width: 100%;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .login .form-control {
-    max-width: 100%;
-    margin-right: 0;
-  }
-
-  .container-postDetails {
-    width: 90%;
-    margin: 0 auto;
-  }
-}
-@media (max-width: 768px) {
-  .hide-on-mobile {
-    display: none !important;
-  }
   .home-card {
-    width: 100%;
-    max-width: 100%;
-    margin: 1rem 0;
+    width: 90%;
   }
 
   .img-card {
     width: 100%;
-    max-width: 100%;
   }
 
   .container-postDetails {
-    width: 90%;
-    margin: 0 auto;
-  }
-}
-@media (max-width: 768px) {
-  .hide-on-mobile {
-    display: none !important;
-  }
-  .home-card {
     width: 100%;
-    max-width: 100%;
-    margin: 1rem 0;
   }
 
-  .img-card, .img-post {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .container-postDetails {
+  .login-container, .register-form {
     width: 90%;
-    margin: 0 auto;
-  }
-}
-@media (max-width: 576px) {
-  .hide-on-mobile {
-    display: none !important;
-  }
-  .login-container {
-    margin: 1rem 0;
-  }
-  .login {
-    margin-top: 2rem;
-  }
-  .register-form {
-    padding: 1rem;
-  }
-  .container-postDetails, .img-post {
-    width: 90%;
-    margin: 0 auto;
+    margin: 1rem auto;
   }
 }
 

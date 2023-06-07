@@ -9,6 +9,7 @@ import {PostModel} from "../models/post.model";
 import {DictionaryModel} from "../models/dictionary.model";
 import {QuestionModel} from "../models/question.model";
 import {AnswerSubmission} from "../models/answerSubmission.model";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class BaseService {
 
   }
 
- // apiUrl = 'http://localhost:8087/blog';
-  apiUrl = 'https://metodologia-agil.com.br/blog';
+  apiUrl = environment.apiUrl;
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
