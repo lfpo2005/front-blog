@@ -1,4 +1,5 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://metodologia-agil.com.br/blog'
+  production: false,
+  animation: true,
+  transitionTimerDelayMs: 1000,
 };

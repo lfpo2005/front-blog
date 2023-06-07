@@ -20,8 +20,8 @@ export class BaseService {
 
   }
 
-  apiUrl = environment.apiUrl;
-
+ // apiUrl = 'http://localhost:8087/blog';
+  apiUrl = 'https://metodologia-agil.com.br/blog';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -31,7 +31,6 @@ export class BaseService {
     protected httpClient: HttpClient
 
   ) {}
-
  protected getHttpOptions(): { headers: HttpHeaders } {
     return {
       headers: new HttpHeaders({
