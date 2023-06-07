@@ -26,4 +26,3 @@ jobs:
           tags: |
             lfpo2005/agile-blog-front:v1
             lfpo2005/agile-blog-front:latest
-
