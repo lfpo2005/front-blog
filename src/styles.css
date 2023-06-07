@@ -372,7 +372,7 @@ footer {
   /*margin: 0.5em  ;*/
   overflow: auto;
   display: inline-block;
-  padding: 0.25rem 0.5rem;
+  /*padding: 0.25rem 0.5rem;*/
   margin-right: 0.25rem;
   margin-bottom: 0.25rem;
   text-transform: lowercase;
@@ -417,7 +417,7 @@ footer {
 
 .card-text {
   display: -webkit-box;
-  max-height: 9em;
+  max-height: 8em;
   min-height: 8em;
   line-height: 1.2em;
   overflow: hidden;
@@ -450,7 +450,7 @@ footer {
   font-weight: bold;
   color: black;
   padding: 0 1rem;
-  max-height: 4em;
+  max-height: 5em;
   overflow: hidden;
 }
 
