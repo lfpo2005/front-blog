@@ -1,20 +1,13 @@
-# Stage 1 - Build Angular app
 FROM node:14-alpine as angular
 WORKDIR /app
 COPY package.json /app
 RUN npm install --silent
 RUN npm cache clean --force
 COPY . .
-RUN npm run build
+RUN npm run build -- --base-href /
 
-# Stage 2 - Setup Express server
-FROM node:14-alpine as express
-WORKDIR /app
-COPY --from=angular /app/dist/front-blog /app
-COPY /src/server.js /app
-RUN npm install express connect-history-api-fallback
 
-# Stage 3 - Run with Nginx
+
 FROM nginx:alpine
 VOLUME /var/cache/nginx
 RUN mkdir /etc/nginx/ssl
