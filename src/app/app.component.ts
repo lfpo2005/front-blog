@@ -1,12 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {PostModel} from "./shared/models/post.model";
-import {NavigationEnd, Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { PostModel } from "./shared/models/post.model";
+import { NavigationEnd, Router } from "@angular/router";
 import { filter } from 'rxjs/operators';
-import {Meta} from "@angular/platform-browser";
-import {Angulartics2GoogleTagManager} from "angulartics2";
-import {  NgcCookieConsentService, NgcStatusChangeEvent} from "ngx-cookieconsent";
-import { NavigationError } from '@angular/router';
-
+import { Meta } from "@angular/platform-browser";
+import { Angulartics2GoogleTagManager } from "angulartics2";
+import { NgcCookieConsentService } from "ngx-cookieconsent";
 
 @Component({
   selector: 'app-root',

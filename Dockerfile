@@ -4,8 +4,7 @@ COPY package.json /app
 RUN npm install --silent
 RUN npm cache clean --force
 COPY . .
-RUN npm run build -- --base-href /
-
+RUN npm run build
 
 
 FROM nginx:alpine
