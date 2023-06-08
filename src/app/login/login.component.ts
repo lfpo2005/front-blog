@@ -33,28 +33,25 @@ export class LoginComponent implements OnInit {
   public postLogin() {
     this.service.login(this.loginForm?.value).subscribe(
       (res) => {
-        // Armazenar o token no local storage
         localStorage.setItem('token', res.token);
 
-        // Decodificar o token
         const decodedToken = jwt_decode(res.token);
 
-        // Verificar se o token decodificado tem a propriedade 'roles'
         if (decodedToken && typeof decodedToken === 'object' && 'roles' in decodedToken) {
           const roles = (decodedToken as any).roles;
 
           this.loginForm.reset();
 
-          // Verificar o tipo de usuário e redirecioná-lo
+          this.authService.setReturnUrl(this.route.snapshot.queryParams['returnUrl']);
+
           if (roles.includes(RoleType.ROLE_ADMIN)) {
             this.router.navigate(['/admin']);
           } else if (roles.includes(RoleType.ROLE_USER)) {
             const returnUrl = this.authService.getReturnUrl() || '/simulado';
             this.router.navigate([returnUrl]);
-            this.authService.setReturnUrl(this.route.snapshot.queryParams['returnUrl']);
           }
         }
-        },
+      },
       (err) => {
         console.error('Erro ao fazer o login', err);
         alert(
@@ -63,6 +60,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
 
   login() {
     const returnUrl = this.authService.getReturnUrl() || '/';

@@ -18,7 +18,10 @@ import { CookieGuard } from "./shared/services/cookie/cookieGuard";
 import {ContactComponent} from "./contact/contact.component";
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+ { path: '', redirectTo: '/home', pathMatch: 'full' },
+
+  // { path: '', component: HomeComponent },
+  //  { path: '', component: HomeComponent, canActivate: [CookieGuard] },
   { path: 'home', component: HomeComponent },
   { path: 'policy', component: PolicyPSComponent },
   { path: 'cookies', component: PolicyCookiesComponent },
@@ -30,7 +33,6 @@ const routes: Routes = [
   { path: 'post-editor', component: PostEditorComponent },
   { path: 'post-editor/:postId', component: PostEditorComponent },
   { path: 'contato', component: ContactComponent },
-  { path: '', component: HomeComponent, canActivate: [CookieGuard] },
   { path: 'admin', component: PanelAdminComponent },
   { path: 'simulado', component: SimulatedComponent, canActivate: [AuthGuard] },
   { path: 'heavy', loadChildren: () => import('./heavy/heavy.module').then(m => m.HeavyModule) },
