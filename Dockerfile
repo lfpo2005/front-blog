@@ -4,13 +4,12 @@ COPY package.json /app
 RUN npm install --silent
 RUN npm cache clean --force
 COPY . .
-RUN npm run build
-
+RUN npm run build -- --base-href /
 
 FROM nginx:alpine
 VOLUME /var/cache/nginx
 RUN mkdir /etc/nginx/ssl
-COPY --from=express /app /usr/share/nginx/html
+COPY --from=angular /app /usr/share/nginx/html
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./config/blog.crt /etc/nginx/ssl/blog.crt
 COPY ./config/blog.key /etc/nginx/ssl/sua-chave.key
